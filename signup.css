@@ -1,0 +1,66 @@
+:root{
+  --main-color: #3e69eb;
+}
+
+nav {
+  display: flex;
+  text-align: right;
+  align-items: right;
+  justify-content: right;
+  margin: 10px 10px;
+  padding: 10px 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #000;
+  margin: 0 10px;
+  transform: translateY(-5px);
+}
+
+nav a:hover{
+  color: var(--main-color);
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30dvw;
+  height: 70dvh;
+  margin:0 10dvw;
+  width: 400px;
+  border: 2px solid;
+}
+
+.container .Welcome{
+  font-size: 2.5rem;
+  padding:0;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.container input{
+  border: none;
+  width: 20em;
+  height: 30px;
+  margin-bottom: 10px;
+  background-color: #ebebeb;
+}
+.container button{
+  background-color: var(--main-color);
+  color: white;
+  border: none;
+  width: 20em;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 767px){
+  .container{
+    display: flex;
+    border: none;
+    height: 70dvh;
+    width:70dvw;
+  }
+}

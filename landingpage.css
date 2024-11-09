@@ -1,0 +1,38 @@
+nav {
+  margin: auto;
+  width: 100%; /* Change from 100lvh to 100% for full width */
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+}
+nav h1 {
+  margin-left: 5%;
+}
+
+.search{
+  height: 20px;
+  width: 400px;
+  margin-top: 4%;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 30px;
+  box-shadow: 0 10px 25px rgb(0, 0, 0, 0.3);
+}
+.fname{
+  margin: 30px;
+}
+.search input{
+  width: 400px;
+  outline: 0;
+  border: 0;
+  font-weight: 500px;
+  transition: 0.8s;
+  background: transparent;
+}
+.search a .fas{
+  color: #1daf;
+  font-size: 18px;
+}
