@@ -13,16 +13,12 @@ nav h1 {
 .search{
   height: 20px;
   width: 400px;
-  margin-top: 4%;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   padding: 10px 20px;
   border-radius: 30px;
-  box-shadow: 0 10px 25px rgb(0, 0, 0, 0.3);
-}
-.fname{
-  margin: 30px;
+  box-shadow: 0 5px 210px rgb(0, 0, 0, 0.3);
 }
 .search input{
   width: 400px;
@@ -32,7 +28,9 @@ nav h1 {
   transition: 0.8s;
   background: transparent;
 }
-.search a .fas{
-  color: #1daf;
-  font-size: 18px;
+.nav-a{
+  text-decoration: none;
+  color: #000;
+  margin: 0 10px;
+  transform: translateY(-5px);
 }
