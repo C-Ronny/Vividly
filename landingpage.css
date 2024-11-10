@@ -34,3 +34,26 @@ nav h1 {
   margin: 0 10px;
   transform: translateY(-5px);
 }
+
+.boards-section{
+  background-color: rgb(235, 237, 242);
+  height: 12rem;
+}
+
+#boards-text{
+  padding:5px;
+
+}
+
+.boards{
+  display: flex;
+}
+
+.board{
+  margin:5px;
+  display: inline-block;
+  flex-direction: row;
+  background-color: yellow;
+  height:100px;
+  width:200px;
+}
