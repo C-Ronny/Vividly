@@ -6,7 +6,7 @@
 $servername = 'localhost';
 $username = 'root';
 $password = '';
-$dbname = 'vividlydb';
+$dbname = 'vividly_db';
 
 // Create a new MySQLi connection object using the specified credentials
 $conn = new  mysqli($servername, $username, $password, $dbname);
