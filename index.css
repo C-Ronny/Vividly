@@ -55,6 +55,7 @@ main {
 
 
 .vividly_logo{
+  color: var(--main-color);
   font-size: 5rem;
 }
 
@@ -62,5 +63,6 @@ main {
   border: 1px solid;
   border-radius: 20px;
   padding:7px 20px 7px 20px;
-  color: var(--main-color);
+  color: white;
+  background-color: var(--main-color);
 }
