@@ -9,12 +9,15 @@ body{
   padding: 0;
   height: 100dvh;
   overscroll-behavior: none;
-  
   height: 100%;
   width:100%;
+  scroll-behavior: smooth;
 }
 
+/* Navigation Bar*/ 
 nav {
+  height:30px;
+  background-color:#3e69eb;
   display: flex;
   text-align: right;
   align-items: right;
@@ -22,21 +25,26 @@ nav {
   margin: 10px 10px;
   padding: 10px 20px;
 }
-
 nav a {
   text-decoration: none;
   color: #000;
   margin: 0 10px;
 }
+nav a:hover{
+  text-decoration: underline;
+}
 
+/*hero page*/
 main{
+  height:100vh;
+  background-color: bisque;
+  flex-direction: column;
   display: flex;
   margin-top: 20dvh;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
-
 .intro-text{
   display: flex;
   justify-content: center;
@@ -44,21 +52,10 @@ main{
   text-align: center;
   width: 600px;
 }
-
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin-top: 20vh;
-}
-
 .vividly_logo{
   color: var(--main-color);
   font-size: 5rem;
 }
-
 #sign-up{
   border: 1px solid;
   border-radius: 20px;
@@ -66,3 +63,38 @@ main {
   color: white;
   background-color: var(--main-color);
 }
+.hero-mobile{
+  display: none;
+}
+
+
+/*second section*/
+.second_page{
+
+}
+
+/* @media screen and (max-width: 600px){
+  nav{
+    display: none;
+  }
+  .hero-desktop{
+    display: none;
+  }
+  .hero-mobile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 600px;
+  }
+  .intro-text{
+    width: 300px;
+  }
+  .vividly_logo{
+    font-size: 3rem;
+    margin:5px;
+  }
+  #sign-up{
+    padding: 10px 50px 10px 50px;
+  }
+} */
