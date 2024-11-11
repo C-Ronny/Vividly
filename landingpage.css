@@ -35,25 +35,27 @@ nav h1 {
   transform: translateY(-5px);
 }
 
-.boards-section{
+.categories-section{
   background-color: rgb(235, 237, 242);
   height: 12rem;
 }
 
-#boards-text{
+#categories{
   padding:5px;
-
 }
 
-.boards{
-  display: flex;
-}
-
-.board{
+.category{
   margin:5px;
   display: inline-block;
   flex-direction: row;
   background-color: yellow;
+  border-radius: 20px;
   height:100px;
   width:200px;
+}
+
+.category-name{
+  padding-left:25px;
+  font-size: 1rem;
+  color:black;
 }
