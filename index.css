@@ -17,7 +17,7 @@ body{
 /* Navigation Bar*/ 
 nav {
   height:30px;
-  background-color:#3e69eb;
+  /* background-color:#3e69eb; */
   display: flex;
   text-align: right;
   align-items: right;
@@ -37,7 +37,7 @@ nav a:hover{
 /*hero page*/
 main{
   height:100vh;
-  background-color: bisque;
+  /* background-color: bisque; */
   flex-direction: column;
   display: flex;
   margin-top: 20dvh;
@@ -69,9 +69,7 @@ main{
 
 
 /*second section*/
-.second_page{
 
-}
 
 /* @media screen and (max-width: 600px){
   nav{
