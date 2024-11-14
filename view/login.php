@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="login.css" >
+  <link rel="stylesheet" href="../assets/login.css" >
   <title>Vividly | Login</title>
 </head>
 <body>
@@ -23,7 +23,7 @@
       <br>
       <input type="password" placeholder="Password" name="psw">
 
-      <p>New to Vividly? <a href="signup.html">Create an Account</a></p>
+      <p>New to Vividly? <a href="register.php">Create an Account</a></p>
 
       <button type="submit">Log In</button>
     </form>

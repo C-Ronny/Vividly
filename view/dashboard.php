@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vividly | Dashboard</title>
-  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="../assets/dashboard.css">
 </head>
 <body>
   <!-- Nav Bar -->
   <nav id="nav">
     <h3>Vividly</h3>
     <ul>
-      <li><h2 id="vividly-logo">P</h2></li>
+      <li><h2 id="vividly-logo">Vividly</h2></li>
 
     </ul>
   </nav>
