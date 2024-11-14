@@ -8,13 +8,13 @@
 </head>
 <body>
   <!--Nav Bar-->
-  <nav class="nav-bar">
+  <!-- <nav class="nav-bar">
     <div><a href="login.html">Log In</a></div>
     <div><a href="signup.html">Sign Up</a></div>
-  </nav>
+  </nav> -->
 
   <div class="container">
-    <form  method="PUT" enctype="multipart/form-data" id="form" action="#">
+    <form  method="POST" enctype="multipart/form-data" id="form" action="login_user.php">
       <h1 class="Welcome">Vividly</h1>
       <br>
       <h2>Login</h2>

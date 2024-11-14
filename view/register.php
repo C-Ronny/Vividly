@@ -8,13 +8,13 @@
 </head>
 <body>
   <!--Nav Bar-->
-  <nav class="nav-bar">
-    <div><a href="login.html">Log In</a></div>
-    <div><a href="signup.html">Sign Up</a></div>
-  </nav>
+  <!-- <nav class="nav-bar">
+    <div><a href="login.php">Log In</a></div>
+    <div><a href="signup.php">Sign Up</a></div>
+  </nav> -->
 
   <div class="container">
-    <form  method="PUT" enctype="multipart/form-data" id="form" action="#">
+    <form  method="POST" enctype="multipart/form-data" id="form" action="register_user.php">
       <h1 class="Welcome">Vividly</h1>
       <br>
       <h2>Sign Up</h2>
@@ -33,7 +33,7 @@
       
       <input type="password" placeholder=" Confirm Password" name="psw">
 
-      <p>Already got an account? <a id="sign" href="login.html">Login</a></p>
+      <p>Already got an account? <a id="sign" href="login.php">Login</a></p>
 
       <button type="submit">Sign Up</button>
     </form>
