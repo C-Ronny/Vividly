@@ -39,7 +39,9 @@
   
   <!--Section-->
   <section class="second_page">
-    <h1>Search for an idea</h1>  
+    <h1>Search for an idea...</h1>  
+    <p>Find out what's trending in the world of fashion, food, and travel.</p>
+
   </section>
 
 </body>
