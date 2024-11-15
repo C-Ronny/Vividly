@@ -37,11 +37,23 @@
     <p>Already have an account? <a href="login.html" id="loog">Login</a></p>
   </main> -->
   
-  <!--Section-->
+  <!-- About 1-->
   <section class="second_page">
-    <h1>Search for an idea...</h1>  
-    <p>Find out what's trending in the world of fashion, food, and travel.</p>
+    <h1>Disvcover...</h1>  
+    <p>Find out what's trending in the world of fashion, food, and travel...</p>
 
+  </section>
+
+  <!-- About 2 -->
+  <section>
+    <h1>Share</h1>
+    <p>Share your ideas and give others inspiration</p>
+  </section>
+
+  <!-- About 3 -->
+  <section>
+    <h1>Pins / Boards</h1>
+    <p>Create your own board and Save inspiring ideas </p>
   </section>
 
 </body>

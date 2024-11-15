@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="landingpage.css">
+    <link rel="stylesheet" href="../assets/landingpage.css">
 </head>
 
 <body>
@@ -22,8 +22,8 @@
 
     <div class="nav-center">
         <a class="nav-a" href="#">Boards</a>
-        <a class="nav-a" href="account.html">Profile</a>
-        <a href="account.html"><img src="images/82f46df92b2e286fc7b2c0c7cb59aba0.jpg"></a>
+        <a class="nav-a" href="profile.php">Profile</a>
+        <a href="profile.php"><img src="images/82f46df92b2e286fc7b2c0c7cb59aba0.jpg"></a>
     </div>
 
 
@@ -93,6 +93,6 @@
 
 
 
-    <script src="images_container.js"></script>
+    <script src="../src/images_container.js"></script>
 </body>
 </html>
