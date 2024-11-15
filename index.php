@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/index.css">
+  <link rel="stylesheet" href="assets/index.css">
   <title>Vividly</title>
 </head>
 <body>
 
   <!--Nav Bar-->
   <nav class="nav-bar">
-    <div><a href="login.php">Log In</a></div>
-    <div><a href="register.php">Sign Up</a></div>
+    <div><a href="view/login.php">Log In</a></div>
+    <div><a href="view/register.php">Sign Up</a></div>
   </nav>
 
   <!--Hero Section (Laptop Devices)-->
@@ -21,7 +21,7 @@
       <p class="">Vividly lets users discover, save, and share images and ideas in categories like fashion, food, and travel. With personalized boards for organizing inspirations and options to like or comment on posts, the platform promotes creativity and easy idea sharing in a visually appealing, streamlined space.</p>
     </div>
     <p>Share your thoughts with the world!</p>
-    <button id="sign-up"><a href="register.php"></a>Sign Up</a></button>
+    <button id="sign-up"><a href="view/register.php"></a>Sign Up</a></button>
     <p>Already have an account? <a href="login.php" id="loog">Login</a></p>
   </main>
 
@@ -32,9 +32,9 @@
     <br>
     <p>Share your thoughts with the world!</p>
     <br>
-    <button id="sign-up"><a href="signup.html"></a>Sign Up</a></button>
+    <button id="sign-up"><a href="view/signup.php"></a>Sign Up</a></button>
     <br><br><br><br>
-    <p>Already have an account? <a href="login.html" id="loog">Login</a></p>
+    <p>Already have an account? <a href="view/login.php" id="loog">Login</a></p>
   </main> -->
   
   <!-- About 1-->
