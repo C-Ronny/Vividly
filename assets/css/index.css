@@ -3,13 +3,16 @@
 }
 
 body{
+  min-width: 300px;
+}
+
+body{
   background-color: #f0f0f0;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   height: 100dvh;
   overscroll-behavior: none;
-  height: 100%;
   width:100%;
   scroll-behavior: smooth;
 }
@@ -36,7 +39,6 @@ nav a:hover{
 
 /*hero page*/
 main{
-  height:100vh;
   /* background-color: bisque; */
   flex-direction: column;
   display: flex;
@@ -53,6 +55,7 @@ main{
   width: 600px;
 }
 .vividly_logo{
+  margin-top:0px;
   color: var(--main-color);
   font-size: 5rem;
 }
@@ -62,10 +65,19 @@ main{
   padding:7px 20px 7px 20px;
   color: white;
   background-color: var(--main-color);
+  text-decoration: none;
 }
 .hero-mobile{
   display: none;
 }
+
+/* Discover partition*/
+.discover{
+  height:600px;
+  margin-top:65%;
+  background: #000;
+}
+
 
 
 /*second section*/
