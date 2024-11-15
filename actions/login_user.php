@@ -13,12 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Check if email and password are not empty
     if (empty($email) || empty($password)) {
-        echo "<script>alert('Please fill in all fields'); window.location.href='../view/login.php';</script>";
+        echo "<script>alert('Please fill in all fields'); window.location.href='../view/login.html';</script>";
         exit();
     }
 
     // Prepare a query to check if the user exists
-    $query = 'SELECT user_id, `password`, fname, lname, email, `role` FROM `users` WHERE email = ?';
+    $query = 'SELECT user_id, `password`, fname, lname, email, `role` FROM Users WHERE email = ?';
     $stmt = $conn->prepare($query);
     $stmt->bind_param('s', $email);
     $stmt->execute();
@@ -43,16 +43,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Redirect to appropriate page
             if ($userrole == 1) {
-                header('Location: view/superuser.php');
+                header('Location: view/dashboard.html');
             } else {
-                header('Location: ../view/recipefeed.php');
+                header('Location: ../view/landingpage.html');
             }
             exit();
         } else {
-            echo "<script>alert('Invalid login credentials'); window.location.href='../view/login.php';</script>";
+            echo "<script>alert('Invalid login credentials'); window.location.href='../view/login.html';</script>";
         }
     } else {
-        echo "<script>alert('User does not exist'); window.location.href='../view/login.php';</script>";
+        echo "<script>alert('User does not exist'); window.location.href='../view/login.html';</script>";
     }
 
     // Close statement and connection

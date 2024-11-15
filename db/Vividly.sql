@@ -6,10 +6,11 @@ USE Vividly;
 -- Users Table
 CREATE TABLE Users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(255) NOT NULL UNIQUE,
+    fname VARCHAR(255) NOT NULL UNIQUE,
+    lname VARCHAR(255) NOT NULL UNIQUE,
     email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    full_name VARCHAR(255),
+    `password` VARCHAR(255) NOT NULL,
+    `role` tinyint(4) DEFAULT 2,
     profile_picture VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -20,7 +21,7 @@ CREATE TABLE Boards (
     board_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
     title VARCHAR(255) NOT NULL,
-    description TEXT,
+    `description` TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
@@ -32,7 +33,7 @@ CREATE TABLE Pins (
     user_id INT,
     board_id INT,
     image_url VARCHAR(255) NOT NULL,
-    description TEXT,
+    `description` TEXT,
     category_id INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -65,8 +66,8 @@ CREATE TABLE Likes (
 -- Categories Table
 CREATE TABLE Categories (
     category_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL UNIQUE,
-    description TEXT
+    `name` VARCHAR(255) NOT NULL UNIQUE,
+    `description` TEXT
 );
 
 -- Admins Table
