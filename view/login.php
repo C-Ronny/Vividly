@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/login.css" >
+  <link rel="stylesheet" href="../assets/css/login.css" >
   <title>Vividly | Login</title>
 </head>
 <body>
@@ -14,7 +14,7 @@
   </nav> -->
 
   <div class="container">
-    <form  method="POST" enctype="multipart/form-data" id="form" action="login_user.php">
+    <form  method="POST" enctype="multipart/form-data" id="form" action="../actions/login_user.php">
       <h1 class="Welcome">Vividly</h1>
       <br>
       <h2>Login</h2>
