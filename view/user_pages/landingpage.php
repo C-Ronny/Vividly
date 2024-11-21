@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,15 +18,15 @@
 
         <!--Search bar-->
         <div class="search">
-            <input type="text" placeholder="Search your Boards...">            
+            <input type="text" placeholder="Search your Boards...">
         </div>
 
         <div class="nav-center">
             <a class="nav-a" href="#">Boards</a>
-            <a class="nav-a" href="./user_pages/profile.php">Profile</a>
+            <a class="nav-a" href="profile.php">Profile</a>
             <a href="profile.php"><img src="../../assets/images/bg1.jpg"></a>
         </div>
-        
+
     </nav>
     <hr id="nav-rule">
 
@@ -37,43 +38,43 @@
             <!--Arts board-->
             <a id="art" href="#">
                 <div class="category">
-                <h4 class="category-name">Art</h4>
-                <img src="#">
+                    <h4 class="category-name">Art</h4>
+                    <img src="#">
                 </div>
             </a>
             <!--Design board-->
             <a id="design" href="#">
                 <div class="category">
-                <h4 class="category-name">Design</h4>
-                <img src="#">
+                    <h4 class="category-name">Design</h4>
+                    <img src="#">
                 </div>
             </a>
             <!--Fashion board-->
             <a id="fashion" href="#">
                 <div class="category">
-                <h4 class="category-name">Fashion</h4>
-                <img src="#">
+                    <h4 class="category-name">Fashion</h4>
+                    <img src="#">
                 </div>
             </a>
             <!--Food board-->
             <a id="food" href="#">
                 <div class="category">
-                <h4 class="category-name">Food</h4>
-                <img src="#">
+                    <h4 class="category-name">Food</h4>
+                    <img src="#">
                 </div>
             </a>
             <!--Food board-->
             <a id="photography" href="#">
                 <div class="category">
-                <h4 class="category-name">Photography</h4>
-                <img src="#">
+                    <h4 class="category-name">Photography</h4>
+                    <img src="#">
                 </div>
             </a>
             <!--Travel board-->
             <a id="travel" href="#">
                 <div class="category">
-                <h4 class="category-name">Travel</h4>
-                <img src="#">
+                    <h4 class="category-name">Travel</h4>
+                    <img src="#">
                 </div>
             </a>
         </div>
@@ -102,4 +103,5 @@
 
     <script src="../src/images_container.js"></script>
 </body>
+
 </html>
