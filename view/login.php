@@ -10,8 +10,8 @@
   <body>
     <!--Nav Bar-->
     <!-- <nav class="nav-bar">
-      <div><a href="login.html">Log In</a></div>
-      <div><a href="signup.html">Sign Up</a></div>
+      <div><a href="login.php">Log In</a></div>
+      <div><a href="signup.php">Sign Up</a></div>
     </nav> -->
 
     <div class="container">
@@ -24,7 +24,7 @@
         <br>
         <input id="password" type="password" placeholder="Password" name="psw">
 
-        <p>New to Vividly? <a href="register.html">Create an Account</a></p>
+        <p>New to Vividly? <a href="register.php">Create an Account</a></p>
 
         <button type="submit">Log In</button>
       </form>

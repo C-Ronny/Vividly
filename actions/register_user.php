@@ -13,13 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Check if any fields are empty
     if (empty($fname) || empty($lname) || empty($email) || empty($password) || empty($confirm_password)) {
-        echo "<script>alert('All fields are required'); window.location.href='../view/register.html';</script>";
+        echo "<script>alert('All fields are required'); window.location.href='../view/register.php';</script>";
         exit;
     }
 
     // Check if password and confirm password match
     if ($password !== $confirm_password) {
-        echo "<script>alert('Passwords do not match'); window.location.href='../view/register.html';</script>";
+        echo "<script>alert('Passwords do not match'); window.location.href='../view/register.php';</script>";
         exit;
     }
 
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        echo "<script>alert('Registration failed, user already registered'); window.location.href='../view/register.html';</script>";
+        echo "<script>alert('Registration failed, user already registered'); window.location.href='../view/register.php';</script>";
     } else {
         // Hash the password and insert new user details
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);

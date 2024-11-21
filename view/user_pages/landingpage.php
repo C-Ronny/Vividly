@@ -22,8 +22,8 @@
 
         <div class="nav-center">
             <a class="nav-a" href="#">Boards</a>
-            <a class="nav-a" href="./user_pages/profile.html">Profile</a>
-            <a href="profile.html"><img src="../../assets/images/bg1.jpg"></a>
+            <a class="nav-a" href="./user_pages/profile.php">Profile</a>
+            <a href="profile.php"><img src="../../assets/images/bg1.jpg"></a>
         </div>
         
     </nav>

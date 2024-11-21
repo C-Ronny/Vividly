@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Check if email and password are not empty
     if (empty($email) || empty($password)) {
-        echo "<script>alert('Please fill in all fields'); window.location.href='../view/login.html';</script>";
+        echo "<script>alert('Please fill in all fields'); window.location.href='../view/login.php';</script>";
         exit();
     }
 
@@ -43,16 +43,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Redirect to appropriate page
             if ($userrole == 1) {
-                header('Location: view/dashboard.html');
+                header('Location: view/dashboard.php');
             } else {
-                header('Location: ../view/landingpage.html');
+                header('Location: ../view/landingpage.php');
             }
             exit();
         } else {
-            echo "<script>alert('Invalid login credentials'); window.location.href='../view/login.html';</script>";
+            echo "<script>alert('Invalid login credentials'); window.location.href='../view/login.php';</script>";
         }
     } else {
-        echo "<script>alert('User does not exist'); window.location.href='../view/login.html';</script>";
+        echo "<script>alert('User does not exist'); window.location.href='../view/login.php';</script>";
     }
 
     // Close statement and connection

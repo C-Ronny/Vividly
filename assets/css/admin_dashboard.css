@@ -6,79 +6,73 @@ body {
   color: #ffffff;
 }
 
-/* Navbar */
+/* Navigation Bar*/
 nav {
   width: 100%;
-  height: 50px;
+  height: 60px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background-color: aqua;
-  padding: 0px;
-  margin: 0px;
+  justify-content: space-between; 
+  padding: 0 20px;
+  box-shadow: 0 5px 10px rgba(31, 27, 27, 0.3);
+  background-color: #141414;
 }
-
-.dashboard {
-  padding: 20px;
-}
-
-.stats {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.stat {
-  background: #1f1f1f;
-  padding: 20px;
-  border-radius: 8px;
-  width: 22%;
-  text-align: center;
-}
-
-.stat h2 {
-  margin: 0 0 10px;
-}
-
-.stat p {
-  font-size: 1.5em;
+#vividly-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
   margin: 0;
+  color:white;
 }
-
-.charts {
+.search {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  align-items: center;
+  width: 400px;
+  padding: 5px 15px;
+  border-radius: 30px;
+  box-shadow: 0 5px 10px rgba(56, 41, 41, 0.3);
 }
-
-.chart {
-  background: #1f1f1f;
-  padding: 20px;
-  border-radius: 8px;
-  width: 48%;
-}
-
-table {
+.search input {
   width: 100%;
-  border-collapse: collapse;
-  background: #1f1f1f;
-  border-radius: 8px;
-  overflow: hidden;
+  border: none;
+  outline: none;
+  padding: 8px;
+  background: transparent;
+}
+.nav-center {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Adds spacing between links */
+}
+.nav-a {
+  text-decoration: none;
+  color: white;  margin: 0 10px;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.nav-a:hover {
+  color: #00000076; 
+}
+#nav-rule{
+  margin: 0;
+  opacity: 10%;
 }
 
-table th, table td {
-  padding: 10px 15px;
-  text-align: left;
+
+
+
+/* Profile Picture */
+nav a img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  object-fit:fill;
+  margin-right: 30px;
 }
 
-table th {
-  background: #2a2a2a;
+/* Search bar*/
+.search{
+  background-color:#353333;
 }
-
-table tbody tr:nth-child(even) {
-  background: #2a2a2a;
-}
-
-table tbody tr:nth-child(odd) {
-  background: #1f1f1f;
+.search input{
+  color:white;
 }

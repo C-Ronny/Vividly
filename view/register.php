@@ -33,7 +33,7 @@
       
       <input id="repassword" type="password" placeholder=" Confirm Password" name="psw-confirm">
 
-      <p>Already got an account? <a id="sign" href="login.html">Login</a></p>
+      <p>Already got an account? <a id="sign" href="login.php">Login</a></p>
 
       <button type="submit">Sign Up</button>
     </form>
