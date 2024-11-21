@@ -1,6 +1,9 @@
 body{
+  height:100dvh;
   overflow-x: hidden;
+  overscroll-behavior: none;
   background-color: #141414;
+  /* background-image: url(../images/bg-pic.png); */
 }
 
 /* Navigation Bar*/
@@ -11,6 +14,8 @@ nav {
   align-items: center;
   justify-content: space-between; 
   padding: 0 20px;
+  box-shadow: 0 5px 10px rgba(31, 27, 27, 0.3);
+  background-color: #141414;
 }
 #vividly-logo {
   font-size: 1.5rem;
@@ -45,8 +50,15 @@ nav {
   transition: color 0.3s;
 }
 .nav-a:hover {
-  color: #00000076; /* Optional: Hover effect */
+  color: #00000076; 
 }
+#nav-rule{
+  margin: 0;
+  opacity: 10%;
+}
+
+
+
 
 /* Profile Picture */
 nav a img {
@@ -58,6 +70,9 @@ nav a img {
 }
 
 /* Search bar*/
+.search{
+  background-color:#353333;
+}
 .search input{
   color:white;
 }
@@ -150,7 +165,7 @@ nav a img {
 .item:hover {
   transform: translateY(-10px);
 }
-.item1  { grid-row: span 15; background-color: #ff6f61; }
+.item1 { grid-row: span 15; background-color: #ff6f61; }
 .item2 { grid-row: span 20; background-color: #6b5b95; }
 .item3 { grid-row: span 10; background-color: #88b04b; }
 .item4 { grid-row: span 25; background-color: #d65076; }
