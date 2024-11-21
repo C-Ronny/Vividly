@@ -47,6 +47,8 @@ nav {
 .nav-a:hover {
   color: #00000076; /* Optional: Hover effect */
 }
+
+/* Profile Picture */
 nav a img {
   height: 40px;
   width: 40px;
@@ -99,6 +101,10 @@ nav a img {
 
 
 /* Main page */
+.main_pins{
+  margin:6%;
+}
+
 .masonry {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -106,8 +112,36 @@ nav a img {
   gap: 20px;
 }
 .item {
-  background-color: #ffffff;
-  padding: 20px;
+  /* background-color: #ffffff; */
+  box-sizing: border-box;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  transition: transform 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  color: #fff;
+}
+
+/* Ensure images in grid items fit and display properly */
+.item img {
+  max-height: 100%;
+  max-width: 100%; 
+  border-radius: 8px; 
+  object-fit: cover; 
+}
+
+
+
+.masonry {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: min-content; /* Adjusted for natural content height */
+  gap: 20px;
+}
+
+.item {
   box-sizing: border-box;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -118,10 +152,26 @@ nav a img {
   font-size: 1.2em;
   color: #fff;
 }
+
 .item:hover {
   transform: translateY(-10px);
 }
-.item1 { grid-row: span 15; background-color: #ff6f61; }
+
+/* Image Styling */
+.item img {
+  width: 100%; /* Stretch to fill container width */
+  height: 100%; /* Stretch to fill container height */
+  border-radius: 8px; /* Match container */
+  object-fit: cover; /* Ensure no distortion */
+}
+
+
+
+
+.item:hover {
+  transform: translateY(-10px);
+}
+.item1  { grid-row: span 15; background-color: #ff6f61; }
 .item2 { grid-row: span 20; background-color: #6b5b95; }
 .item3 { grid-row: span 10; background-color: #88b04b; }
 .item4 { grid-row: span 25; background-color: #d65076; }
