@@ -9,10 +9,10 @@
 
   <body>
     <!--Nav Bar-->
-    <!-- <nav class="nav-bar">
+    <nav class="nav-bar">
       <div><a href="login.php">Log In</a></div>
       <div><a href="signup.php">Sign Up</a></div>
-    </nav> -->
+    </nav>
 
     <div class="container">
       <form  method="POST" enctype="multipart/form-data" id="form" action="../actions/login_user.php">

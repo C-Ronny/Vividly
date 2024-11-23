@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vividly | Register</title>
-  <link rel="stylesheet" href="signup.css">
+  <link rel="stylesheet" href="register.css">
 </head>
 <body>
   <!--Nav Bar-->
-  <!-- <nav class="nav-bar">
+  <nav class="nav-bar">
     <div><a href="login.php">Log In</a></div>
     <div><a href="register.php">Sign Up</a></div>
-  </nav> -->
+  </nav>
 
   <div class="container">
     <form  method="POST" enctype="multipart/form-data" id="form" action="register_user.php">

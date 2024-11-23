@@ -14,7 +14,7 @@
 <body>
     <!-- Nav Bar -->
     <nav id="nav">
-        <h2 id="vividly-logo">Vividly</h2>
+        <h2 id="vividly-logo" href="landingpage.php" >Vividly</h2>
 
         <!--Search bar-->
         <div class="search">
