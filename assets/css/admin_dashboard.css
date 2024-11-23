@@ -5,10 +5,12 @@ body {
   background-color: #121212;
   color: #ffffff;  
   /* overscroll-behavior-y: none;
-  overscroll-behavior-x: none;
-  overflow-y: hidden; */
-  width:100dvw;
+  overscroll-behavior-x: none;*/
+  width:100vw;
   height:100dvh;
+  overflow-x: hidden;
+  overflow-y: hidden; 
+  scrollbar-width: none;
 }
 
 /* Navigation Bar */
@@ -50,7 +52,7 @@ nav {
   margin: 0;
   opacity: 10%;
 }
-/* Profile Picture */
+/* Navigation Bar Profile Picture */
 nav a img {
   height: 40px;
   width: 40px;
@@ -58,14 +60,30 @@ nav a img {
   object-fit:fill;
   margin-right: 30px;
 }
+.welcome{
+  padding-left:5%;
+  padding-top:40px;
+}
+.welcome h1{
+  font-size: 3rem;
+  margin: 0px;
+}
+.welcome p{
+  font-size: 1.2rem;
+  color:#686868;
+  margin-top: 0.5rem;
+}
+
 
 
 /* Number Stats Cards */
 .container {
   height:8.9rem;
-  width: 100%;
+  width: 100dvw;
   margin-top: 3rem;
-  padding:1rem;
+  padding-top:1rem;
+  padding-bottom:1rem;
+  padding-left:7rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;  
@@ -73,12 +91,15 @@ nav a img {
   background-color: #2e2d2d;
 }
 .container .card {
-  padding:1rem;
-  width: 30%;
+  width: 30rem;
   height:7rem;
+  gap:2px;
+  justify-content: space-evenly;
+  padding:1rem;
   border-radius: 10px;
   background-color: #1f1f1f;
   box-shadow: 0 5px 10px rgba(31, 27, 27, 0.3);
+  
 }
 .container .card h2{
   font-size: 0.8rem;
@@ -94,43 +115,59 @@ nav a img {
 
 
 
-/* Table and other stats images */
+/* Table and other stats and images */
 .other_stats{
-  /* display: flex; */
-  display: block;
+  display:inline-flex;
   margin-top:2rem;  
-  height:100%;
+  height:50dvh;
   width:100%;
   margin-bottom: 2rem;
-  background-color: #2e2d2d;
+  background-color: #121212;
 }
-.other_stats .data .table{
+.data_table{
+  padding-left:7rem;
+  margin-top:50px;
   width:50%;
+  height: 10px;
+  background-color: #1d1d1d; 
 }
-
-/**********************************************************************************************************************/
-/**********************************************************************************************************************/
-/**********************************************************************************************************************/
 table{
   width:100%;
   table-layout: fixed;
 }
 .tbl-header{
-  background-color: rgba(255,255,255,0.3);
+  background-color: #202020;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.3);
 }
 .tbl-content{
   height:300px;
   overflow-x:auto;
   margin-top: 0px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
   border: 1px solid rgba(255,255,255,0.3);
+}
+.tbl-content tr{
+  background-color: #1f1f1f;
+}
+.tbl-content tr:hover td {
+  color: #d8d7d7;
+  transition: color 0.3s ease;
+}
+.tbl-content tr:hover {
+  background-color: #2e2e2e; /* Darker background for contrast */
+  transition: background-color 0.3s ease; /* Smooth transition for the background */
 }
 th{
   padding: 20px 15px;
   text-align: left;
   font-weight: 500;
   font-size: 12px;
-  color: #ebebeb;
+  color: #959595;
   text-transform: uppercase;
+  border-radius: 30px;
 }
 td{
   padding: 15px;
@@ -142,27 +179,50 @@ td{
   border-bottom: solid 1px rgba(255,255,255,0.1);
 }
 
+.data_images{
+  margin-left: 10%;
+  width:30%;
+  height:100%;
+  display: flex;
+  background-color: aquamarine;  
+}
+
 
 /* demo styles */
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
-
 .data .table{
   margin: 50px;
 }
-
-
 /* for custom scrollbar for webkit browser*/
-
 ::-webkit-scrollbar {
-    width: 6px;
+  width: 6px;    
 } 
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);     
 } 
 ::-webkit-scrollbar-thumb {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  background-color:white;
 }
-/**********************************************************************************************************************/
-/**********************************************************************************************************************/
-/**********************************************************************************************************************/
+
+
+@media screen and (max-width: 800px) {
+  .container {
+    height:30%;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .container .card {
+    width:80%;
+    margin-left: 2%;
+  }
+  .other_stats{
+    display: block;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .data_table{
+    width:100%;
+  }
+}

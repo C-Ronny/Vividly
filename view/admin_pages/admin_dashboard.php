@@ -24,11 +24,14 @@
 
     <main>
 
-        <h1>Welcome back, user</h1>
-        <p>Here's the site overview</p>
+        <div class="welcome">
+            <h1>Welcome back, user</h1>
+            <p>Here's the site overview</p>
+        </div>
+        
 
         <!-- Cards -->
-        <div class="container">
+        <section class="container">
             <div class="card">
                 <h2>Total No. of Users</h2>
                 <p>XX</p>
@@ -41,7 +44,7 @@
                 <h2>Total No. of Images</h2>
                 <p>XX</p>
             </div>
-            <div class="card">
+            <!-- <div class="card">
                 <h2>Total No. of Users</h2>
                 <p>XX</p>
             </div>
@@ -52,17 +55,17 @@
             <div class="card" id="images">
                 <h2>Total No. of Images</h2>
                 <p>XX</p>
-            </div>
-        </div>
+            </div> -->
+        </section>
 
         <!--Tables and images-->
-        <div class="other_stats">
-            <div class="data table">
+        <section class="other_stats">
+            <div class="data_table">
                 <!----------------------------------------------------------------------------------------->
                 <!----------------------------------------------------------------------------------------->
                 <!----------------------------------------------------------------------------------------->
                 <div class="tbl-header">
-                    <table cellpadding="0" cellspacing="0" border="0">
+                    <table cellpadding="0" cellspacing="0" >
                         <thead>
                             <tr>
                             <th>Code</th>
@@ -75,7 +78,7 @@
                     </table>
                 </div>
                 <div class="tbl-content">
-                    <table cellpadding="0" cellspacing="0" border="0">
+                    <table cellpadding="0" cellspacing="0">
                     <tbody>
                         <tr>
                             <td>AAC</td>
@@ -308,8 +311,10 @@
                 <!----------------------------------------------------------------------------------------->
                 <!----------------------------------------------------------------------------------------->
             </div>
-            <div class="data images"></div>
-        </div>
+            <div class="data_images">
+
+            </div>
+        </section>
 
 
     </main>
