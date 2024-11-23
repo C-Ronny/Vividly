@@ -3,8 +3,12 @@ body {
   margin: 0;
   padding: 0;
   background-color: #121212;
-  color: #ffffff;
-  overflow-x: none;
+  color: #ffffff;  
+  /* overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
+  overflow-y: hidden; */
+  width:100dvw;
+  height:100dvh;
 }
 
 /* Navigation Bar */
@@ -24,8 +28,12 @@ nav {
   margin: 0;
   color:white;
 }
-.nav-center {
-  display: flex;
+#vividly-logo a{
+  text-decoration: none;
+  color: white;
+}
+.nav-links {
+  display: flex;  
   align-items: center;
   gap: 15px; /* Adds spacing between links */
 }

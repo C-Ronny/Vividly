@@ -11,14 +11,14 @@
 <body>
     <!-- Nav Bar -->
     <nav id="nav">
-        <h2 id="vividly-logo" href="../user_pages/landingpage.php">Vividly</h2>
+    <h2 id="vividly-logo"><a href="../user_pages/landingpage.php">Vividly</a></h2>
 
-        <div class="nav-center">
+        <div class="nav-links">
             <!-- <a class="nav-a" href="#">Boards</a> -->
             <a class="nav-a" href="../user_pages/profile.php">Logout</a>
             <a href="profile.php"><img src="../../assets/images/bg1.jpg"></a>
         </div>
-
+        
     </nav>
     <hr id="nav-rule">
 
