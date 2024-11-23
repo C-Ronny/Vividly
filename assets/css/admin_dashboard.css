@@ -4,6 +4,7 @@ body {
   padding: 0;
   background-color: #121212;
   color: #ffffff;
+  overflow-x: none;
 }
 
 /* Navigation Bar */
@@ -53,21 +54,59 @@ nav a img {
 
 /* Number Stats Cards */
 .container {
-  height:300px;
+  height:8.9rem;
   width: 100%;
-  margin-top: 20px;
-  padding: 20px;
+  margin-top: 3rem;
+  padding:1rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;  
   gap: 20px;
-  background-color: #fff;
+  background-color: #2e2d2d;
 }
-
 .container .card {
+  padding:1rem;
   width: 30%;
-  padding: 20px;
+  height:7rem;
   border-radius: 10px;
   background-color: #1f1f1f;
   box-shadow: 0 5px 10px rgba(31, 27, 27, 0.3);
 }
+.container .card h2{
+  font-size: 0.8rem;
+  color: #686868;
+}
+.container .card p{
+  padding: 0px;
+  margin:0px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+
+
+/* Table and other stats images */
+.other_stats{
+  /* display: flex; */
+  display: block;
+  margin-top:2rem;
+  height:100%;
+  margin-bottom: 2rem;
+  background-color: #fffbfb;
+}
+
+
+/**********************************************************************************************************************/
+/**********************************************************************************************************************/
+/**********************************************************************************************************************/
+
+
+
+
+
+
+
+/**********************************************************************************************************************/
+/**********************************************************************************************************************/
+/**********************************************************************************************************************/
