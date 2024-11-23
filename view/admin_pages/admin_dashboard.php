@@ -23,6 +23,20 @@
   <hr id="nav-rule">
 
   <main>
+    <div class="container">
+      <div class="card">
+        <h2>Total No. of Users</h2>
+        <p></p>
+      </div>
+      <div class="card" >
+        <h2>Total No. of Boards</h2>
+        <p></p>
+      </div>
+      <div class="card" id="images">
+        <h2>Total No. of Images</h2>
+        <p></p>
+      </div>
+    </div>
 
   </main>
 
