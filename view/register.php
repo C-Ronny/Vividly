@@ -7,11 +7,20 @@
   <link rel="stylesheet" href="register.css">
 </head>
 <body>
-  <!--Nav Bar-->
+
+  <!-- Nav Bar -->
   <nav class="nav-bar">
-    <div><a href="login.php">Log In</a></div>
-    <div><a href="register.php">Sign Up</a></div>
-  </nav>
+        <h2 id="vividly-logo"><a href="../user_pages/landingpage.php">Vividly</a></h2>
+
+        
+
+        <div class="nav-center">
+          <div><a href="login.php">Log In</a></div>
+          <div><a href="register.php">Sign Up</a></div>
+          <a href="profile.php"><img src="../../assets/images/bg1.jpg"></a>
+        </div>
+
+    </nav>
 
   <div class="container">
     <form  method="POST" enctype="multipart/form-data" id="form" action="register_user.php">

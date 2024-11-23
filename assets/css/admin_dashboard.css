@@ -86,20 +86,20 @@ nav a img {
   padding-left:7rem;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;  
+  /* justify-content: space-between;    */
   gap: 20px;
-  background-color: #2e2d2d;
+  /* background-color: #2e2d2d; */
 }
 .container .card {
-  width: 30rem;
+  width: 15rem;
   height:7rem;
-  gap:2px;
-  justify-content: space-evenly;
+  /* gap:10px; */
+  /* justify-content: space-evenly; */
   padding:1rem;
   border-radius: 10px;
   background-color: #1f1f1f;
   box-shadow: 0 5px 10px rgba(31, 27, 27, 0.3);
-  
+  border: 1px solid rgba(255,255,255,0.3);
 }
 .container .card h2{
   font-size: 0.8rem;
@@ -125,8 +125,8 @@ nav a img {
   background-color: #121212;
 }
 .data_table{
-  padding-left:7rem;
-  margin-top:50px;
+  margin-left:7rem;
+  margin-top:20px;
   width:50%;
   height: 10px;
   background-color: #1d1d1d; 
@@ -184,7 +184,13 @@ td{
   width:30%;
   height:100%;
   display: flex;
-  background-color: aquamarine;  
+  background-color: aquamarine; 
+  
+  /* padding-right:7rem;
+  margin-top:50px;
+  width:50%;
+  height: 10px;
+  background-color: #1d1d1d; */
 }
 
 
