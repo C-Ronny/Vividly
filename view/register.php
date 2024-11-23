@@ -4,15 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vividly | Register</title>
-  <link rel="stylesheet" href="register.css">
+  <link rel="stylesheet" href="../assets/css/register.css">
 </head>
 <body>
 
   <!-- Nav Bar -->
   <nav class="nav-bar">
         <h2 id="vividly-logo"><a href="../user_pages/landingpage.php">Vividly</a></h2>
-
-        
 
         <div class="nav-center">
           <div><a href="login.php">Log In</a></div>

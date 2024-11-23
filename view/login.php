@@ -11,7 +11,7 @@
     <!--Nav Bar-->
     <nav class="nav-bar">
       <div><a href="login.php">Log In</a></div>
-      <div><a href="signup.php">Sign Up</a></div>
+      <div><a href="register.php">Sign Up</a></div>
     </nav>
 
     <div class="container">

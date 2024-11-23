@@ -23,13 +23,12 @@ nav {
   text-decoration: none;
   color: white;
 }
-
 .nav-center {
   display: flex;
   align-items: center;
   gap: 15px; /* Adds spacing between links */
 }
-.nav-a {
+nav a {
   text-decoration: none;
   color: white;  margin: 0 10px;
   font-weight: 500;
@@ -39,13 +38,14 @@ nav {
   color: #00000076; 
 }
 
+/* ????????????? */
 .container{
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 30dvw;
+  margin-top: 7%;
+  margin-left: 38%;
   height: 70dvh;
-  margin:0 10dvw;
   width: 400px;
   border: 2px solid;
 }
