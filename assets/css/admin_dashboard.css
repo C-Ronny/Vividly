@@ -23,21 +23,6 @@ nav {
   margin: 0;
   color:white;
 }
-.search {
-  display: flex;
-  align-items: center;
-  width: 400px;
-  padding: 5px 15px;
-  border-radius: 30px;
-  box-shadow: 0 5px 10px rgba(56, 41, 41, 0.3);
-}
-.search input {
-  width: 100%;
-  border: none;
-  outline: none;
-  padding: 8px;
-  background: transparent;
-}
 .nav-center {
   display: flex;
   align-items: center;

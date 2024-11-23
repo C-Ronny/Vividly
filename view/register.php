@@ -76,7 +76,8 @@
         let passwordRegEx = /^(?=.*[A-Z])(?=.*\d.*\d.*\d)(?=.*[!@#$%^&*()_\-+=\[\]{}|\\:;'",.<>?/`~])[A-Za-z\d!@#$%^&*()_\-+=$begin:math:display$$end:math:display${}|\\:;'",.<>?/`~]{8,}$/;
 
         if (!passwordRegEx.test(password)) {
-            showErrorMessage('password', 'Invalid Password!');
+            showErrorMessage('password', 'Invalid Password! Password must contain at least 8 characters, 1 uppercase letter, 3 digits, and 1 special character');
+            
             isValid = false;
         }
 

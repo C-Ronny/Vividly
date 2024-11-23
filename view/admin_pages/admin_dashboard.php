@@ -11,12 +11,7 @@
 <body>
   <!-- Nav Bar -->
   <nav id="nav">
-    <h2 id="vividly-logo">Vividly</h2>
-
-    <!--Search bar-->
-    <div class="search">
-      <input type="text" placeholder="Search your Boards...">
-    </div>
+    <h2 id="vividly-logo">Vividly</h2>    
 
     <div class="nav-center">
       <!-- <a class="nav-a" href="#">Boards</a> -->
