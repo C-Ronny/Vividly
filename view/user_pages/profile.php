@@ -10,7 +10,7 @@
 
 <body>
     <!-- Nav Bar -->
-    <nav id="nav">
+    <!-- <nav id="nav">
         <h2 id="vividly-logo"><a href="../user_pages/landingpage.php">Vividly</a></h2>
 
         <div class="nav-center">
@@ -20,20 +20,42 @@
         </div>
 
     </nav>
-    <hr id="nav-rule">
+    <hr id="nav-rule"> -->
 
-    <main>
+
+    <!-- Side Bar -->
+    <aside class="sider-bar">
+        <div>
+            <h2>Profile</h2>
+
+            <div class="personal-info">
+                <a href="profile.php">Personal Information</a>
+            </div>        
+
+            <div class="saved-boards-and-pins">
+                <a href="#">Boards & Pins</a>
+            </div>
+                        
+        </div>
+
+        <div class="logout">
+            <a class="nav-a" href="../user_pages/profile.php">Logout</a>
+        </div>
+        
+    </aside>
+
+    <!-- <main>
         <section id="personal-info">
-            <div class="display-info">
+            <div id="display-info">
 
             </div>
 
-            <div class="edit-info">
+            <div id="edit-info">
 
             </div>
         </section>
 
-    </main>
+    </main> -->
 </body>
 
 </html>
