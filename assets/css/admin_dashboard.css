@@ -60,6 +60,10 @@ nav a img {
   object-fit:fill;
   margin-right: 30px;
 }
+
+
+
+/* Message */
 .welcome{
   padding-left:5%;
   padding-top:40px;
@@ -180,19 +184,22 @@ td{
 }
 
 .data_images{
-  margin-left: 10%;
+  margin-left: 5%;
+  margin-top:20px;
   width:30%;
   height:100%;
   display: flex;
-  background-color: aquamarine; 
-  
-  /* padding-right:7rem;
-  margin-top:50px;
-  width:50%;
-  height: 10px;
-  background-color: #1d1d1d; */
+  background-color: #1d1d1d; 
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.3);
 }
 
+.data_images #title_text{
+  margin:0px;
+  padding-top:1.5rem;
+  padding-left:1.5rem;
+  font-size: 2rem;
+}
 
 /* demo styles */
 
