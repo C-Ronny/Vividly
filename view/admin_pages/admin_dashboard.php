@@ -11,7 +11,7 @@
 <body>
     <!-- Nav Bar -->
     <nav id="nav">
-        <h2 id="vividly-logo"><a href="../user_pages/landingpage.php">Vividly</a></h2>
+        <h2 id="vividly-logo">Vividly</h2>
 
         <div class="nav-links">
             <!-- <a class="nav-a" href="#">Boards</a> -->
@@ -52,7 +52,7 @@
                 <h2>Total No. of Boards</h2>
                 <p>XX</p>
             </div>
-            
+
         </section>
 
         <!--Tables and images-->
