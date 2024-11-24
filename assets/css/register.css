@@ -37,6 +37,14 @@ nav a {
 .nav-a:hover {
   color: #00000076; 
 }
+/* Profile Picture */
+nav a img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  object-fit:fill;
+  margin-right: 30px;
+}
 
 /* ????????????? */
 .container{
