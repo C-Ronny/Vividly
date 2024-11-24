@@ -14,7 +14,7 @@
         <h2 id="vividly-logo"><a href="../user_pages/landingpage.php">Vividly</a></h2>
 
         <div class="nav-center">
-            <!-- <a class="nav-a" href="#">Boards</a> -->
+            <a class="nav-a" href="landingpage.php">Home</a>
             <a class="nav-a" href="../user_pages/profile.php">Logout</a>
             <a href="profile.php"><img src="../../assets/images/bg1.jpg"></a>
         </div>
@@ -29,7 +29,7 @@
             </div>
 
             <div class="edit-info">
-                
+
             </div>
         </section>
 

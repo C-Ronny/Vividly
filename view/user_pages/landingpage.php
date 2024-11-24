@@ -22,8 +22,9 @@
         </div>
 
         <div class="nav-center">
-            <a class="nav-a" href="#">Boards</a>
+            <a class="nav-a" href="boardsandpins.php">Boards</a>
             <a class="nav-a" href="profile.php">Profile</a>
+            <a class="nav-a" href="../user_pages/profile.php">Logout</a>
             <a href="profile.php"><img src="../../assets/images/bg1.jpg"></a>
         </div>
 
