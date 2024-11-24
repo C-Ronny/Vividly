@@ -3,15 +3,20 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/login.css" >
     <title>Vividly | Login</title>
+    <link rel="stylesheet" href="../assets/css/login.css" >    
   </head>
 
   <body>
-    <!--Nav Bar-->
+    <!-- Nav Bar -->
     <nav class="nav-bar">
-      <div><a href="login.php">Log In</a></div>
-      <div><a href="register.php">Sign Up</a></div>
+      <h2 id="vividly-logo"><a href="../index.php">Vividly</a></h2>
+
+      <div class="nav-center">
+        <div><a href="login.php">Log In</a></div>
+        <div><a href="register.php">Sign Up</a></div>
+        <a href="profile.php"><img src="../../assets/images/bg1.jpg"></a>
+      </div>
     </nav>
 
     <div class="container">
