@@ -68,7 +68,7 @@ nav a img {
 	margin-top: 50px;
 }
 
-/* #personal-info{
+#personal-info{
 	display: flex;
 	width:100%;
 	height:30vh;
@@ -79,38 +79,70 @@ nav a img {
 
 #display-info{
 	height:100%;
-	width:50%;
+	width:30%;
 	background-color: #212829;
-	border-radius:12px;
+	border:1px solid #1842ff;
+	/* border-radius:12px; */
 	margin-left:5rem;
 }
+
+#id-image{
+	height: 40px;
+	width: 40px;
+	border-radius: 50%;
+	object-fit:fill;
+	margin-right: 30px;
+}
+
 
 #edit-info{
 	height:100%;
 	width:50%;
 	background-color: #212829;
-	border-radius:12px;
+	border:1px solid #1842ff;
+	/* border-radius:12px; */
 	margin-right:5rem;
-} */
-
-
-
-#side-bar{
-	height:100dvh;
-	width:25%;
-	margin:0px;
-	padding:0px;
-	
-	background-color: antiquewhite;
 }
 
-/* .side-bar content{
-	height: 100px;
-	width: 100px;
-	border-radius: 50%;
-	object-fit:fill;
-	margin-top: 20px;
-} */
+
+/* Number Stats Cards */
+.container {
+  height:8.9rem;
+  width: 100dvw;
+  margin-top: 3rem;
+  padding-top:1rem;
+  padding-bottom:1rem;
+  /* padding-left:7rem; */
+	margin-left:5rem;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between;    */
+  gap: 20px;
+  /* background-color: #2e2d2d; */
+}
+.container .card {
+  width: 15rem;
+  height:7rem;
+  /* gap:10px; */
+  /* justify-content: space-evenly; */
+  padding-left:1rem;
+  /* border-radius: 10px; */
+  background-color: #1f1f1f;
+  box-shadow: 0 5px 10px rgba(31, 27, 27, 0.3);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+.container .card h2{
+  font-size: 0.8rem;
+  color: #686868;
+}
+.container .card p{
+  padding: 0px;
+  margin:0px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
 
 
 

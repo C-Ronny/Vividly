@@ -10,7 +10,7 @@
 
 <body>
     <!-- Nav Bar -->
-    <!-- <nav id="nav">
+    <nav id="nav">
         <h2 id="vividly-logo"><a href="../user_pages/landingpage.php">Vividly</a></h2>
 
         <div class="nav-center">
@@ -20,33 +20,13 @@
         </div>
 
     </nav>
-    <hr id="nav-rule"> -->
+    <hr id="nav-rule">
 
 
-    <!-- Side Bar -->
-    <aside id="side-bar">
-        <div>
-            <h2>Profile</h2>
-
-            <div class="personal-info">
-                <a href="profile.php">Personal Information</a>
-            </div>        
-
-            <div class="saved-boards-and-pins">
-                <a href="#">Boards & Pins</a>
-            </div>
-                        
-        </div>
-
-        <div class="logout">
-            <a class="nav-a" href="../user_pages/profile.php">Logout</a>
-        </div>
-        
-    </aside>
-
-    <!-- <main>
+    <main>
         <section id="personal-info">
             <div id="display-info">
+                <a id="id-image" href="profile.php"><img src="../../assets/images/bg1.jpg"></a>
 
             </div>
 
@@ -55,7 +35,24 @@
             </div>
         </section>
 
-    </main> -->
+        <!-- Cards -->
+        <section class="container">
+            <div class="card">
+                <h2>Total No. of likes</h2>
+                <p>XX</p>
+            </div>
+            <div class="card">
+                <h2>Total No. of Boards Created</h2>
+                <p>XX</p>
+            </div>
+            <div class="card" id="images">
+                <h2>Total No. of Images uploaded</h2>
+                <p>XX</p>
+            </div>                       
+
+        </section>
+
+    </main>
 </body>
 
 </html>
