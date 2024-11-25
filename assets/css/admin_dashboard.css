@@ -9,7 +9,7 @@ body {
   width:100vw;
   height:100dvh;
   overflow-x: hidden;
-  overflow-y: hidden; 
+  /* overflow-y: hidden;  */
   scrollbar-width: none;
 }
 
@@ -222,6 +222,7 @@ td{
 
 @media screen and (max-width: 800px) {
   .container {
+    margin-left: 2%;
     height:30%;
     flex-direction: column;
     gap: 20px;

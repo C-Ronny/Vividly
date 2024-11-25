@@ -24,7 +24,7 @@
 
 
     <!-- Side Bar -->
-    <aside class="sider-bar">
+    <aside id="side-bar">
         <div>
             <h2>Profile</h2>
 

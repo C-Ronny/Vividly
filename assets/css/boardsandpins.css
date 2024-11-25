@@ -4,6 +4,10 @@ body {
 	padding: 0;
 	background-color: #121212;
 	color: #ffffff;
+  overflow-x: hidden;
+	overscroll-behavior-x:none;
+	/* overscroll-behavior-y: none; */
+	/* overflow-y: hidden; */
 }
 
 /* Navigation Bar*/
@@ -43,7 +47,7 @@ nav {
 }
 #nav-rule{
 	margin: 0;
-	opacity: 10%;
+	opacity: 10%;  
 }
 /* Profile Picture */
 nav a img {
@@ -55,11 +59,78 @@ nav a img {
 }
 
 
+/* Categories Section */
+.categories-section{
+  height: auto;
+  /* background-color: rgb(203, 226, 246); */
+}
+#categories{
+  padding-left: 1rem;
+  color: white;
+}
+.images{
+  margin:5px;
+  display: inline-block;
+  flex-direction: row;
+  background-color: rgb(143, 179, 185);
+  border-radius: 20px;
+  height:320px;
+  width:180px;
+}
+.category-name{
+  padding-left:25px;
+  font-size: 1rem;
+  color: white;}
+/* Hide scroll bar but keep scroll feature*/
+.boards-container {
+  display: flex;
+  overflow-x: auto;
+  padding: 20px;
+  gap: 20px;
+  margin-left:5%;
+  margin-right:5%;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  background-color: rgb(244, 215, 177);
+}
+.boards-container::-webkit-scrollbar {
+  display: none; /* WebKit browsers */
+}
+
+#division{
+  margin: 0;
+	opacity: 10%;
+  margin-left:2px;
+  margin-right:2px;
+}
+
+
 /* Personal Info */
-.profile-info {
+/* .profile-info {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	margin-top: 50px;
 }
+
+@media screen and (max-width: 800px) {
+  .container {
+    height:30%;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .container .card {
+    width:80%;
+    margin-left: 2%;
+  }
+  .other_stats{
+    display: block;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .data_table{
+    width:100%;
+  }
+} */

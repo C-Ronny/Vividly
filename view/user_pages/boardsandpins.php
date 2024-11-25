@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <!-- Nav Bar -->
+    <!-- Nav Bar -->     
     <nav id="nav">
         <h2 id="vividly-logo"><a href="../user_pages/landingpage.php">Vividly</a></h2>      
 
@@ -24,15 +24,267 @@
     <hr id="nav-rule">
 
     <main>
-        <section id="personal-info">
-            <div class="display-info">
+      <!--Boards Section-->
+    <div class="categories-section">
+        <h2 id="categories">Board #1</h2>
+        <!--Container for boards-->
+        <div class="boards-container">
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+            
+            <a href="#">
+                <div class="images">                    
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+            
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+            
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+            
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>            
 
-            </div>
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
 
-            <div class="edit-info">
-                
-            </div>
-        </section>
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+        </div>
+
+        <hr id="division">
+
+    </div>
+
+    <div class="categories-section">
+        <h2 id="categories">Board #2</h2>
+        <!--Container for boards-->
+        <div class="boards-container">
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+            
+            <a href="#">
+                <div class="images">                    
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+            
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+            
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+            
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>            
+
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+        </div>
+
+        <hr id="division">
+
+    </div>
+
+    <div class="categories-section">
+        <h2 id="categories">Board #3</h2>
+        <!--Container for boards-->
+        <div class="boards-container">
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+            
+            <a href="#">
+                <div class="images">                    
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+            
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+            
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+            
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>            
+
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="images">
+                    <!-- <img src="#"> -->
+                </div>
+            </a>
+        </div>
+
+        <hr id="division">
+
+    </div>
 
     </main>
 </body>
