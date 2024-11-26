@@ -30,7 +30,7 @@ CREATE TABLE Boards (
 -- Pins Table
 CREATE TABLE Pins (
     pin_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
+    user_id INT ,
     board_id INT,
     image_url VARCHAR(255) NOT NULL,
     `description` TEXT,

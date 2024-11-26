@@ -13,7 +13,7 @@ body {
 /* Navigation Bar*/
 nav {
 	width: 100%;
-	height: 60px;
+	height: 70px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between; 
@@ -60,6 +60,8 @@ nav a img {
 
 
 /* Personal Info */
+
+/* Display Info */
 .profile-info {
 	display: flex;
 	flex-direction: row;
@@ -67,60 +69,92 @@ nav a img {
 	justify-content: center;
 	margin-top: 50px;
 }
-
 #personal-info{
 	display: flex;
 	width:100%;
 	height:30vh;
 	margin-top:5%;
 	gap:5%;	
-	background-color: #e61010;
+	/* background-color: #e61010; */
 }
-
 #display-info{
 	height:100%;
 	width:30%;
 	background-color: #212829;
-	border:1px solid #1842ff;
+	/* border:1px solid #1842ff; */
 	/* border-radius:12px; */
 	margin-left:5rem;
 }
-
-#id-image{
-	height: 40px;
-	width: 40px;
+#id-image {
+	width: 20px;
+	height: 20px;
+	object-fit: cover;
 	border-radius: 50%;
-	object-fit:fill;
-	margin-right: 30px;
+	clip-path: circle(50% at 50% 50%);
 }
-
-
+/* Edit Info */
 #edit-info{
 	height:100%;
-	width:50%;
+	width:40%;
 	background-color: #212829;
-	border:1px solid #1842ff;
-	/* border-radius:12px; */
-	margin-right:5rem;
+	
+	display: flex;
+	flex-direction: row;
+  /* margin-left: 25% ;
+  margin-right: 25%;
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 0px; */
+}
+
+/* Edit Info */
+#edit-info .form{
+	padding-top:2rem;
+	padding-left:2rem;
+}
+.personal-details-edit{
+	gap:3rem;
 }
 
 
-/* Number Stats Cards */
-.container {
-  height:8.9rem;
-  width: 100dvw;
-  margin-top: 3rem;
-  padding-top:1rem;
-  padding-bottom:1rem;
-  /* padding-left:7rem; */
+.personal-details-edit .pde-display {
+	gap:2rem;
+}
+
+.personal-details-edit .pde-display input{
+  width: 800px;
+  height: 30px;
+  outline: 0;
+  border: none;
+  font-weight: 500px;
+  font-size: 1.5rem;
+	background-color: #212829;
+  color: white;
+	outline:auto;
+}
+
+#personal-info-2{
+	display: flex;
+	width:100%;
+	height:40vh;
+	margin-top:3%;
+	gap:5%;	
+	/* background-color: #e61010; */
+}
+
+
+/* Cards */
+#cards {
+  height:100%;
+  width:30%;
+	/* padding-top:1rem; */
 	margin-left:5rem;
   display: flex;
-  flex-direction: row;
-  /* justify-content: space-between;    */
+  flex-direction: column;
   gap: 20px;
-  /* background-color: #2e2d2d; */
+	background-color: #212829;
 }
-.container .card {
+#cards .card {
   width: 15rem;
   height:7rem;
   /* gap:10px; */
@@ -131,11 +165,11 @@ nav a img {
   box-shadow: 0 5px 10px rgba(31, 27, 27, 0.3);
   border: 1px solid rgba(255,255,255,0.3);
 }
-.container .card h2{
+#cards .card h2{
   font-size: 0.8rem;
   color: #686868;
 }
-.container .card p{
+#cards .card p{
   padding: 0px;
   margin:0px;
   font-size: 2rem;
@@ -143,8 +177,14 @@ nav a img {
   color: #ffffff;
 }
 
+/* Pins */
+#pins-info{
+	height:100%;
+	width:40%;
+	background-color: #212829;	
 
-
+	/* display: flex; */
+}
 
 
 @media screen and (max-width: 800px) {
