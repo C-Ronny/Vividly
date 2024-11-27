@@ -79,8 +79,6 @@ fetch('../../db/admin_db/user_table_details_fetch.js')
             // Append the row to the table body
             tableBody.appendChild(row);
 
-            
-
         });
     })
     .catch(error => console.error('Error fetching user data:', error));

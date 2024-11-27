@@ -34,7 +34,7 @@
         <section class="container">
             <div class="card">
                 <h2>Total No. of Users</h2>
-                <p>XX</p>
+                <p id="total_users">XX</p>
             </div>
             <div class="card">
                 <h2>Total No. of Boards</h2>
