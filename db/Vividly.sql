@@ -27,13 +27,20 @@ CREATE TABLE Boards (
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
 );
 
+-- Categories Table
+CREATE TABLE Categories (
+    category_id INT AUTO_INCREMENT PRIMARY KEY,
+    `name` tinyint(6)  NOT NULL, -- 6 categories (Art, Design, Fashion, Food, Photography, Travel)
+    `description` TEXT -- Description of each category
+);
+
 -- Pins Table
 CREATE TABLE Pins (
     pin_id INT AUTO_INCREMENT PRIMARY KEY, -- pin id number
     user_id INT , -- user id number
     board_id INT,   -- board id number
     image_url VARCHAR(255) NOT NULL,    -- image url
-    caption VARCHAR(255) NOT NULL, -- title of the pos
+    caption VARCHAR(255) NOT NULL, -- title of the post
     `description` TEXT, -- description of the post
     category_id INT,    -- category id number
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
@@ -64,12 +71,6 @@ CREATE TABLE Likes (
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
 );
 
--- Categories Table
-CREATE TABLE Categories (
-    category_id INT AUTO_INCREMENT PRIMARY KEY,
-    `name` tinyint(6)  NOT NULL, -- 6 categories (Art, Design, Fashion, Food, Photography, Travel)
-    `description` TEXT -- Description of each category
-);
 
 -- User Statistics Table
 -- CREATE TABLE User_Statistics (
