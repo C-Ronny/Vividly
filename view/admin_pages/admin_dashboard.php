@@ -63,7 +63,6 @@ $conn->close();
 
         <div class="welcome">
             <h1>Welcome back, <?= htmlspecialchars($user['fname']) ?>!</h1>
-            <h2>Welcome, </h2>
             <p>Here's the site overview</p>
         </div>
 
