@@ -20,7 +20,7 @@
     </nav>
 
     <div class="container">
-      <form  method="POST" enctype="multipart/form-data" id="form" action="register_user.php">
+      <form  method="POST" enctype="multipart/form-data" id="form" action="../actions/register_user.php">
         <h1 class="Welcome">Vividly</h1>
         <br>
         <h2>Sign Up</h2>

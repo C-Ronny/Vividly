@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = trim($_POST['email']);
     $password = trim($_POST['psw']);
     $confirm_password = trim($_POST['psw-confirm']);
-    $role = 2;
+    $role = 2; // regular user
 
     // Check if any fields are empty
     if (empty($fname) || empty($lname) || empty($email) || empty($password) || empty($confirm_password)) {
