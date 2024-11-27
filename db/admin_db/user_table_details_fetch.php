@@ -2,7 +2,7 @@
 require '../config.php';
 
 // Query to fetch user details
-$query = " SELECT fname, lname, email, `role`, created_at FROM Users";
+$query = " SELECT fname, lname, email, role, created_at FROM Users";
 
 $result = $conn->query($query);
 

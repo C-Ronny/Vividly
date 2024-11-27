@@ -20,7 +20,7 @@ $totalPins = $resultPins->fetch_assoc()['total_pins'];
 echo json_encode([
     'totalUsers' => $totalUsers,
     'totalBoards' => $totalBoards,
-    'topPins' => $totalPins
+    'totalPins' => $totalPins
 ]);
 
 ?>

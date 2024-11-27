@@ -43,15 +43,15 @@ CREATE TABLE Pins (
 );
 
 -- Comments Table
-CREATE TABLE Comments (
-    comment_id INT AUTO_INCREMENT PRIMARY KEY,
-    pin_id INT,
-    user_id INT,
-    comment TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (pin_id) REFERENCES Pins(pin_id) ON DELETE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
-);
+-- CREATE TABLE Comments (
+--     comment_id INT AUTO_INCREMENT PRIMARY KEY,
+--     pin_id INT,
+--     user_id INT,
+--     comment TEXT,
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     FOREIGN KEY (pin_id) REFERENCES Pins(pin_id) ON DELETE CASCADE,
+--     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
+-- );
 
 -- Likes Table
 CREATE TABLE Likes (
@@ -66,67 +66,58 @@ CREATE TABLE Likes (
 -- Categories Table
 CREATE TABLE Categories (
     category_id INT AUTO_INCREMENT PRIMARY KEY,
-    `name` VARCHAR(255) NOT NULL UNIQUE,
+    `name` tinyint(6)  NOT NULL,
     `description` TEXT
 );
 
--- Admins Table
-CREATE TABLE Admins (
-    admin_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    role VARCHAR(255) NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
-);
-
 -- User Statistics Table
-CREATE TABLE User_Statistics (
-    stat_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    total_pins INT DEFAULT 0,
-    total_boards INT DEFAULT 0,
-    total_likes INT DEFAULT 0,
-    total_comments INT DEFAULT 0,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
-);
+-- CREATE TABLE User_Statistics (
+--     stat_id INT AUTO_INCREMENT PRIMARY KEY,
+--     user_id INT,
+--     total_pins INT DEFAULT 0,
+--     total_boards INT DEFAULT 0,
+--     total_likes INT DEFAULT 0,
+--     total_comments INT DEFAULT 0,
+--     FOREIGN KEY (user_id) REFERENCES Users(user_id)
+-- );
 
 -- Triggers for User Statistics (to update user statistics upon board, pin, comment, and like operations)
-DELIMITER $$
+-- DELIMITER $$
 
-CREATE TRIGGER after_board_insert
-AFTER INSERT ON Boards
-FOR EACH ROW
-BEGIN
-    UPDATE User_Statistics
-    SET total_boards = total_boards + 1
-    WHERE user_id = NEW.user_id;
-END$$
+-- CREATE TRIGGER after_board_insert
+-- AFTER INSERT ON Boards
+-- FOR EACH ROW
+-- BEGIN
+--     UPDATE User_Statistics
+--     SET total_boards = total_boards + 1
+--     WHERE user_id = NEW.user_id;
+-- END$$
 
-CREATE TRIGGER after_pin_insert
-AFTER INSERT ON Pins
-FOR EACH ROW
-BEGIN
-    UPDATE User_Statistics
-    SET total_pins = total_pins + 1
-    WHERE user_id = NEW.user_id;
-END$$
+-- CREATE TRIGGER after_pin_insert
+-- AFTER INSERT ON Pins
+-- FOR EACH ROW
+-- BEGIN
+--     UPDATE User_Statistics
+--     SET total_pins = total_pins + 1
+--     WHERE user_id = NEW.user_id;
+-- END$$
 
-CREATE TRIGGER after_like_insert
-AFTER INSERT ON Likes
-FOR EACH ROW
-BEGIN
-    UPDATE User_Statistics
-    SET total_likes = total_likes + 1
-    WHERE user_id = NEW.user_id;
-END$$
+-- CREATE TRIGGER after_like_insert
+-- AFTER INSERT ON Likes
+-- FOR EACH ROW
+-- BEGIN
+--     UPDATE User_Statistics
+--     SET total_likes = total_likes + 1
+--     WHERE user_id = NEW.user_id;
+-- END$$
 
-CREATE TRIGGER after_comment_insert
-AFTER INSERT ON Comments
-FOR EACH ROW
-BEGIN
-    UPDATE User_Statistics
-    SET total_comments = total_comments + 1
-    WHERE user_id = NEW.user_id;
-END$$
+-- CREATE TRIGGER after_comment_insert
+-- AFTER INSERT ON Comments
+-- FOR EACH ROW
+-- BEGIN
+--     UPDATE User_Statistics
+--     SET total_comments = total_comments + 1
+--     WHERE user_id = NEW.user_id;
+-- END$$
 
-DELIMITER ;
-
+-- DELIMITER ;

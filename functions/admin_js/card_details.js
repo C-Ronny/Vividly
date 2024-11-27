@@ -14,8 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
       // Update total pins
       const totalPins = document.getElementById('total_pins');
       totalPins.textContent = data.totalPins;
-
-
       
   })
   .catch(error => console.error('Error fetching data:', error));
