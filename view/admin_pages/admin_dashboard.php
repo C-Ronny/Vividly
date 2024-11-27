@@ -1,3 +1,40 @@
+<?php
+// Include the database configuration
+include '../../db/config.php';
+
+// Start the session
+session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: logIn.php");
+    exit();
+}
+
+// Fetch user details from the database
+$user_id = $_SESSION['user_id'];
+
+$query = "SELECT fname, lname, email, role, created_at FROM Users WHERE user_id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Check if the user exists
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+} else {
+    echo "User not found.";
+    exit();
+}
+
+// Close the statement and connection
+$stmt->close();
+$conn->close();
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +62,8 @@
     <main>
 
         <div class="welcome">
-            <h1>Welcome back, user</h1>
+            <h1>Welcome back, <?= htmlspecialchars($user['fname']) ?>!</h1>
+            <h2>Welcome, </h2>
             <p>Here's the site overview</p>
         </div>
 
@@ -34,15 +72,15 @@
         <section class="container">
             <div class="card">
                 <h2>Total No. of Users</h2>
-                <p id="total_users">XX</p>
+                <p id="total_users"></p>
             </div>
             <div class="card">
                 <h2>Total No. of Boards</h2>
-                <p>XX</p>
+                <p id="total_boards"></p>
             </div>
             <div class="card" id="images">
                 <h2>Total No. of Images</h2>
-                <p>XX</p>
+                <p id="total_pins"></p>
             </div>
             <div class="card">
                 <h2>Total No. of Users</h2>
