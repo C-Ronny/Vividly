@@ -52,7 +52,7 @@ $conn->close();
 
         <div class="nav-links">
             <!-- <a class="nav-a" href="#">Boards</a> -->
-            <a class="nav-a" href="../user_pages/profile.php">Logout</a>
+            <a class="nav-a" href="../../actions/logout_user.php">Logout</a>
             <a href="#"><img src="../../assets/images/bg1.jpg"></a>
         </div>
 

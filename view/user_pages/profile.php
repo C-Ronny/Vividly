@@ -15,7 +15,7 @@
 
         <div class="nav-center">
             <a class="nav-a" href="landingpage.php">Home</a>
-            <a class="nav-a" href="../user_pages/profile.php">Logout</a>
+            <a class="nav-a" href="../../actions/logout_user.php">Logout</a>
             <a href="profile.php"><img src="../../assets/images/bg1.jpg"></a>
         </div>
 
