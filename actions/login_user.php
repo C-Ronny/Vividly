@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Redirect to appropriate page
             if ($userrole == 1) {
-                header('Location: view/dashboard.php');
+                header('Location: ../view/admin_pages/admin_dashboard.php');
             } else {
                 header('Location: ../view/user_pages/landingpage.php');
             }
