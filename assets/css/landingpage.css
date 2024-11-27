@@ -143,25 +143,26 @@ nav a img {
   color: #fff;
 }
 
+/* Image Styling */
 /* Ensure images in grid items fit and display properly */
-.item img {
+/* .item img {
   max-height: 100%;
   max-width: 100%; 
   border-radius: 8px; 
   object-fit: cover; 
 }
+.item img {
+  width: 100%; 
+  height: 100%; 
+  border-radius: 8px; 
+  object-fit: cover; 
+} */
 
 .item:hover {
   transform: translateY(-10px);
 }
 
-/* Image Styling */
-.item img {
-  width: 100%; /* Stretch to fill container width */
-  height: 100%; /* Stretch to fill container height */
-  border-radius: 8px; /* Match container */
-  object-fit: cover; /* Ensure no distortion */
-}
+
 
 
 
