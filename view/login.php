@@ -24,7 +24,7 @@
         <h1 class="Welcome">Vividly</h1>
         <br>
         <h2>Login</h2>
-        <input id="email" type="email" placeholder="Email" name="eml">
+        <input id="email" type="email" placeholder="Email" name="email">
         <br>
         <br>
         <input id="password" type="password" placeholder="Password" name="psw">
