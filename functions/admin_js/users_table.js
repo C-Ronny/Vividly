@@ -1,8 +1,11 @@
 // '.tbl-content' consumed little space for vertical scrollbar, scrollbar width depend on browser/os/platform. Here calculate the scrollbar width .
-$(window).on("load resize ", function() {
-var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
-$('.tbl-header').css({'padding-right':scrollWidth});
-}).resize();
+
+// scroll within the users table
+
+// $(window).on("load resize ", function() {
+// var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+// $('.tbl-header').css({'padding-right':scrollWidth});
+// }).resize();
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -36,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 registrationDateCell.textContent = new Date(user.created_at).toLocaleDateString();
 
                 const numberOfPins = document.createElement('td');
-                numberOfPins.textContent = `empty_for_now`;
+                numberOfPins.textContent = 'empty_for_now';
 
                 ////////////////////////////////////////////////////////////
                 ////////////////////////////////////////////////////////////

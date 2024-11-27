@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Fetch data from the server
-  fetch('../../db/admin_db/card_details_fetch.php')
+  fetch('../../db/admin_db/cards_details_fetch.php')
   .then(response => response.json())
   .then(data => {
       // Update total users
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Update total boards
       const totalBoards = document.getElementById('total_boards');
-      totalBoards.textContent = data.totalBoards;
+      totalBoards.textContent = data.totalBoards; 
 
       // Update total pins
       const totalPins = document.getElementById('total_pins');
