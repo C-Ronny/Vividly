@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($userrole == 1) {
                 header('Location: view/dashboard.php');
             } else {
-                header('Location: ../view/landingpage.php');
+                header('Location: ../view/user_pages/landingpage.php');
             }
             exit();
         } else {
