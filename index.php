@@ -21,8 +21,8 @@
       <p class="">Vividly lets users discover, save, and share images and ideas in categories like fashion, food, and travel. With personalized boards for organizing inspirations and options to like or comment on posts, the platform promotes creativity and easy idea sharing in a visually appealing, streamlined space.</p>
     </div>
     <p>Share your thoughts with the world!</p>
-    <a href="view/register.php" id="sign-up">Sign Up</a>
-    <p>Already have an account? <a href="login.php" id="loog">Login</a></p>
+    <a href="./view/login.php" id="sign-up">Get Started</a>
+    
   </main>
 
   <!--Hero Section (Mobile Devices)-->

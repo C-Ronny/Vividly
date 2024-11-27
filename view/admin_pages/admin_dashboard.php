@@ -62,7 +62,7 @@ $conn->close();
     <main>
 
         <div class="welcome">
-            <h1>Welcome back, <?= htmlspecialchars($user['fname']) ?>!</h1>
+            <h1>Welcome, <?= htmlspecialchars($user['fname']) ?>!</h1>
             <p>Here's the site overview</p>
         </div>
 
@@ -113,7 +113,7 @@ $conn->close();
                 <div class="tbl-content">
                     <table class="content-table" cellpadding="0" cellspacing="0">
                         <tbody>
-                            
+                            <!-- Rows will be populated dynamically -->
                         </tbody>
                     </table>
                 </div>
