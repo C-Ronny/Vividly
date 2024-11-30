@@ -50,10 +50,6 @@
             <h4 class="category-name">Photography</h4>
             <h4 class="category-name">Travel</h4>
 
-<!---------------------------------------------------------------------------------------------------------------------------------------------->
-
-
-
             <!-- Modal toggle -->
             
             <div class="absolute top-20 right-40 m-4">
@@ -83,7 +79,7 @@
                             </h3>
                         </div>
 
-                        <!-- Modal body -->
+                        
                         <!-- Modal Body -->
             <form class="p-4 md:p-5">
                 <div class="grid gap-4 mb-4 grid-cols-2">
@@ -121,7 +117,7 @@
                                 
                                 <!-- Image Upload Field -->
                                 <div class="col-span-2">
-                                    <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Image</label>
+                                    <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Image (jpeg/jpg/png)</label>
                                     <input type="file" id="image" name="image" accept="image/*" class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" onchange="previewImage(event)" />
                                 </div>
 
@@ -144,49 +140,9 @@
             </div> 
 
 
-<!---------------------------------------------------------------------------------------------------------------------------------------------->
 
-            <!-- <a id="art" href="#">
-                <div class="category">
-                    <h4 class="category-name">Art</h4>
-                    <img src="#">
-                </div>
-            </a> -->
-            <!--Design board-->
-            <!-- <a id="design" href="#">
-                <div class="category">
-                    <h4 class="category-name">Design</h4>
-                    <img src="#">
-                </div>
-            </a> -->
-            <!--Fashion board-->
-            <!-- <a id="fashion" href="#">
-                <div class="category">
-                    <h4 class="category-name">Fashion</h4>
-                    <img src="#">
-                </div>
-            </a> -->
-            <!--Food board-->
-            <!-- <a id="food" href="#">
-                <div class="category">
-                    <h4 class="category-name">Food</h4>
-                    <img src="#">
-                </div>
-            </a> -->
-            <!--Food board-->
-            <!-- <a id="photography" href="#">
-                <div class="category">
-                    <h4 class="category-name">Photography</h4>
-                    <img src="#">
-                </div>
-            </a> -->
-            <!--Travel board-->
-            <!-- <a id="travel" href="#">
-                <div class="category">
-                    <h4 class="category-name">Travel</h4>
-                    <img src="#">
-                </div>
-            </a> -->
+
+            
         </div>
     </div>
 
@@ -220,26 +176,7 @@
 
 
     <script src="../../functions/user_js/add_pins_modal.js"></script>    
-    <script>
-    function previewImage(event) {
-        const file = event.target.files[0]; // Get the selected file
-        const reader = new FileReader();
-        
-        reader.onload = function(e) {
-            const preview = document.getElementById('preview');
-            preview.src = e.target.result; // Set the preview image source to the uploaded file
-            preview.classList.remove('hidden'); // Show the preview image
-        };
-        
-        if (file) {
-            reader.readAsDataURL(file); // Read the file as a data URL
-        } else {
-            // If no file is selected, hide the preview
-            const preview = document.getElementById('preview');
-            preview.classList.add('hidden');
-        }
-    }
-</script>
+    
 
 </body>
 
