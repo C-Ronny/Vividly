@@ -85,12 +85,12 @@ nav a img {
 
 /* Categories Section */
 .categories-section{
-  height: 7rem;
+  height: 5rem;
 }
 #categories{
   margin-left: 5rem;
   margin-top:4rem;
-  color: white;
+  /* color: white; */
 }
 .category{
   margin:1px;
@@ -130,6 +130,7 @@ nav a img {
 
 /* Main page */
 .main_pins{
+  padding:0px;
   margin-top: 1%;
   margin-left:6%;
   margin-right:6%;

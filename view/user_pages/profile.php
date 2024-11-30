@@ -26,7 +26,7 @@
     <main>
         <section id="personal-info">
             <div id="display-info">
-                <a id="id-image" href="profile.php"><img src="../../assets/images/bg1.jpg"></a>
+                <!-- <a id="id-image" href="profile.php"><img src="../../assets/images/bg1.jpg"></a> -->
             </div>
 
             <div id="edit-info">
