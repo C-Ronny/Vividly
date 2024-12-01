@@ -6,8 +6,8 @@ body {
 	color: white;
 	overflow-x: hidden;
 	overscroll-behavior-x:none;
-	overscroll-behavior-y: none;
-	overflow-y: hidden;
+	/* overscroll-behavior-y: none; */
+	/* overflow-y: hidden; */
 }
 
 /* Navigation Bar*/
@@ -59,132 +59,6 @@ nav a img {
 }
 
 
-/* Personal Info */
-
-/* Display Info */
-.profile-info {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	margin-top: 50px;
-}
-#personal-info{
-	display: flex;
-	width:100%;
-	height:30vh;
-	margin-top:5%;
-	gap:5%;	
-	/* background-color: #e61010; */
-}
-#display-info{
-	height:100%;
-	width:30%;
-	background-color: #212829;
-	/* border:1px solid #1842ff; */
-	/* border-radius:12px; */
-	margin-left:5rem;
-}
-#id-image {
-	width: 20px;
-	height: 20px;
-	object-fit: cover;
-	border-radius: 50%;
-	clip-path: circle(50% at 50% 50%);
-}
-/* Edit Info */
-#edit-info{
-	height:100%;
-	width:40%;
-	background-color: #212829;
-	
-	display: flex;
-	flex-direction: row;
-  /* margin-left: 25% ;
-  margin-right: 25%;
-  text-align: center;
-  margin-top: 0px;
-  margin-bottom: 0px; */
-}
-
-/* Edit Info */
-#edit-info .form{
-	padding-top:2rem;
-	padding-left:2rem;
-}
-.personal-details-edit{
-	gap:3rem;
-}
-
-
-.personal-details-edit .pde-display {
-	gap:2rem;
-}
-
-.personal-details-edit .pde-display input{
-  width: 800px;
-  height: 30px;
-  outline: 0;
-  border: none;
-  font-weight: 500px;
-  font-size: 1.5rem;
-	background-color: #212829;
-  color: white;
-	outline:auto;
-}
-
-#personal-info-2{
-	display: flex;
-	width:100%;
-	height:40vh;
-	margin-top:3%;
-	gap:5%;	
-	/* background-color: #e61010; */
-}
-
-
-/* Cards */
-#cards {
-  height:100%;
-  width:30%;
-	/* padding-top:1rem; */
-	margin-left:5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-	background-color: #212829;
-}
-#cards .card {
-  width: 15rem;
-  height:7rem;
-  /* gap:10px; */
-  /* justify-content: space-evenly; */
-  padding-left:1rem;
-  /* border-radius: 10px; */
-  background-color: #1f1f1f;
-  box-shadow: 0 5px 10px rgba(31, 27, 27, 0.3);
-  border: 1px solid rgba(255,255,255,0.3);
-}
-#cards .card h2{
-  font-size: 0.8rem;
-  color: #686868;
-}
-#cards .card p{
-  padding: 0px;
-  margin:0px;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #ffffff;
-}
-
-/* Pins */
-#pins-info{
-	height:100%;
-	width:40%;
-	background-color: #212829;	
-
-	/* display: flex; */
-}
 
 
 @media screen and (max-width: 800px) {

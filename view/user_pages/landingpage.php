@@ -11,6 +11,7 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../../assets/css/landingpage.css">
+    
 </head>
 
 <body>
@@ -39,11 +40,13 @@
 
     <!--Boards Section-->
     <div class="categories-section">
+
+    
     
         <!--Container for boards-->
         <div class="boards-container">
             <!--Arts board-->
-            <h4 class="category-name">Art</h4>
+            <h4 class="category-name"><a>Art</a></h4>
             <h4 class="category-name">Design</h4>
             <h4 class="category-name">Fashion</h4>
             <h4 class="category-name">Food</h4>
