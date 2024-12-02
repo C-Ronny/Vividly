@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+// Ensure the user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../login.php");  // Redirect to login page if not logged in
+    exit;
+}
+
+$user_id = $_SESSION['user_id'];  // Access the user_id from the session
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -84,7 +97,7 @@
 
                         
                         <!-- Modal Body -->
-            <form class="p-4 md:p-5" method="POST" enctype="multipart/form-data" >
+            <form class="p-4 md:p-5" method="POST" enctype="multipart/form-data" action="../../db/user_db/file_upload.php">
                 <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="col-span-2">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
@@ -103,8 +116,8 @@
                                     </select>
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
-                                    <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Board</label>
-                                    <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    <label for="boards" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Board</label>
+                                    <select id="boards" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                         <option selected="">Select board</option>
                                         <option value="TV">TV/Monitors</option>
                                         <option value="PC">PC</option>

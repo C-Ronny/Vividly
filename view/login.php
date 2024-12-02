@@ -1,3 +1,13 @@
+<?php
+session_start();
+if (isset($_SESSION['user_id'])) {
+    header("Location: ../index.php");  // Redirect to the homepage or dashboard
+    exit;
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>

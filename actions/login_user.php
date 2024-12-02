@@ -1,8 +1,8 @@
 <?php
-include '../db/config.php';
+require_once '../db/config.php';
 // Include config files for database connection
 
-include '../util/error_config.php';
+require_once '../util/error_config.php';
 
 // Start session
 session_start();
