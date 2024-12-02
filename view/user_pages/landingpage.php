@@ -84,7 +84,7 @@
 
                         
                         <!-- Modal Body -->
-            <form class="p-4 md:p-5">
+            <form class="p-4 md:p-5" method="POST" enctype="multipart/form-data" >
                 <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="col-span-2">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
@@ -138,6 +138,7 @@
                                 Add Pin
                             </button>
                         </form>
+
                     </div>
                 </div>
             </div> 

@@ -42,7 +42,7 @@ CREATE TABLE Pins (
     image_url VARCHAR(255) NOT NULL,    -- image url
     caption VARCHAR(255) NOT NULL, -- title of the post
     `description` TEXT, -- description of the post
-    category_id INT,    -- category id number
+    category_id INT NOT NULL,    -- category id number
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
