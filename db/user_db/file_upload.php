@@ -1,7 +1,5 @@
 <?php
-
 require_once '../config.php';
-
 require_once '../../util/error_config.php';
 
 session_start();
@@ -25,10 +23,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Check if image is uploaded
     if ($image['error'] == 0) {
-        $category_name = getCategoryName($category);  // Get category name (Art, Food, etc.)
+        // Get category name (e.g., Art, Food, etc.)
+        $category_name = getCategoryName($category);
+
+        // Directory to store the image based on category
         $uploadDir = "../../images/{$category_name}/";  // Save the image in the corresponding category folder
+        
+        // Create the folder if it doesn't exist
         if (!file_exists($uploadDir)) {
-            mkdir($uploadDir, 0777, true);  // Create the folder if it doesn't exist
+            mkdir($uploadDir, 0777, true);
         }
 
         // Generate a unique file name to avoid conflicts
@@ -43,19 +46,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Prepare and execute the query
             if ($stmt = $conn->prepare($query)) {
+                // Assuming you have $board_id variable for the user's board
+                // For example, you could retrieve this from the session or the POST data
+                $board_id = 1;  // Example; adjust to get the actual board ID from the form or session
+
+                // Bind the parameters for the query
                 $stmt->bind_param("iisssi", $user_id, $board_id, $filePath, $title, $description, $category);
+
+                // Execute the query
                 if ($stmt->execute()) {
-                    echo "Image uploaded and data saved successfully.";
+                    echo "File uploaded and data inserted successfully.";
                 } else {
                     echo "Error: " . $stmt->error;
                 }
                 $stmt->close();
+            } else {
+                echo "Error: Unable to prepare the SQL query.";
             }
         } else {
-            echo "Failed to upload image.";
+            echo "Error: Failed to move uploaded file.";
         }
     } else {
-        echo "Error with file upload.";
+        echo "Error: File upload error code: " . $image['error'];
     }
 }
 
@@ -71,5 +83,5 @@ function getCategoryName($category_id) {
   return $category ? $category['name'] : null;  // Return category name or null if not found
 }
 
-
 ?>
+
