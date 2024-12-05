@@ -11,6 +11,15 @@ if (!isset($user_id)) {
     exit;
 }
 
+function getCategoryId($category) {
+    global $conn;  // Ensure you have access to the database connection
+    $query = "SELECT category_id FROM Categories WHERE name = :category";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param(':category', $category, PDO::PARAM_STR);  // Bind the category parameter
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result ? $result['category_id'] : null;  // Return the category_id or null if not found
+}
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -18,6 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $category = trim($_POST['category']);
     $title = trim($_POST['title']);
     $description = trim($_POST['description']);
+
+    $category_id = getCategoryId($category); // get the category id
 
     // File upload handling
     $image = $_FILES['image'];  // Assuming the form contains an input with name="image"
@@ -45,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Prepare and execute the query
                 if ($stmt = $conn->prepare($query)) {
                     // Bind parameters: user_id, board_id, image_url, caption, description, category_id
-                    $stmt->bind_param("iisisss", $user_id, $board_id, $filePath, $filesize, $title, $description, $category);
+                    $stmt->bind_param("iisisss", $user_id, $board_id, $filePath, $filesize, $title, $description, $category_id);
 
                     // Execute the statement
                     if ($stmt->execute()) {
