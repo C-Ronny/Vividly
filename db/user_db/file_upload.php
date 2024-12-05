@@ -57,8 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Move the uploaded file to the desired folder
             if (move_uploaded_file($image['tmp_name'], $filePath)) {
                 // Prepare SQL query to insert data into the Pins table
-                $query = "INSERT INTO Pins (user_id, board_id, image_url, caption, description, category_id) 
-                          VALUES (?, ?, ?, ?, ?, ?)";
+                $query = "INSERT INTO Pins (user_id, board_id, image_url, caption, description, category_id) VALUES (?, ?, ?, ?, ?, ?)";
 
                 // Assuming the board_id is coming from the form or other session data (adjust as needed)
                 $board_id = 1;  // This should be dynamically set, you need to adjust it based on your logic
