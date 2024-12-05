@@ -3,29 +3,15 @@ require_once '../config.php';  // Include database connection and configuration
 require_once '../../util/error_config.php';  // Include error configuration for better debugging
 
 session_start();
+$user_id = $_SESSION['user_id'];  // Get the user ID from the session
 
 // Check if the user is logged in
-if (!isset($_SESSION['user_id'])) {
+if (!isset($user_id)) {
     header("Location: ../../view/login.php");  // Redirect to login page if not logged in
     exit;
 }
 
-$user_id = $_SESSION['user_id'];  // Get the user ID from the session
 
-// Function to get category name from the database
-function getCategoryName($category_id) {
-    global $conn;
-    $sql = "SELECT name FROM Categories WHERE category_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $category_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        return $row['name'];
-    }
-    return null;  // Return null if category doesn't exist
-}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Sanitize form inputs
@@ -37,27 +23,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $image = $_FILES['image'];  // Assuming the form contains an input with name="image"
 
     // Check if image is uploaded without errors
-    if ($image['error'] == 0) {
+    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
         // Get the category name from the database
-        $category_name = getCategoryName($category);
-
-        if ($category_name) {
+        if ($category) {
             // Define the directory to store the image based on category
-            $uploadDir = "../../images/{$category_name}/";  // Save the image in the corresponding category folder
-
-            // Create the folder if it doesn't exist
-            if (!file_exists($uploadDir)) {
-                mkdir($uploadDir, 0777, true);  // Set 0777 permissions for testing (for production, use stricter permissions)
-            }
+            $uploadDir = "../../assets/images/{$category}/";  // Save the image in the corresponding category folder
 
             // Generate a unique file name to avoid conflicts
-            $fileName = uniqid() . '-' . basename($image['name']);
+            $fileName = $_FILES['image']['name'];
             $filePath = $uploadDir . $fileName;
+            $filesize = $_FILES['image']['size'];
 
             // Move the uploaded file to the desired folder
             if (move_uploaded_file($image['tmp_name'], $filePath)) {
                 // Prepare SQL query to insert data into the Pins table
-                $query = "INSERT INTO Pins (user_id, board_id, image_url, caption, description, category_id) VALUES (?, ?, ?, ?, ?, ?)";
+                $query = "INSERT INTO Pins (user_id, board_id, image_url, file_size, caption, description, category_id) VALUES (?, ?, ?, ?, ?, ?)";
 
                 // Assuming the board_id is coming from the form or other session data (adjust as needed)
                 $board_id = 1;  // This should be dynamically set, you need to adjust it based on your logic
@@ -65,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Prepare and execute the query
                 if ($stmt = $conn->prepare($query)) {
                     // Bind parameters: user_id, board_id, image_url, caption, description, category_id
-                    $stmt->bind_param("iissss", $user_id, $board_id, $filePath, $title, $description, $category_name);
+                    $stmt->bind_param("iisisss", $user_id, $board_id, $filePath, $filesize, $title, $description, $category);
 
                     // Execute the statement
                     if ($stmt->execute()) {
@@ -95,4 +75,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Error with the image upload: " . $image['error'];
     }
 }
+
+
 ?>
