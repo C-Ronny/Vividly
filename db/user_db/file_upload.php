@@ -66,8 +66,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Prepare SQL query to insert data into the Pins table
                 $query = "INSERT INTO Pins (user_id, board_id, image_url, file_size, caption, description, category_id) VALUES (?, ?, ?, ?, ?, ?)";
 
-                // Assuming the board_id is coming from the form or other session data (adjust as needed)
-                $board_id = 1;  // This should be dynamically set, you need to adjust it based on your logic
+
+                // Write function to dynamically generate board_id_id based on user selection
+                
+                $board_id = 1; 
 
                 // Prepare and execute the query
                 if ($stmt = $conn->prepare($query)) {
