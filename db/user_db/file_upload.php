@@ -11,15 +11,28 @@ if (!isset($user_id)) {
     exit;
 }
 
-function getCategoryId($category) {
+function getCategoryId($category)
+{
     global $conn;  // Ensure you have access to the database connection
-    $query = "SELECT category_id FROM Categories WHERE name = :category";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param(':category', $category, PDO::PARAM_STR);  // Bind the category parameter
-    $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $result ? $result['category_id'] : null;  // Return the category_id or null if not found
+
+    // Correct query with parameter placeholder
+    $query = "SELECT category_id FROM Categories WHERE name = ?";  // Use ? for binding in mysqli
+    $stmt = $conn->prepare($query);  // Prepare the statement
+
+    // Bind the category parameter
+    $stmt->bind_param('s', $category);  // 's' for string type parameter
+
+    $stmt->execute();  // Execute the statement
+
+    // Fetch the result
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+
+    // Return the category_id or null if not found
+    return $row ? $row['category_id'] : null;
 }
+
+
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -39,6 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($category) {
             // Define the directory to store the image based on category
             $uploadDir = "../../assets/images/{$category}/";  // Save the image in the corresponding category folder
+            echo $uploadDir;
+            echo realpath($uploadDir);  // This will output the absolute path to the folder
+
 
             // Generate a unique file name to avoid conflicts
             $fileName = $_FILES['image']['name'];
@@ -86,6 +102,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Error with the image upload: " . $image['error'];
     }
 }
-
-
-?>
