@@ -121,6 +121,7 @@ $conn->close();
             </div>
             <div class="data_images">
                 <h1 id="title_text">Top 5 liked Content</h1>
+
             </div>
         </section>
 

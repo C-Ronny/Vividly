@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($category) {
             // Define the directory to store the image based on category
             $uploadDir = "../../assets/images/{$category}/";  // Save the image in the corresponding category folder
-            echo $uploadDir;
+            echo $uploadDir."<br>";
             echo realpath($uploadDir);  // This will output the absolute path to the folder
 
 
@@ -68,8 +68,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
                 // Write function to dynamically generate board_id_id based on user selection
-                
-                $board_id = 1; 
+
+                $board_id = 1;
 
                 // Prepare and execute the query
                 if ($stmt = $conn->prepare($query)) {
