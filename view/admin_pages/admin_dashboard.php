@@ -125,6 +125,10 @@ $conn->close();
             </div>
         </section>
 
+        <section class="other_stats">
+            <div class=".."></div>
+        </section>
+
 
     </main>
 
