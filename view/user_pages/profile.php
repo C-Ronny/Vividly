@@ -1,3 +1,40 @@
+<?php
+// Include the database configuration
+include '../../db/config.php';
+
+// Start the session
+session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../logIn.php");
+    exit();
+}
+
+// Fetch user details from the database
+$user_id = $_SESSION['user_id'];
+
+$query = "SELECT fname, lname, email FROM Users WHERE user_id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Check if the user exists
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+} else {
+    echo "User not found.";
+    exit();
+}
+
+// Close the statement and connection
+$stmt->close();
+$conn->close();
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,15 +75,21 @@
                             <tbody>
                                 <tr>
                                     <td class="px-2 py-2 text-gray-500 font-semibold">First Name:</td>
-                                    <td class="px-2 py-2 text-gray-500">John</td> 
+                                    <td class="px-2 py-2 text-gray-500">
+                                        <?= htmlspecialchars($user['fname']) ?>
+                                    </td> 
                                 </tr>
                                 <tr>
                                     <td class="px-2 py-2 text-gray-500 font-semibold font-medium">Last Name:</td>
-                                    <td class="px-2 py-2 text-gray-500">Doe</td> 
+                                    <td class="px-2 py-2 text-gray-500">
+                                    <?= htmlspecialchars($user['lname']) ?>
+                                    </td> 
                                 </tr>
                                 <tr>
                                     <td class="px-2 py-2 text-gray-500 font-semibold">Email:</td>
-                                    <td class="px-2 py-2 text-gray-500">john@exmaple.com</td>
+                                    <td class="px-2 py-2 text-gray-500">
+                                    <?= htmlspecialchars($user['email']) ?>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

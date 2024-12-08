@@ -51,9 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Get the category name from the database
         if ($category) {
             // Define the directory to store the image based on category
-            $uploadDir = "../../assets/images/{$category}/";  // Save the image in the corresponding category folder
-            echo $uploadDir."<br>";
-            echo realpath($uploadDir);  // This will output the absolute path to the folder
+            $uploadDir = "../../assets/images/{$category}/";  // Save the image in a folder based on category
 
 
             // Generate a unique file name to avoid conflicts
@@ -67,9 +65,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $query = "INSERT INTO Pins (user_id, board_id, image_url, file_size, caption, description, category_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 
-                // Write function to dynamically generate board_id_id based on user selection
-
-                $board_id = 1;
+                // Write function to dynamically generate board_id based on user selection or null of they don't have any
+                $board_id = null;
 
                 // Prepare and execute the query
                 if ($stmt = $conn->prepare($query)) {
@@ -80,6 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     if ($stmt->execute()) {
                         // Successfully inserted the data
                         echo "Data and image uploaded successfully!";
+                        header("Location: ../../view/user_pages/landingpage.php");  // Take back to landing page
                     } else {
                         // Error executing query
                         echo "Error inserting data into the database: " . $stmt->error;
