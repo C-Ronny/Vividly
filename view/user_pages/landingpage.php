@@ -59,50 +59,49 @@ $user_id = $_SESSION['user_id'];  // Access the user_id from the session
         <!--Container for boards-->
         <div class="boards-container">
             <!--Arts board-->
-            <h4 class="category-name"><a>Art</a></h4>
-            <h4 class="category-name">Design</h4>
-            <h4 class="category-name">Fashion</h4>
-            <h4 class="category-name">Food</h4>
-            <h4 class="category-name">Photography</h4>
-            <h4 class="category-name">Travel</h4>
+            <h4 class="category-name"><a href="#">Art</a></h4>
+            <h4 class="category-name"><a href="#">Design</a></h4>
+            <h4 class="category-name"><a href="#">Fashion</a></h4>
+            <h4 class="category-name"><a href="#">Food</a></h4>
+            <h4 class="category-name"><a href="#">Photography</a></h4>
+            <h4 class="category-name"><a href="#">Travel</a></h4>
 
             <!-- Modal toggle -->
-            
-            <div class="absolute top-20 right-40 m-4">
-                <input class="peer hidden" type="checkbox" id="toggle" />
-                <label
-                    class="absolute z-10 flex size-[3.2rem] cursor-pointer items-center justify-center rounded-full border bg-black duration-500 peer-checked:rotate-45 peer-checked:bg-red-500"
-                    for="toggle"
-                >
-                    <svg class="fill-white" viewBox="0 0 0.6 0.6" height="20" width="20">
-                        <path
-                            d="M.325.275H.55v.05H.325V.55h-.05V.325H.05v-.05h.225V.05h.05z"
-                            fill-rule="evenodd"
-                        ></path>
-                    </svg>
-                </label>
+<div class="absolute top-20 right-40 m-4">
+    <input class="peer hidden" type="checkbox" id="toggle" />
+    <label
+        class="absolute z-10 flex size-[3.2rem] cursor-pointer items-center justify-center rounded-full border bg-black duration-500 peer-checked:rotate-45 peer-checked:bg-red-500"
+        for="toggle"
+    >
+        <svg class="fill-white" viewBox="0 0 0.6 0.6" height="20" width="20">
+            <path
+                d="M.325.275H.55v.05H.325V.55h-.05V.325H.05v-.05h.225V.05h.05z"
+                fill-rule="evenodd"
+            ></path>
+        </svg>
+    </label>
+</div>
+
+<!-- Main modal -->
+<div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-gray-900 bg-opacity-50">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <!-- Modal header -->
+            <div class="flex items-center justify-center w-full p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white text-center">
+                    Add Pin
+                </h3>
             </div>
-
-            <!-- Main modal -->
-            <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                <div class="relative p-4 w-full max-w-md max-h-full">
-                    <!-- Modal content -->
-                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                        <!-- Modal header -->
-                        <div class="flex items-center justify-center w-full p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white text-center">
-                                Add Pin
-                            </h3>
-                        </div>
-
-                        
-                        <!-- Modal Body -->
-            <form class="p-4 md:p-5" method="POST" enctype="multipart/form-data" action="../../db/user_db/file_upload.php">
-                <div class="grid gap-4 mb-4 grid-cols-2">
-                    <div class="col-span-2">
-                        <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-                        <input type="text" name="title" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="">
-                    </div>                   
+            <!-- Modal body -->
+            <div class="p-6 space-y-6">
+                <!-- Add your modal content here -->
+                <form class="p-4 md:p-5" method="POST" enctype="multipart/form-data" action="../../db/user_db/file_upload.php">
+                            <div class="grid gap-4 mb-4 grid-cols-2">
+                                <div class="col-span-2">
+                                    <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                                    <input type="text" name="title" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="">
+                                </div>                   
                                 <div class="col-span-2 sm:col-span-1">
                                     <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
                                     <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
@@ -151,12 +150,25 @@ $user_id = $_SESSION['user_id'];  // Access the user_id from the session
                                 Add Pin
                             </button>
                         </form>
+            </div>
+            <!-- Modal footer -->
+            <div class="p-4">
+                <button id="close-modal" class="w-full py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-600" onclick="document.getElementById('toggle').checked = false;">
+                    Close Modal
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+ 
 
-                    </div>
-                </div>
-            </div> 
-
-
+<script>
+    // Close the modal when clicking the "Close" button
+    document.getElementById("close-modal").addEventListener("click", () => {
+        toggle.checked = false;
+        modal.classList.add("hidden");
+    });
+</script>
 
 
             
