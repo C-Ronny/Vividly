@@ -121,6 +121,7 @@ $conn->close();
             </div>
             <div class="data_images">
                 <h1 id="title_text">Top 5 liked Content</h1>
+                <div id="apex-column-bar-chart" class="w-full"></div>
 
             </div>
         </section>
@@ -136,6 +137,8 @@ $conn->close();
 
     <script src="../../functions/admin_js/users_table.js"></script>
     <script src="../../functions/admin_js/card_details.js"></script>
+    <script src="../../functions/admin_js/top5_users.js"></script>
+
 </body>
 
 </html>
