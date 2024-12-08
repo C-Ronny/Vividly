@@ -196,6 +196,7 @@ td{
 
 .data_images #title_text{
   margin:0px;
+  display:inline;
   padding-top:1.5rem;
   padding-left:1.5rem;
   font-size: 2rem;
