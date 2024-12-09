@@ -43,6 +43,8 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vividly | Dashboard</title>
     <link rel="stylesheet" href="../../assets/css/admin_dashboard.css">
+    <script src="../../functions/admin_js/top5_users.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 
 <body>
@@ -120,8 +122,8 @@ $conn->close();
                 
             </div>
             <div class="data_images">
-                <h1 id="title_text">Top 5 liked Content</h1>
-                <div id="apex-column-bar-chart" class="w-full"></div>
+                <h1 id="title_text">Top 5 Users</h1>
+                <div id="chart"></div>
 
             </div>
         </section>
@@ -136,9 +138,25 @@ $conn->close();
 
 
     <script src="../../functions/admin_js/users_table.js"></script>
-    <script src="../../functions/admin_js/card_details.js"></script>
-    <script src="../../functions/admin_js/top5_users.js"></script>
+    <script>
+        var options = {
+        chart: {
+            type: 'bar'
+        },
+        series: [{
+            name: 'sales',
+            data: [30,40,50,91,125]
+        }],
+        xaxis: {
+            categories: ['John','Jane','Doe','Elon','Araba']
+        }
+        }
 
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+
+        chart.render();
+
+    </script>
 </body>
 
 </html>

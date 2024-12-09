@@ -196,10 +196,17 @@ td{
 
 .data_images #title_text{
   margin:0px;
-  display:inline;
-  padding-top:1.5rem;
+  display:inline-block;
+  padding-top:1rem;
   padding-left:1.5rem;
   font-size: 2rem;
+}
+
+#chart{
+  margin:0px;
+  display:inline-block;
+  padding-top:10rem;
+  padding-left:1.5rem;
 }
 
 /* demo styles */
