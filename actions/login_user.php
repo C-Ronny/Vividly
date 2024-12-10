@@ -1,7 +1,6 @@
 <?php
 require_once '../db/config.php';
 // Include config files for database connection
-
 require_once '../util/error_config.php';
 
 // Start session

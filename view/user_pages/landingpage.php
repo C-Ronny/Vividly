@@ -180,7 +180,7 @@ $user_id = $_SESSION['user_id'];  // Access the user_id from the session
     <!--Main page-->
     <main class="main_pins">
         <div class="masonry">
-            <div class="item item1"><img src="../../assets/images/Travel/tr1.jpeg"></div>
+            <!-- <div class="item item1"><img src="../../assets/images/Travel/tr1.jpeg"></div>
             <div class="item item2"><img src="../../assets/images/Photography/ph1.jpg"></div>
             <div class="item item3"><img src="../../assets/images/Travel/tr1.jpeg"></div>
             <div class="item item4"><img src="../../assets/images/Photography/ph1.jpg"></div>
@@ -200,12 +200,20 @@ $user_id = $_SESSION['user_id'];  // Access the user_id from the session
             <div class="item item18"><img src="../../assets/images/Photography/ph1.jpg"></div>
             <div class="item item19"><img src="../../assets/images/Travel/tr1.jpeg"></div>
             <div class="item item20"><img src="../../assets/images/Photography/ph1.jpg"></div>
-        </div>
+        </div> -->
+    
+        <section id="extra_space">
+
+        </section>
+
+
     </main>
 
 
-    <script src="../../functions/user_js/add_pins_modal.js"></script>    
-    
+    <script src="../../functions/user_js/add_pins_modal.js"></script>  
+    <script src="../../functions/user_js/images_display.js"></script>  
+
+
 
 </body>
 

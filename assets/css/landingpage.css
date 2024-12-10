@@ -1,7 +1,7 @@
 body{
   height:100dvh;
   overflow-x: hidden;
-  overscroll-behavior: none;
+  /* overscroll-behavior: none; */
   background-color: #141414;
   /* background-image: url(../images/bg-pic.png); */
 }
@@ -188,3 +188,7 @@ nav a img {
 .item18 { grid-row: span 10; background-color: #6c5b7b; }
 .item19 { grid-row: span 25; background-color: #00a86b; }
 .item20 { grid-row: span 30; background-color: #b565a7;}
+
+#extra_space{
+  height:1000px;
+}
