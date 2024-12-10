@@ -188,7 +188,7 @@ td{
   margin-top:20px;
   width:30%;
   height:370px;
-  display: flex;
+  display: block;
   background-color: #1d1d1d; 
   border-radius: 8px;
   border: 1px solid rgba(255,255,255,0.3);
@@ -196,17 +196,19 @@ td{
 
 .data_images #title_text{
   margin:0px;
-  display:inline-block;
+  display:block;
   padding-top:1rem;
   padding-left:1.5rem;
   font-size: 2rem;
 }
 
 #chart{
-  margin:0px;
+  min-width: 20rem;
+  margin: 2rem 2rem 2rem 2rem;
   display:inline-block;
-  padding-top:10rem;
+  padding-top:5rem;
   padding-left:1.5rem;
+  
 }
 
 /* demo styles */
