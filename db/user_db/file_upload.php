@@ -51,8 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Get the category name from the database
         if ($category) {
             // Define the directory to store the image based on category
-            $uploadDir = "../../assets/images/{$category}/";  // Save the image in a folder based on category
-
+             $uploadDir = "../../assets/images/{$category}/";  // Save pin based on category
 
             // Generate a unique file name to avoid conflicts
             $fileName = $_FILES['image']['name'];
