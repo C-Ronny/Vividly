@@ -136,7 +136,7 @@ $conn->close();
     </main>
 
 
-
+    <script src="../../functions/admin_js/card_details.js"></script>
     <script src="../../functions/admin_js/users_table.js"></script>
     <script>
         var options = {
