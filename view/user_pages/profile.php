@@ -67,12 +67,7 @@ $conn->close();
             <div class="bg-gray-800 shadow-xl rounded-lg py-3 text-gray-200">
                 <div class="photo-wrapper p-2">
                 <img class="w-32 h-32 rounded-full mx-auto" src="../../assets/images/bg1.jpg" alt="Profile Photo">
-                </div>
-                <div id="profile-photo" class="text-center my-2">
-                        <a class="text-xs text-indigo-400 italic hover:underline hover:text-indigo-300 font-medium" href="#">
-                        Update Profile Photo
-                        </a>
-                    </div>
+                </div>                
                 <div class="p-2">
                     <table class="text-xs my-3 w-full">
                         <tbody>
@@ -101,7 +96,7 @@ $conn->close();
 
 
         <!-- Update Profile Details Modal -->
-        <div class="flex items-center justify-center p-3">
+        <div class="flex items-center hidden justify-center p-3">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <!-- Modal header -->
@@ -117,29 +112,29 @@ $conn->close();
                     >
                         <div>
                             <label id="fname" for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name:</label>
-                            <input type="text" name="fname" id="fname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="" />
+                            <input value="<?= htmlspecialchars($user['fname']) ?>" type="text" name="fname" id="fname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="" />
                         </div>
                         <div>
                             <label id="lname" for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name:</label>
-                            <input type="lname" name="lname" id="password" placeholder="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"/>
+                            <input value="<?= htmlspecialchars($user['lname']) ?>" type="lname" name="lname" id="password" placeholder="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"/>
                         </div>
                         <div>
                             <label id="email" for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email:</label>
-                            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder=""/>
+                            <input value="<?= htmlspecialchars($user['email']) ?>" type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder=""/>
                         </div>
                         <!-- Image Upload Field -->
                         <div class="col-span-2">
-                                                <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Image (jpeg/jpg/png)</label>
-                                                <input type="file" id="image" name="image" accept="image/*" class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" onchange="previewImage(event)" />
-                                            </div>
+                            <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Image (jpeg/jpg/png)</label>
+                            <input  type="file" id="image" name="image" accept="image/*" class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" onchange="previewImage(event)" />
+                        </div>
 
-                                            <!-- Image Preview Section -->
-                                            <div id="image-preview" class="col-span-2 mt-4">
-                                                <!-- Initially hidden image element -->
-                                                <img id="preview" src="" alt="Image Preview" class="hidden min-w-full h-auto rounded-lg" />
-                                            </div>
-                        <button id="close" type="submit" class="flex w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Cancel</button>
-                        <button type="submit" class="flex w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Confirm Changes</button>                   
+                        <!-- Image Preview Section -->
+                        <div id="image-preview" class="col-span-2 mt-4">
+                            <!-- Initially hidden image element -->
+                            <img id="preview" src="" alt="Image Preview" class="hidden min-w-full h-auto rounded-lg" />
+                        </div>
+                        <button id="close" class="w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Cancel</button>
+                        <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Confirm Changes</button>                   
                         
                     </form>
                 </div>
