@@ -14,31 +14,28 @@ toggle.addEventListener('change', () => {
 
 // Close modal when the overlay is clicked
 toggle.addEventListener('change', () => {
-  if (!(toggle.checked)) {
-      modal.classList.add('hidden');  // Hide the modal
-  } else {
-      modal.classList.remove('hidden');  // Show the modal
-  }
+    if (!(toggle.checked)) {
+        modal.classList.add('hidden');  // Hide the modal
+    } else {
+        modal.classList.remove('hidden');  // Show the modal
+    }
 });
 
-
-
-
 function previewImage(event) {
-  const file = event.target.files[0]; // Get the selected file
-  const reader = new FileReader();
-  
-  reader.onload = function(e) {
-      const preview = document.getElementById('preview');
-      preview.src = e.target.result; // Set the preview image source to the uploaded file
-      preview.classList.remove('hidden'); // Show the preview image
-  };
-  
-  if (file) {
-      reader.readAsDataURL(file); // Read the file as a data URL
-  } else {
-      // If no file is selected, hide the preview
-      const preview = document.getElementById('preview');
-      preview.classList.add('hidden');
-  }
+    const file = event.target.files[0]; // Get the selected file
+    const reader = new FileReader();
+    
+    reader.onload = function(e) {
+        const preview = document.getElementById('preview');
+        preview.src = e.target.result; // Set the preview image source to the uploaded file
+        preview.classList.remove('hidden'); // Show the preview image
+    };
+    
+    if (file) {
+        reader.readAsDataURL(file); // Read the file as a data URL
+    } else {
+        // If no file is selected, hide the preview
+        const preview = document.getElementById('preview');
+        preview.classList.add('hidden');
+    }
 }

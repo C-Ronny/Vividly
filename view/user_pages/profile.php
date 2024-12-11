@@ -68,7 +68,7 @@ $conn->close();
                 <div class="photo-wrapper p-2">
                 <img class="w-32 h-32 rounded-full mx-auto" src="../../assets/images/bg1.jpg" alt="Profile Photo">
                 </div>
-                <div id="profile_photo" class="text-center my-2">
+                <div id="profile-photo" class="text-center my-2">
                         <a class="text-xs text-indigo-400 italic hover:underline hover:text-indigo-300 font-medium" href="#">
                         Update Profile Photo
                         </a>
@@ -90,7 +90,7 @@ $conn->close();
                         </tr>
                         </tbody>
                     </table>
-                    <div class="text-center my-3">
+                    <div id="edit-profile" class="text-center my-3">
                         <a class="text-xs text-indigo-400 italic hover:underline hover:text-indigo-300 font-medium" href="#">
                         Edit Profile
                         </a>
@@ -100,24 +100,53 @@ $conn->close();
         </div>
 
 
-        <!-- Update Profile Photo Modal -->
-        <div class="bg-gray-100 h-screen flex items-center justify-center p-3">
-            <div class="w-full max-w-md p-9 bg-white rounded-lg shadow-lg">
-                <h1 class="text-center text-2xl sm:text-2xl font-semibold mb-4 text-gray-800">File Drop and Upload</h1>
-                <div class="bg-gray-100 p-8 text-center rounded-lg border-dashed border-2 border-gray-300 hover:border-blue-500 transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-md" id="dropzone">
-                    <label for="fileInput" class="cursor-pointer flex flex-col items-center space-y-2">
-                        <svg class="w-16 h-16 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                        </svg>
-                        <span class="text-gray-600">Drag and drop your files here</span>
-                        <span class="text-gray-500 text-sm">(or click to select)</span>
-                    </label>
-                    <input type="file" id="fileInput" class="hidden" multiple>
+        <!-- Update Profile Details Modal -->
+        <div class="flex items-center justify-center p-3">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <!-- Modal header -->
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                        Edit your Profile Details
+                    </h3>                
                 </div>
-                <button id="close" class="inline-flex w-full justify-center rounded-md bg-red-600 mt-6 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto" type="button">Deactivate</button>
-                <div class="mt-6 text-center" id="fileList"></div>
+                <!-- Modal body -->
+                <div class="p-4 md:p-5">
+                    <form class="space-y-4"
+                    method="PUT" enctype="multipart/form-data" id="form" action="../../db/user_db/profile_details_fetch.php"
+                    >
+                        <div>
+                            <label id="fname" for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name:</label>
+                            <input type="text" name="fname" id="fname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="" />
+                        </div>
+                        <div>
+                            <label id="lname" for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name:</label>
+                            <input type="lname" name="lname" id="password" placeholder="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"/>
+                        </div>
+                        <div>
+                            <label id="email" for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email:</label>
+                            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder=""/>
+                        </div>
+                        <!-- Image Upload Field -->
+                        <div class="col-span-2">
+                                                <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Image (jpeg/jpg/png)</label>
+                                                <input type="file" id="image" name="image" accept="image/*" class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" onchange="previewImage(event)" />
+                                            </div>
+
+                                            <!-- Image Preview Section -->
+                                            <div id="image-preview" class="col-span-2 mt-4">
+                                                <!-- Initially hidden image element -->
+                                                <img id="preview" src="" alt="Image Preview" class="hidden min-w-full h-auto rounded-lg" />
+                                            </div>
+                        <button id="close" type="submit" class="flex w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Cancel</button>
+                        <button type="submit" class="flex w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Confirm Changes</button>                   
+                        
+                    </form>
+                </div>
             </div>
         </div>
+
+
 
 
     </main>
