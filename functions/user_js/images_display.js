@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Create image element
                 const img = document.createElement('img');
-                img.src = imageUrl;
+                img.src = `${imageUrl}`;
                 img.alt = `Pin ${index + 1}`;
 
                 // Determine grid row span dynamically or randomly

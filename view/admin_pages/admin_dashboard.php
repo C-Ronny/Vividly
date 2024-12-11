@@ -128,8 +128,9 @@ $conn->close();
             </div>
         </section>
 
-        <section class="other_stats">
-            <div class=".."></div>
+        <section class="row3">
+        <h1 id="title_text2">Charts</h1>
+        <div id="chart1"></div>
         </section>
 
 
@@ -138,25 +139,8 @@ $conn->close();
 
     <script src="../../functions/admin_js/card_details.js"></script>
     <script src="../../functions/admin_js/users_table.js"></script>
-    <script>
-        var options = {
-        chart: {
-            type: 'bar'
-        },
-        series: [{
-            name: 'sales',
-            data: [30,40,50,91,125]
-        }],
-        xaxis: {
-            categories: ['John','Jane','Doe','Elon','Araba']
-        }
-        }
+    <script src="../../functions/admin_js/charts.js"></script>
 
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-
-        chart.render();
-
-    </script>
 </body>
 
 </html>
