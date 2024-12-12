@@ -25,24 +25,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 // If it's a POST request, update user details
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST'){}
     // Retrieve form data
     $fname = $_POST['fname'] ?? '';
     $lname = $_POST['lname'] ?? '';
     $email = $_POST['email'] ?? '';
+    $profile_photo = $_FILES['image'];  // Take the image file with name="image"
 
-    // Prepare update query
-    $update_query = "UPDATE Users SET fname = ?, lname = ?, email = ? WHERE user_id = ?";
-    $update_stmt = $conn->prepare($update_query);
-    $update_stmt->bind_param('sssi', $fname, $lname, $email, $user_id);
 
-    if ($update_stmt->execute()) {
-        // Update successful
-        echo json_encode(['success' => true, 'message' => 'Profile updated successfully']);
-    } else {
-        // Update failed
-        echo json_encode(['success' => false, 'error' => $update_stmt->error]);
+    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+      $uploadDir = "../../assets/images/Profile_Photos/";
+
+      // Generate a unique file name to avoid conflicts
+      $fileName = $_FILES['image']['name'];
+      $filePath = $uploadDir . $fileName;
+      $filesize = $_FILES['image']['size'];
+
+      if (move_uploaded_file($image['tmp_name'], $filePath)) {
+         // Prepare update query
+        $update_query = "UPDATE Users SET fname = ?, lname = ?, email = ?, profile_picture WHERE user_id = ?";
+        $update_stmt = $conn->prepare($update_query);
+        $update_stmt->bind_param('ssssi', $fname, $lname, $email, $profile_photo, $user_id);
+
+        if ($update_stmt->execute()) {
+            // Update successful
+            echo json_encode(['success' => true, 'message' => 'Profile updated successfully']);
+        } else {
+            // Update failed
+            echo json_encode(['success' => false, 'error' => $update_stmt->error]);
+        }
+          } else {
     }
     exit();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>

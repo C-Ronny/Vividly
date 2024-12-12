@@ -34,7 +34,6 @@ function getCategoryId($category)
 
 
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Sanitize form inputs
     $category = trim($_POST['category']);
@@ -44,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $category_id = getCategoryId($category); // get the category id
 
     // File upload handling
-    $image = $_FILES['image'];  // Assuming the form contains an input with name="image"
+    $image = $_FILES['image'];  // Take the image file with name="image"
 
     // Check if image is uploaded without errors
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {

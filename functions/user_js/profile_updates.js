@@ -82,3 +82,4 @@ function previewImage(event) {
         preview.classList.add('hidden');
     }
 }
+
