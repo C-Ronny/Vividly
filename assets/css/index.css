@@ -23,7 +23,7 @@ body{
 nav {
   position: fixed;
   width: 100%;
-  height: 60px;
+  height: 30px;
   display: flex;
   text-align: right;
   align-items: center;
