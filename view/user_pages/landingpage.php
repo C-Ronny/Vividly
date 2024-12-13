@@ -87,18 +87,16 @@ $user_id = $_SESSION['user_id'];  // Access the user_id from the session
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                         <!-- Modal header -->
                         <div class="flex items-center justify-center w-full p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white text-center">
-                                Add Pin
-                                <button id="closebutton" class="">
-                                    <span class="X"></span>
-                                    <span class="Y"></span>
-                                    <div class="close">Close</div>
-                                </button>
-                            </h3>
-
-
-
-                        </div>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                    Add New Pin
+                </h3>
+                <button id="close-modal" type="button" class="text-gray-400 ml-1rem bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" onclick="document.getElementById('toggle').checked = false;">
+                    <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
                         <!-- Modal body -->
                         <div class="p-6 space-y-6">
                             <!-- Add your modal content here -->
@@ -185,30 +183,8 @@ $user_id = $_SESSION['user_id'];  // Access the user_id from the session
     <!--Main page-->
     <main class="main_pins">
         <div class="masonry">
-            <!-- <div class="item item1"><img src="../../assets/images/Travel/tr1.jpeg"></div>
-            <div class="item item2"><img src="../../assets/images/Photography/ph1.jpg"></div>
-            <div class="item item3"><img src="../../assets/images/Travel/tr1.jpeg"></div>
-            <div class="item item4"><img src="../../assets/images/Photography/ph1.jpg"></div>
-            <div class="item item5"><img src="../../assets/images/Travel/tr1.jpeg"></div>
-            <div class="item item6"><img src="../../assets/images/Photography/ph1.jpg"></div>
-            <div class="item item7"><img src="../../assets/images/Travel/tr1.jpeg"></div>
-            <div class="item item8"><img src="../../assets/images/Photography/ph1.jpg"></div>
-            <div class="item item9"><img src="../../assets/images/Travel/tr1.jpeg"></div>
-            <div class="item item10"><img src="../../assets/images/Photography/ph1.jpg"></div>
-            <div class="item item11"><img src="../../assets/images/Travel/tr1.jpeg"></div>
-            <div class="item item12"><img src="../../assets/images/Photography/ph1.jpg"></div>
-            <div class="item item13"><img src="../../assets/images/Travel/tr1.jpeg"></div>
-            <div class="item item14"><img src="../../assets/images/Photography/ph1.jpg"></div>
-            <div class="item item15"><img src="../../assets/images/Travel/tr1.jpeg"></div>
-            <div class="item item16"><img src="../../assets/images/Photography/ph1.jpg"></div>
-            <div class="item item17"><img src="../../assets/images/Travel/tr1.jpeg"></div>
-            <div class="item item18"><img src="../../assets/images/Photography/ph1.jpg"></div>
-            <div class="item item19"><img src="../../assets/images/Travel/tr1.jpeg"></div>
-            <div class="item item20"><img src="../../assets/images/Photography/ph1.jpg"></div>
-        </div> -->
-
+            <!-- Dynamically filled from user uploads -->
             <section id="extra_space">
-
             </section>
 
 
