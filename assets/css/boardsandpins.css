@@ -76,6 +76,11 @@ nav a img {
   border-radius: 20px;
   height:320px;
   width:180px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.images:hover {
+    opacity: 0.9;
 }
 .category-name{
   padding-left:25px;
@@ -134,3 +139,36 @@ nav a img {
     width:100%;
   }
 } */
+
+/* Modal styles */
+.modal-open {
+    overflow: hidden;
+}
+
+#photo-modal {
+    transition: opacity 0.3s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+#photo-modal.hidden {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#comments-container {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.comment {
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    margin-bottom: 0.5rem;
+}
+
+.like-button.liked {
+    color: #ef4444;
+    fill: #ef4444;
+}
