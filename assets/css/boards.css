@@ -189,3 +189,16 @@ body {
 		z-index: 1000;
 	}
 }
+
+.board-options {
+	background: rgba(0,0,0,0.7);
+	padding: 0.5rem;
+	border-radius: 4px;
+}
+
+.board-select {
+	background: white;
+	border: none;
+	padding: 0.25rem;
+	border-radius: 2px;
+}

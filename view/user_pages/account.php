@@ -115,11 +115,6 @@ $conn->close();
                         <div class="relative">
                             <img id="profilePreview" src="<?= htmlspecialchars($user['profile_picture']) ?>" alt="Profile" 
                                 class="w-32 h-32 rounded-full object-cover border-2 border-white/20 shadow-lg">
-                            <div class="absolute bottom-0 right-0 bg-blue-600 text-white rounded-full p-2 shadow-lg">
-                                <svg src="<?= htmlspecialchars($user['profile_picture']) ?>" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1.586a1 1 0 01-.707-.293l-1.414-1.414A1 1 0 0011.586 3H8.414a1 1 0 00-.707.293L6.293 4.707A1 1 0 015.586 5H4zm6 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
                         </div>
                         <div>
                             <h2 class="text-3xl font-bold text-white mb-2"><?= htmlspecialchars($user['fname']) ?> <?= htmlspecialchars($user['lname']) ?></h2>
@@ -220,6 +215,34 @@ $conn->close();
                             </form>
                         </div>
                     </div>
+                </div>
+
+                <!-- Boards Management Table -->
+                <div class="mt-8">
+                    <h2 class="text-2xl font-bold mb-4">Your Boards</h2>
+                    <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-6 py-3 text-left">Title</th>
+                                <th class="px-6 py-3 text-left">Description</th>
+                                <th class="px-6 py-3 text-left">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($userBoards as $board): ?>
+                            <tr>
+                                <td class="px-6 py-4"><?php echo htmlspecialchars($board['title']); ?></td>
+                                <td class="px-6 py-4"><?php echo htmlspecialchars($board['description']); ?></td>
+                                <td class="px-6 py-4">
+                                    <button onclick="editBoard(<?php echo $board['board_id']; ?>)" 
+                                            class="text-blue-500 hover:text-blue-700 mr-2">Edit</button>
+                                    <button onclick="deleteBoard(<?php echo $board['board_id']; ?>)" 
+                                            class="text-red-500 hover:text-red-700">Delete</button>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
                 </div>
         </main>
     </div>

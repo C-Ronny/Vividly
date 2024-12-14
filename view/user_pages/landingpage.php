@@ -28,6 +28,14 @@ if ($result->num_rows > 0) {
     exit();
 }
 
+// Fetch user's boards
+$boards_query = "SELECT board_id, title FROM Boards WHERE user_id = ?";
+$boards_stmt = $conn->prepare($boards_query);
+$boards_stmt->bind_param("i", $user_id);
+$boards_stmt->execute();
+$boards_result = $boards_stmt->get_result();
+$userBoards = $boards_result->fetch_all(MYSQLI_ASSOC);
+
 // Close the statement and connection
 $stmt->close();
 $conn->close();
