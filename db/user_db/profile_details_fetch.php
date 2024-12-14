@@ -11,52 +11,83 @@ if (!isset($user_id)) {
     exit();
 }
 
-
-
 // If it's a POST request, update user details
-if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fname = trim($_POST['fname']);
     $lname = trim($_POST['lname']);
     $email = trim($_POST['email']);
-    $profile_photo = $_FILES['image'];  // Take the image file with name="image"
-
     
+    // Initialize query parts
+    $updateFields = array();
+    $types = '';
+    $params = array();
+
+    // Add fields to update only if they are not empty
+    if (!empty($fname)) {
+        $updateFields[] = "fname = ?";
+        $types .= 's';
+        $params[] = $fname;
+    }
+    
+    if (!empty($lname)) {
+        $updateFields[] = "lname = ?";
+        $types .= 's';
+        $params[] = $lname;
+    }
+    
+    if (!empty($email)) {
+        $updateFields[] = "email = ?";
+        $types .= 's';
+        $params[] = $email;
+    }
+
+    // Handle image upload if present
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
         $uploadDir = "../../assets/images/Profile_Photos/";
-
-        // Generate a unique file name to avoid conflicts
         $fileName = $_FILES['image']['name'];
         $filePath = $uploadDir . $fileName;
 
-        
-        if (move_uploaded_file($profile_photo['tmp_name'], $filePath)) {
-            // Prepare update query
-            $update_query = "UPDATE Users SET fname = ?, lname = ?, email = ?, profile_picture = ? WHERE user_id = ?";
-
-            if ($update_stmt = $conn->prepare($update_query)) {
-                $update_stmt->bind_param('ssssi', $fname, $lname, $email, $filePath, $user_id);
-
-                if ($update_stmt->execute()) {
-                    // Update successful
-                    echo json_encode(['success' => true, 'message' => 'Profile updated successfully']);
-                    header("Location: ../../view/user_pages/account.php");  // Take back to landing page
-                } else {
-                    // Update failed
-                    echo json_encode(['success' => false, 'error' => $update_stmt->error]);
-                }
-                // Close the prepared statement
-                $update_stmt->close();
-            } else {
-                // Error preparing the statement
-                echo "Error preparing the SQL statement: " . $conn->error;
-            }   
-        } else {
-            echo json_encode(['success' => false, 'error' => 'No image uploaded']);
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $filePath)) {
+            $updateFields[] = "profile_picture = ?";
+            $types .= 's';
+            $params[] = $filePath;
         }
-
-        exit();
-    } else {
-        echo json_encode(['success' => false]);
     }
+
+    // Only proceed if there are fields to update
+    if (!empty($updateFields)) {
+        // Add user_id to params array and types
+        $types .= 'i';
+        $params[] = $user_id;
+
+        // Create the UPDATE query
+        $update_query = "UPDATE Users SET " . implode(", ", $updateFields) . " WHERE user_id = ?";
+
+        // Prepare and execute the statement
+        if ($update_stmt = $conn->prepare($update_query)) {
+            // Create array reference for bind_param
+            $bindParams = array($types);
+            for ($i = 0; $i < count($params); $i++) {
+                $bindParams[] = &$params[$i];
+            }
+            call_user_func_array(array($update_stmt, 'bind_param'), $bindParams);
+
+            if ($update_stmt->execute()) {
+                // Update successful
+                echo json_encode(['success' => true, 'message' => 'Profile updated successfully']);
+                header("Location: ../../view/user_pages/account.php");
+            } else {
+                // Update failed
+                echo json_encode(['success' => false, 'error' => $update_stmt->error]);
+            }
+            $update_stmt->close();
+        } else {
+            // Error preparing the statement
+            echo json_encode(['success' => false, 'error' => 'Error preparing the SQL statement: ' . $conn->error]);
+        }
+    } else {
+        echo json_encode(['success' => false, 'error' => 'No fields to update']);
+    }
+    exit();
 }
 ?>
