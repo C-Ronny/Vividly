@@ -1,14 +1,36 @@
 <?php
+// Include the database configuration
+include '../../db/config.php';
+
+// Start the session
 session_start();
 
-// Ensure the user is logged in
+// Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../login.php");  // Redirect to login page if not logged in
-    exit;
+    header("Location: ../logIn.php");
+    exit();
 }
 
-$user_id = $_SESSION['user_id'];  // Access the user_id from the session
+// Fetch user details from the database
+$user_id = $_SESSION['user_id'];
 
+$query = "SELECT fname, lname, email, profile_picture FROM Users WHERE user_id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Check if the user exists
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+} else {
+    echo "User not found.";
+    exit();
+}
+
+// Close the statement and connection
+$stmt->close();
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +68,7 @@ $user_id = $_SESSION['user_id'];  // Access the user_id from the session
         <div class="nav-center">
             <a class="nav-a" href="./account.php">Account</a>
             <a class="nav-a" href="../../actions/logout_user.php">Logout</a>
-            <a href="profile.php"><img src="../../assets/images/bg1.jpg"></a>
+            <a href="account.php"><img src="<?= htmlspecialchars($user['profile_picture']) ?> " class="w-10 h-10 rounded-full object-cover"></a>
         </div>
 
     </nav>

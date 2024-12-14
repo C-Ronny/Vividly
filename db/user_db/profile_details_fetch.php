@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         
         if (move_uploaded_file($profile_photo['tmp_name'], $filePath)) {
             // Prepare update query
-            $update_query = "UPDATE Users SET fname = ?, lname = ?, email = ?, profile_picture WHERE user_id = ?";
+            $update_query = "UPDATE Users SET fname = ?, lname = ?, email = ?, profile_picture = ? WHERE user_id = ?";
 
             if ($update_stmt = $conn->prepare($update_query)) {
                 $update_stmt->bind_param('ssssi', $fname, $lname, $email, $filePath, $user_id);
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         exit();
     } else {
-        echo json_encode(['success' => false, 'error' => $update_stmt->error]);
+        echo json_encode(['success' => false]);
     }
 }
 ?>

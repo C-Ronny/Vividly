@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Generate a unique file name to avoid conflicts
             $fileName = $_FILES['image']['name'];
             $filePath = $uploadDir . $fileName;
-            $filesize = $_FILES['image']['size'];
+            $filesize = $_FILES['image']['size'] / 1024 / 1024;
 
             // Move the uploaded file to the desired folder
             if (move_uploaded_file($image['tmp_name'], $filePath)) {
