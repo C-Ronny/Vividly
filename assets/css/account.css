@@ -39,6 +39,22 @@ body {
 	text-align: center;
 }
 
+#welcome{
+	margin-top: 5rem;
+	margin-left: 10rem;
+	font-size: 1.8rem;
+	font-weight: bold;
+	color: var(--text-light);
+}
+
+#welcome-text{
+	margin-top: 0.8rem;
+	margin-left: 10rem;
+	color: var(--text-gray);
+	font-size: 1rem;
+	font-weight: bold;
+}
+
 .logo {
 	font-size: 1.8rem;
 	font-weight: bold;
@@ -71,6 +87,11 @@ body {
 	color: var(--text-light);
 	transform: translateX(5px);
 }
+
+#profile{
+	background: rgba(255, 255, 255, 0.05);
+}
+
 
 .nav-item i {
 	width: 20px;
