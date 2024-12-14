@@ -4,28 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vividly | Boards & Pins</title>
+    <title>Vividly | Account Settings</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../../assets/css/account.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
 <body>
-    <!-- Nav Bar -->     
-    <nav id="nav">
-        <h2 id="vividly-logo"><a href="../user_pages/landingpage.php">Vividly</a></h2>      
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo"><a href="landingpage.php">Vividly</a></h1>
+            </div>
 
-        <div class="nav-center">
-            <a class="nav-a" href="boardsandpins.php">Boards</a>
-            <a class="nav-a" href="profile.php">Profile</a>
-            <a class="nav-a" href="../../actions/logout_user.php">Logout</a>
-            <a href="profile.php"><img src="../../assets/images/bg1.jpg"></a>
-        </div>
+            <nav class="sidebar-nav">
+                <a href="profile.php" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+                <a href="boardsandpins.php" class="nav-item">
+                    <i class="fas fa-th-large"></i>
+                    <span>Boards</span>
+                </a>
+            </nav>
 
-    </nav>
-    <hr id="nav-rule">
+            <div class="sidebar-footer">
+                <a href="landingpage.php" class="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back</span>
+                </a>
+            </div>
+        </aside>
 
-    
-
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Your account page content goes here -->
+        </main>
+    </div>
 </body>
 
 </html>
