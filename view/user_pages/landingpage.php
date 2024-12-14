@@ -39,11 +39,12 @@ $user_id = $_SESSION['user_id'];  // Access the user_id from the session
 
         <div class="middle-section">
             <a class="nav-a" href="boardsandpins.php">Boards</a>
+
             <a class="nav-a" href="profile.php">Profile</a>
         </div>
 
         <div class="nav-center">
-
+            <a class="nav-a" href="./account.php">Account</a>
             <a class="nav-a" href="../../actions/logout_user.php">Logout</a>
             <a href="profile.php"><img src="../../assets/images/bg1.jpg"></a>
         </div>

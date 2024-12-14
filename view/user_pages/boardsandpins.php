@@ -25,201 +25,217 @@
     <hr id="nav-rule">
 
     <main>
+
+
+        <!-- Create board button -->
+        <div class="create-board">
+
+        </div>
+
+
+
+
+
+
+
+
+
+
     <!--Boards Section-->
-    <div class="categories-section">
-        <h2 id="categories">Board #1</h2>
-        <!--Container for boards-->
-        <div class="boards-container">
-            
-            <div>
-                <img class="images cursor-pointer hover:opacity-90 transition-opacity" 
-                    src="../../assets/images/Photography/ph1.jpg"
-                    data-pin-id="1"
-                    alt="Pin Image">
-            </div>            
+        <div class="categories-section">
+            <h2 id="categories">Board #1</h2>
+            <!--Container for boards-->
+            <div class="boards-container">
+                
+                <div>
+                    <img class="images cursor-pointer hover:opacity-90 transition-opacity" 
+                        src="../../assets/images/Photography/ph1.jpg"
+                        data-pin-id="1"
+                        alt="Pin Image">
+                </div>            
 
-            <div>
-                <img class="images" src="#">
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>        
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
             </div>
 
-            <div>
-                <img class="images" src="#">
-            </div>
+            <hr id="division">
 
-            <div>
-                <img class="images" src="#">
-            </div>        
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
         </div>
 
-        <hr id="division">
+        <div class="categories-section">
+            <h2 id="categories">Board #2</h2>
+            <!--Container for boards-->
+            <div class="boards-container">
+                
+                <div>
+                    <img class="images cursor-pointer hover:opacity-90 transition-opacity" 
+                        src="../../assets/images/Photography/ph1.jpg"
+                        data-pin-id="1"
+                        alt="Pin Image">
+                </div>            
 
-    </div>
+                <div>
+                    <img class="images" src="#">
+                </div>
 
-    <div class="categories-section">
-        <h2 id="categories">Board #2</h2>
-        <!--Container for boards-->
-        <div class="boards-container">
-            
-            <div>
-                <img class="images cursor-pointer hover:opacity-90 transition-opacity" 
-                     src="../../assets/images/Photography/ph1.jpg"
-                     data-pin-id="1"
-                     alt="Pin Image">
-            </div>            
+                <div>
+                    <img class="images" src="#">
+                </div>
 
-            <div>
-                <img class="images" src="#">
+                <div>
+                    <img class="images" src="#">
+                </div>        
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
             </div>
 
-            <div>
-                <img class="images" src="#">
-            </div>
+            <hr id="division">
 
-            <div>
-                <img class="images" src="#">
-            </div>        
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
         </div>
 
-        <hr id="division">
+        <div class="categories-section">
+            <h2 id="categories">Board #3</h2>
+            <!--Container for boards-->
+            <div class="boards-container">
+                
+                <div>
+                    <img class="images cursor-pointer hover:opacity-90 transition-opacity" 
+                        src="../../assets/images/Photography/ph1.jpg"
+                        data-pin-id="1"
+                        alt="Pin Image">
+                </div>            
 
-    </div>
+                <div>
+                    <img class="images" src="#">
+                </div>
 
-    <div class="categories-section">
-        <h2 id="categories">Board #3</h2>
-        <!--Container for boards-->
-        <div class="boards-container">
-            
-            <div>
-                <img class="images cursor-pointer hover:opacity-90 transition-opacity" 
-                     src="../../assets/images/Photography/ph1.jpg"
-                     data-pin-id="1"
-                     alt="Pin Image">
-            </div>            
+                <div>
+                    <img class="images" src="#">
+                </div>
 
-            <div>
-                <img class="images" src="#">
+                <div>
+                    <img class="images" src="#">
+                </div>        
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
+
+                <div>
+                    <img class="images" src="#">
+                </div>
             </div>
 
-            <div>
-                <img class="images" src="#">
-            </div>
+            <hr id="division">
 
-            <div>
-                <img class="images" src="#">
-            </div>        
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
-
-            <div>
-                <img class="images" src="#">
-            </div>
         </div>
-
-        <hr id="division">
-
-    </div>
 
     </main>
 

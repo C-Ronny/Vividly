@@ -12,7 +12,7 @@ nav {
   height: 70px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content:space-between;
   padding: 0 20px;
   box-shadow: 0 4px 8px rgba(31, 27, 27, 0.3);
   background-color: rgba(20, 20, 20, 0.8); /* semi-transparent background */
