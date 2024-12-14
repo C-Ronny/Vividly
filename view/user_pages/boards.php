@@ -43,7 +43,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vividly | Account Settings</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="../../assets/css/account.css">
+    <link rel="stylesheet" href="../../assets/css/boards.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
@@ -56,11 +56,11 @@ $conn->close();
             </div>
 
             <nav class="sidebar-nav">
-                <a id="profile" href="profile.php" class="nav-item">
+                <a href="account.php" class="nav-item">
                     <i class="fas fa-user"></i>
                     <span >Profile</span>
                 </a>
-                <a href="boardsandpins.php" class="nav-item">
+                <a id="boards" href="boards.php" class="nav-item">
                     <i class="fas fa-th-large"></i>
                     <span>Boards</span>
                 </a>

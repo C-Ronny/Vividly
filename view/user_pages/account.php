@@ -14,7 +14,7 @@ if (!isset($_SESSION['user_id'])) {
 // Fetch user details from the database
 $user_id = $_SESSION['user_id'];
 
-$query = "SELECT fname, lname, email FROM Users WHERE user_id = ?";
+$query = "SELECT fname, lname, email, profile_picture FROM Users WHERE user_id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -45,6 +45,36 @@ $conn->close();
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../../assets/css/account.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script>
+        // Show modal when edit profile is clicked
+    function openEditModal() {
+        document.getElementById('editModal').classList.remove('hidden');
+    }
+
+    // Close modal when close button is clicked
+    closeButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        fileDropModal.style.display = 'none';
+    });
+
+    // Close modal when clicking outside the modal content
+    function closeEditModal() {
+        document.getElementById('editModal').classList.add('hidden');
+    }
+
+    //Profile picture submission
+    function handleProfilePicChange(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('profilePreview').src = e.target.result;
+                document.getElementById('modalProfilePreview').src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+    }
+    </script>
 </head>
 
 <body>
@@ -60,7 +90,7 @@ $conn->close();
                     <i class="fas fa-user"></i>
                     <span >Profile</span>
                 </a>
-                <a href="boardsandpins.php" class="nav-item">
+                <a href="boards.php" class="nav-item">
                     <i class="fas fa-th-large"></i>
                     <span>Boards</span>
                 </a>
@@ -79,88 +109,124 @@ $conn->close();
             <h1 id="welcome">Welcome <?= htmlspecialchars($user['fname']) ?> !</h1>
             <p id="welcome-text">View your profile and manage your account settings here.</p>
 
-            <!-- Dark Mode Profile Card -->
-        <div class="absolute top-20 left-20 max-w-xs mt-20">
-            <div class="bg-gray-800 shadow-xl rounded-lg py-3 text-gray-200">
-                <div class="photo-wrapper p-2">
-                <img class="w-32 h-32 rounded-full mx-auto" src="../../assets/images/bg1.jpg" alt="Profile Photo">
-                </div>                
-                <div class="p-2">
-                    <table class="text-xs my-3 w-full">
-                        <tbody>
-                        <tr>
-                            <td class="px-2 py-2 text-gray-400 font-semibold">First Name:</td>
-                            <td class="px-2 py-2 text-gray-300"><?= htmlspecialchars($user['fname']) ?></td>
-                        </tr>
-                        <tr>
-                            <td class="px-2 py-2 text-gray-400 font-semibold">Last Name:</td>
-                            <td class="px-2 py-2 text-gray-300"><?= htmlspecialchars($user['lname']) ?></td>
-                        </tr>
-                        <tr>
-                            <td class="px-2 py-2 text-gray-400 font-semibold">Email:</td>
-                            <td class="px-2 py-2 text-gray-300"><?= htmlspecialchars($user['email']) ?></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div id="edit-profile" class="text-center my-3">
-                        <a class="text-xs text-indigo-400 italic hover:underline hover:text-indigo-300 font-medium" href="#">
-                        Edit Profile
-                        </a>
+                <div class="w-full max-w-md bg-gray-800 rounded-2xl shadow-2xl border border-gray-700 overflow-hidden">
+            <div class="bg-gradient-to-r from-blue-600 to-purple-600 h-24 absolute w-full top-0 left-0 opacity-50"></div>
+            
+            <div class="relative z-10 p-6">
+                <div class="flex items-center space-x-6 mb-6">
+                    <div class="relative">
+                        <img id="profilePreview" src="/api/placeholder/150/150" alt="Profile" 
+                            class="w-32 h-32 rounded-full object-cover border-4 border-white/20 shadow-lg ring-4 ring-blue-500/30">
+                        <div class="absolute bottom-0 right-0 bg-blue-600 text-white rounded-full p-2 shadow-lg">
+                            <svg src="<?= htmlspecialchars($user['profile_picture']) ?>" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1.586a1 1 0 01-.707-.293l-1.414-1.414A1 1 0 0011.586 3H8.414a1 1 0 00-.707.293L6.293 4.707A1 1 0 015.586 5H4zm6 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-white mb-2"><?= htmlspecialchars($user['fname']) ?> <?= htmlspecialchars($user['lname']) ?></h2>
+                        <p class="text-blue-200 text-sm"><?= htmlspecialchars($user['email']) ?></p>
                     </div>
                 </div>
+
+                <button onclick="openEditModal()" 
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg 
+                            transition duration-300 ease-in-out transform hover:scale-105 
+                            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    Edit Profile
+                </button>
             </div>
-        </div>
+        
 
+        <!-- Edit Modal -->
+        <div id="editModal" 
+            class="fixed inset-0 bg-black bg-opacity-60 hidden z-50 flex items-center justify-center p-4">
+            <div class="bg-gray-800 rounded-2xl w-full max-w-md mx-auto 
+                        border border-gray-700 shadow-2xl overflow-hidden 
+                        transform transition-all duration-300 scale-95 hover:scale-100">
+                <div class="bg-gradient-to-r from-blue-600 to-purple-600 h-1 w-full"></div>
+                
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold text-white">Edit Profile</h3>
+                        <button onclick="closeEditModal()" 
+                                class="text-gray-400 hover:text-white hover:bg-red-500/20 
+                                    rounded-full p-2 transition duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
 
-        <!-- Update Profile Details Modal -->
-        <div class="flex items-center hidden justify-center p-3">
-            <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                <!-- Modal header -->
-                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Edit your Profile Details
-                    </h3>                
-                </div>
-                <!-- Modal body -->
-                <div class="p-4 md:p-5">
+                    
+
                     <form class="space-y-4" method="POST" enctype="multipart/form-data" id="form" action="../../db/user_db/profile_details_fetch.php">
-                        <div>
-                            <label id="fname" for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name:</label>
-                            <input value="<?= htmlspecialchars($user['fname']) ?>" type="text" name="fname" id="fname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="" />
-                        </div>
-                        <div>
-                            <label id="lname" for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name:</label>
-                            <input value="<?= htmlspecialchars($user['lname']) ?>" type="lname" name="lname" id="password" placeholder="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"/>
-                        </div>
-                        <div>
-                            <label id="email" for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email:</label>
-                            <input value="<?= htmlspecialchars($user['email']) ?>" type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder=""/>
-                        </div>
-
-                        <!-- Image Upload Field -->
-                        <div class="col-span-2">
-                            <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Image (jpeg/jpg/png)</label>
-                            <input  type="file" id="image" name="image" accept="image/*" class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" onchange="previewImage(event)" />
-                        </div>
-
-                        <!-- Image Preview Section -->
-                        <div id="image-preview" class="col-span-2 mt-4">
-                            <!-- Initially hidden image element -->
-                            <img id="preview" src="" alt="Image Preview" class="hidden max-w-full h-auto rounded-lg" />
+                        <div class="flex flex-col items-center mb-6">
+                            <div class="relative">
+                                <img id="modalProfilePreview" src="/api/placeholder/150/150" 
+                                    alt="Profile" class="w-40 h-40 rounded-full object-cover 
+                                    border-4 border-white/20 shadow-lg ring-4 ring-blue-500/30">
+                                <label class="absolute bottom-0 right-0 bg-blue-600 text-white 
+                                            rounded-full p-3 cursor-pointer shadow-lg hover:bg-blue-700 
+                                            transition duration-300">
+                                    <input type="file" accept="image/*" class="hidden" name="image" 
+                                        onchange="handleProfilePicChange(event)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                </label>
+                            </div>
                         </div>
 
-                        <button id="close" class="w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Cancel</button>
-                        <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Confirm Changes</button>                   
-                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2" id="fname" for="name">First Name</label>
+                            <input value="<?= htmlspecialchars($user['fname']) ?>" type="text" name="fname" id="fname" 
+                                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 
+                                        text-white focus:outline-none focus:ring-2 focus:ring-blue-500 
+                                        transition duration-300" 
+                                placeholder="Enter first name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2"id="lname" for="name">Last Name</label>
+                            <input value="<?= htmlspecialchars($user['lname']) ?>" type="text" name="lname" id="lname" 
+                                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 
+                                        text-white focus:outline-none focus:ring-2 focus:ring-blue-500 
+                                        transition duration-300" 
+                                placeholder="Enter last name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                            <input value="<?= htmlspecialchars($user['email']) ?>" type="email" name="email" id="email" 
+                                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 
+                                        text-white focus:outline-none focus:ring-2 focus:ring-blue-500 
+                                        transition duration-300" 
+                                placeholder="Enter email address">
+                        </div>
+                        <div class="flex space-x-4 pt-2">
+                            <button type="button" onclick="closeEditModal()" 
+                                    class="w-full bg-gray-700 hover:bg-gray-600 text-white 
+                                        px-4 py-3 rounded-lg transition duration-300 
+                                        transform hover:scale-105 focus:outline-none 
+                                        focus:ring-2 focus:ring-gray-500">
+                                Cancel
+                            </button>
+                            <button type="submit" 
+                                    class="w-full bg-blue-600 hover:bg-blue-700 text-white 
+                                        px-4 py-3 rounded-lg transition duration-300 
+                                        transform hover:scale-105 focus:outline-none 
+                                        focus:ring-2 focus:ring-blue-500">
+                                Save Changes
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
 
-
         </main>
     </div>
+    
 </body>
 
 </html>
