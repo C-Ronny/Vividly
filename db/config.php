@@ -9,7 +9,7 @@ $password = '';
 $dbname = 'Vividly';
 
 // Create a new MySQLi connection object using the specified credentials
-$conn = new  mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 
 // Check if the connection was successful
