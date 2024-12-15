@@ -278,3 +278,248 @@ td{
     width:100%;
   }
 }
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.cancel-btn {
+    background-color: #6c757d;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.cancel-btn:hover {
+    background-color: #5a6268;
+}
+
+#deleteConfirmation {
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: #2d2d2d;
+    color: white;
+}
+
+/* Enhanced Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background-color: #1f1f1f;
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid #333;
+    width: 40%;
+    border-radius: 12px;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-content h2 {
+    margin: 0 0 20px 0;
+    color: #fff;
+    font-size: 24px;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-content form div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.modal-content label {
+    color: #ccc;
+    font-size: 14px;
+}
+
+.modal-content input,
+.modal-content select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #333;
+    background-color: #2d2d2d;
+    color: white;
+    font-size: 14px;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.modal-content button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.modal-content button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close:hover {
+    color: #fff;
+}
+
+/* Form validation styles */
+.error-message {
+    color: #ff4444;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.input-error {
+    border-color: #ff4444 !important;
+}
+
+/* Table Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.action-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.edit-btn {
+    background-color: #2196F3;
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #1976D2;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Adjust table cell padding for buttons */
+.tbl-content td:last-child {
+    padding: 8px 15px;
+}
+
+/* Table Column Widths and Content */
+.tbl-header table,
+.tbl-content table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+/* Define specific widths for each column */
+.tbl-header th,
+.tbl-content td {
+    padding: 12px 15px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Column width specifications */
+.col-fname { width: 15%; }
+.col-lname { width: 15%; }
+.col-email { width: 25%; }
+.col-role { width: 10%; }
+.col-date { width: 15%; }
+.col-pins { width: 10%; }
+.col-actions { width: 10%; }
+
+/* Email overflow handling */
+.email-cell {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Action buttons container */
+.action-buttons {
+    display: flex;
+    gap: 4px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* Compact action buttons */
+.action-btn {
+    padding: 4px 8px;
+    min-width: 50px;
+    font-size: 11px;
+}

@@ -43,8 +43,9 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vividly | Dashboard</title>
     <link rel="stylesheet" href="../../assets/css/admin_dashboard.css">
-    <script src="../../functions/admin_js/top5_users.js"></script>
+    <!-- <script src="../../functions/admin_js/top5_users.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="../../functions/admin_js/users_table.js"></script>
 </head>
 
 <body>
@@ -108,6 +109,7 @@ $conn->close();
                                 <th>Role</th>
                                 <th>Date Joined</th>
                                 <th>No. of Pins Uploaded</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                     </table>
@@ -122,7 +124,7 @@ $conn->close();
                 
             </div>
             <div class="data_images">
-                <h1 id="title_text">Top 5 Users</h1>
+                <h1 id="title_text">Top 5 Users with most Pins</h1>
                 <div id="chart"></div>
 
             </div>
@@ -138,7 +140,6 @@ $conn->close();
 
 
     <script src="../../functions/admin_js/card_details.js"></script>
-    <script src="../../functions/admin_js/users_table.js"></script>
     <script src="../../functions/admin_js/charts.js"></script>
 
 </body>
