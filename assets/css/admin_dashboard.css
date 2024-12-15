@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -240,8 +242,6 @@ td{
 
 
 /* demo styles */
-
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
 .data .table{
   margin: 50px;
 }

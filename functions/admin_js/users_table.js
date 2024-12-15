@@ -15,26 +15,26 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Edit User</h2>
-                <form id="editForm" method="POST" onsubmit="return validateEditForm()">
-                    <input type="hidden" id="editUserId">
+                <form id="editForm" method="POST">
+                    <input type="hidden" name="editUserId" id="editUserId">
                     <div>
                         <label for="editFname">First Name</label>
-                        <input type="text" id="editFname" required>
+                        <input type="text" name="editFname" id="editFname" required>
                         <span class="error-message" id="fnameError"></span>
                     </div>
                     <div>
                         <label for="editLname">Last Name</label>
-                        <input type="text" id="editLname" required>
+                        <input type="text" name="editLname" id="editLname" required>
                         <span class="error-message" id="lnameError"></span>
                     </div>
                     <div>
                         <label for="editEmail">Email Address</label>
-                        <input type="email" id="editEmail" required>
+                        <input type="email" name="editEmail" id="editEmail" required>
                         <span class="error-message" id="emailError"></span>
                     </div>
                     <div>
                         <label for="editRole">User Role</label>
-                        <select id="editRole">
+                        <select name="editRole" id="editRole">
                             <option value="1">Admin</option>
                             <option value="2">Regular</option>
                         </select>
@@ -108,6 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Modal functionality
     let currentUserId = null;
 
+    // In the openEditModal function
     window.openEditModal = function(user) {
         currentUserId = user.user_id;
         const modal = document.getElementById('editModal');
@@ -154,29 +155,23 @@ document.addEventListener("DOMContentLoaded", function () {
         // Clear previous errors
         clearErrors();
         
-        // Get form data
-        const userData = {
-            user_id: document.getElementById('editUserId').value,
-            fname: document.getElementById('editFname').value.trim(),
-            lname: document.getElementById('editLname').value.trim(),
-            email: document.getElementById('editEmail').value.trim(),
-            role: document.getElementById('editRole').value
-        };
+        // Create FormData object
+        const formData = new FormData(this);
         
         // Validate form
         let isValid = true;
         
-        if (userData.fname.length < 2) {
+        if (formData.get('editFname').length < 2) {
             showError('fnameError', 'First name must be at least 2 characters');
             isValid = false;
         }
         
-        if (userData.lname.length < 2) {
+        if (formData.get('editLname').length < 2) {
             showError('lnameError', 'Last name must be at least 2 characters');
             isValid = false;
         }
         
-        if (!isValidEmail(userData.email)) {
+        if (!isValidEmail(formData.get('editEmail'))) {
             showError('emailError', 'Please enter a valid email address');
             isValid = false;
         }
@@ -189,56 +184,96 @@ document.addEventListener("DOMContentLoaded", function () {
             
             fetch('../../db/admin_db/update_user.php', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(userData)
+                body: formData
             })
             .then(response => response.json())
             .then(data => {
                 if(data.success) {
-                    location.reload();
+                    document.getElementById('editModal').style.display = 'none';
+                    refreshUserTable();
                 } else {
                     showError('emailError', data.message || 'Error updating user');
-                    submitBtn.textContent = 'Save Changes';
-                    submitBtn.disabled = false;
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
+                showError('emailError', 'Network error. Please try again.');
+            })
+            .finally(() => {
                 submitBtn.textContent = 'Save Changes';
                 submitBtn.disabled = false;
             });
         }
     };
-
-    // Handle delete confirmation
-    document.getElementById('confirmDeleteBtn').onclick = function() {
-        const confirmationInput = document.getElementById('deleteConfirmation');
-        if (confirmationInput.value === 'DELETE') {
-            fetch('../../db/admin_db/delete_user.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ user_id: currentUserId })
-            })
+    
+    // Add a function to refresh the user table
+    function refreshUserTable() {
+        fetch('../../db/admin_db/user_table_details_fetch.php')
             .then(response => response.json())
             .then(data => {
-                if (data.success) {
-                    location.reload();
-                } else {
-                    alert(data.message || 'Error deleting user');
-                }
+                const tableBody = document.querySelector('.tbl-content .content-table tbody');
+                tableBody.innerHTML = '';
+    
+                data.forEach(user => {
+                    const row = document.createElement('tr');
+                    
+                    row.innerHTML = `
+                        <td class="col-fname">${user.fname}</td>
+                        <td class="col-lname">${user.lname}</td>
+                        <td class="col-email">
+                            <div class="email-cell" title="${user.email}">${user.email}</div>
+                        </td>
+                        <td class="col-role">${user.role === '1' ? 'Admin' : 'User'}</td>
+                        <td class="col-date">${new Date(user.created_at).toLocaleDateString()}</td>
+                        <td class="col-pins">${user.pins_count || '0'}</td>
+                        <td class="col-actions">
+                            <div class="action-buttons">
+                                <button class="action-btn edit-btn" onclick='openEditModal(${JSON.stringify(user)})'>
+                                    Edit
+                                </button>
+                            </div>
+                        </td>
+                    `;
+    
+                    tableBody.appendChild(row);
+                });
             })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error deleting user');
-            });
-        } else {
+            .catch(error => console.error('Error fetching user data:', error));
+    }
+    
+    // Handle delete confirmation
+    document.getElementById('confirmDeleteBtn').addEventListener('click', function() {
+        const confirmationInput = document.getElementById('deleteConfirmation');
+        const userId = document.getElementById('editUserId').value;
+    
+        if (confirmationInput.value !== 'DELETE') {
             alert('Please type DELETE to confirm');
+            return;
         }
-    };
+    
+        const formData = new FormData();
+        formData.append('user_id', userId);
+    
+        fetch('../../db/admin_db/delete_user.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('deleteModal').style.display = 'none';
+                document.getElementById('editModal').style.display = 'none';
+                refreshUserTable();
+                alert(data.message);
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An unexpected error occurred');
+        });
+    });
 
     // Helper functions
     function clearErrors() {
