@@ -275,7 +275,7 @@ $conn->close();
                         
                         while ($board = $boards_result->fetch_assoc()) {
                             echo "<option value='" . htmlspecialchars($board['board_id']) . "'>" . 
-                                 htmlspecialchars($board['title']) . "</option>";
+                                htmlspecialchars($board['title']) . "</option>";
                         }
                         ?>
                     </select>
