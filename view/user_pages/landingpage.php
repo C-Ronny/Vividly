@@ -55,6 +55,7 @@ $conn->close();
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../../assets/css/landingpage.css">
+    <script src="../../functions/user_js/photo_modal.js"></script>
 
 </head>
 
@@ -264,13 +265,21 @@ $conn->close();
                 <div class="mb-4">
                     <select id="board-select" class="w-full p-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white">
                         <option value="">Select a board</option>
-                        <?php foreach ($userBoards as $board): ?>
-                            <option value="<?= htmlspecialchars($board['board_id']) ?>">
-                                <?= htmlspecialchars($board['title']) ?>
-                            </option>
-                        <?php endforeach; ?>
+                        <?php
+                        // Fetch current user's boards
+                        $boards_query = "SELECT board_id, title FROM Boards WHERE user_id = ?";
+                        $boards_stmt = $conn->prepare($boards_query);
+                        $boards_stmt->bind_param("i", $_SESSION['user_id']);
+                        $boards_stmt->execute();
+                        $boards_result = $boards_stmt->get_result();
+                        
+                        while ($board = $boards_result->fetch_assoc()) {
+                            echo "<option value='" . htmlspecialchars($board['board_id']) . "'>" . 
+                                htmlspecialchars($board['title']) . "</option>";
+                        }
+                        ?>
                     </select>
-                    <button id="add-to-board-button" class="mt-2 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                    <button onclick="addToBoard()" class="mt-2 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
                         Add to Board
                     </button>
                 </div>
@@ -289,43 +298,6 @@ $conn->close();
             document.getElementById('modal-title').textContent = title;
             document.getElementById('modal-description').textContent = description;
             document.getElementById('photo-modal').classList.remove('hidden');
-            
-            // Fetch and update likes count
-            fetchLikesCount(pinId);
-        }
-
-        function fetchLikesCount(pinId) {
-            fetch(`../../db/user_db/get_likes.php?pin_id=${pinId}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        document.getElementById('likes-count').textContent = data.likes;
-                    }
-                })
-                .catch(error => console.error('Error fetching likes:', error));
-        }
-
-        function toggleLike() {
-            if (!currentPinId) return;
-            
-            const formData = new FormData();
-            formData.append('pin_id', currentPinId);
-            
-            fetch('../../db/user_db/toggle_like.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    document.getElementById('likes-count').textContent = data.likes;
-                    // Toggle active state of like button
-                    document.getElementById('like-button').classList.toggle('text-red-500');
-                } else {
-                    console.error('Error:', data.error);
-                }
-            })
-            .catch(error => console.error('Error:', error));
         }
 
         function closePhotoModal() {
@@ -340,29 +312,27 @@ $conn->close();
                 return;
             }
 
-            // Create FormData object
-            const formData = new FormData();
-            formData.append('pin_id', currentPinId);
-            formData.append('board_id', boardId);
-
             // Send request to add pin to board
             fetch('../../db/user_db/add_pin_to_board.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Pin added to board successfully!');
-                    closePhotoModal();
-                } else {
-                    alert('Error adding pin to board: ' + data.error);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error adding pin to board');
-            });
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `pin_id=${currentPinId}&board_id=${boardId}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Pin added to board successfully!');
+                        closePhotoModal();
+                    } else {
+                        alert('Error adding pin to board: ' + data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error adding pin to board');
+                });
         }
 
         // Close modal when clicking outside
@@ -370,15 +340,6 @@ $conn->close();
             if (e.target === this) {
                 closePhotoModal();
             }
-        });
-
-        // Initialize event listeners when the document is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            // Like button handler
-            document.getElementById('like-button').addEventListener('click', toggleLike);
-            
-            // Add to board button handler
-            document.getElementById('add-to-board-button').addEventListener('click', addToBoard);
         });
     </script>
 
