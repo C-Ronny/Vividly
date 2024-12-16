@@ -253,30 +253,34 @@ $conn->close();
                     <p id="modal-description" class="text-gray-600 dark:text-gray-300 mt-2"></p>
                 </div>
 
-                <!-- Add to Board Button -->
-                <div class="mb-4">
-                    <select id="board-select" class="w-full p-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white">
-                        <option value="">Select a board</option>
-                        <?php
-                        // Fetch user's boards
-                        $boards_query = "SELECT board_id, title FROM Boards WHERE user_id = ?";
-                        $boards_stmt = $conn->prepare($boards_query);
-                        $boards_stmt->bind_param("i", $_SESSION['user_id']);
-                        $boards_stmt->execute();
-                        $boards_result = $boards_stmt->get_result();
-
-                        while ($board = $boards_result->fetch_assoc()) {
-                            echo "<option value='" . htmlspecialchars($board['board_id']) . "'>" .
-                                htmlspecialchars($board['title']) . "</option>";
-                        }
-                        ?>
-                    </select>
-                    <button onclick="addToBoard()" class="mt-2 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                        Add to Board
+                <!-- Like section -->
+                <div class="flex items-center space-x-2 mb-4">
+                    <button id="like-button" class="flex items-center space-x-1 text-gray-600 hover:text-red-500 transition-colors">
+                        <i class="fas fa-heart"></i>
+                        <span id="likes-count"></span>
                     </button>
                 </div>
 
-                <!-- Rest of your modal content -->
+                <!-- Boards Dropdown -->
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Add to Board</label>
+                    <div class="relative">
+                        <select id="boards-dropdown" class="w-full p-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <option value="">Select a board</option>
+                        </select>
+                        <button id="add-to-board-btn" class="mt-2 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            Add to Board
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Added Boards List -->
+                <div id="added-boards" class="mt-4">
+                    <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Added to Boards:</h4>
+                    <div id="added-boards-list" class="space-y-2">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>
