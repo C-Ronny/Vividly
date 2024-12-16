@@ -1,4 +1,5 @@
 function openPhotoModal(imageUrl, title, description, pinId) {
+    console.log('Opening modal for pin:', pinId);
     window.currentPinId = pinId;
     
     // Update modal content
@@ -12,7 +13,8 @@ function openPhotoModal(imageUrl, title, description, pinId) {
     // Fetch and update likes count
     fetchLikesCount(pinId);
     
-    // Fetch and populate boards dropdown
+    // Add logging
+    console.log('Fetching user boards...');
     fetchUserBoards();
     
     // Fetch boards this pin is already added to
@@ -55,17 +57,37 @@ function toggleLike() {
 
 function fetchUserBoards() {
     fetch('../../db/user_db/get_user_boards.php')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
-            const dropdown = document.getElementById('boards-dropdown');
+            if (!data.success) {
+                throw new Error(data.error || 'Failed to fetch boards');
+            }
+            
+            const dropdown = document.getElementById('board-select');
+            if (!dropdown) {
+                console.error('Board select element not found');
+                return;
+            }
+            
+            // Keep the default option
             dropdown.innerHTML = '<option value="">Select a board</option>';
             
-            data.boards.forEach(board => {
-                const option = document.createElement('option');
-                option.value = board.board_id;
-                option.textContent = board.title;
-                dropdown.appendChild(option);
-            });
+            if (data.boards && Array.isArray(data.boards)) {
+                data.boards.forEach(board => {
+                    const option = document.createElement('option');
+                    option.value = board.board_id;
+                    option.textContent = board.title;
+                    dropdown.appendChild(option);
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching boards:', error);
         });
 }
 
