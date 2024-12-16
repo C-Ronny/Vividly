@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Edit User</h2>
-                <form id="editForm" method="POST">
+                <form id="editForm" method="POST" action="../../db/admin_db/update_user.php">
                     <input type="hidden" name="editUserId" id="editUserId">
                     <div>
                         <label for="editFname">First Name</label>
@@ -191,6 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if(data.success) {
                     document.getElementById('editModal').style.display = 'none';
                     refreshUserTable();
+                    alert(data.message);
                 } else {
                     showError('emailError', data.message || 'Error updating user');
                 }
