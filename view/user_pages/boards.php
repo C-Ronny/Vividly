@@ -35,6 +35,15 @@ $boards_stmt->bind_param("i", $user_id);
 $boards_stmt->execute();
 $boards_result = $boards_stmt->get_result();
 
+// Count pins in this board
+$pin_query = "SELECT COUNT(*) as pin_count FROM Pins WHERE board_id = ?";
+$pin_stmt = $conn->prepare($pin_query);
+$pin_stmt->bind_param("i", $board['board_id']);
+$pin_stmt->execute();
+$pin_count = $pin_stmt->get_result();
+$pin = $pin_count->fetch_assoc();
+$pin_stmt->close();
+
 // Close the statement and connection
 $stmt->close();
 $conn->close();
@@ -65,7 +74,7 @@ $conn->close();
             <nav class="sidebar-nav">
                 <a href="account.php" class="nav-item">
                     <i class="fas fa-user"></i>
-                    <span>Profile</span>
+                    <span >Profile</span>
                 </a>
                 <a id="boards" href="boards.php" class="nav-item">
                     <i class="fas fa-th-large"></i>
@@ -84,10 +93,37 @@ $conn->close();
         <!-- Main Content -->
         <main class="main-content">
             <h1 id="welcome">Welcome <?= htmlspecialchars($user['fname']) ?> !</h1>
-            <a href="boards_display.php">
-                <p id="welcome-text">Click me</p>
-            </a>
+            <a href="boards_display.php"><p id="welcome-text">Click me</p></a>
             <p id="welcome-text">Here are your boards</p>
+
+            <!-- Add the gallery here -->
+            <?php while ($board = $boards_result->fetch_assoc()): ?>
+                <div class="relative flex flex-col my-10 mx-[9.5rem] shadow-sm w-64">
+                    <div class="relative overflow-hidden">
+                        <?php if (!empty($board['cover_image'])): ?>
+                            <img
+                                src="<?= htmlspecialchars($board['cover_image']) ?>"
+                                alt="card-image"
+                                class="w-full h-auto object-cover rounded-3xl" />
+                        <?php else: ?>
+                            <div class="w-full h-48 bg-black rounded-3xl"></div>
+                        <?php endif; ?>
+                    </div>
+                    <div class="p-4">
+                    <div class="flex items-center mb-2 gap-x-4">
+                        <h6 class="text-white text-lg font-semibold italic">
+                            <?= htmlspecialchars($board['title']) ?> 
+                        </h6> 
+                        <h6 class="text-slate-600 text-lg font-semibold italic">
+                            <?= htmlspecialchars($pin['pin_count']) ?> pins
+                        </h6>                                                        
+                    </div>
+                        <p class="text-slate-500 text-sm leading-normal font-light">
+                        <?= htmlspecialchars($board['description']) ?>
+                        </p>
+                    </div>
+                </div>
+            <?php endwhile; ?>
 
             <!-- Create Board button -->
             <div class="absolute top-20 right-40 m-4">
@@ -99,13 +135,13 @@ $conn->close();
                         <path
                             d="M.325.275H.55v.05H.325V.55h-.05V.325H.05v-.05h.225V.05h.05z"
                             fill-rule="evenodd"></path>
-                    </svg>
+                    </svg>                    
                 </label>
             </div>
 
             <!-- Board Creation Modal -->
-            <div id="board-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-gray-900 bg-opacity-50">
-                <div class="bg-white rounded-lg p-8 max-w-md w-full relative z-[101]">
+            <div id="board-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">
+                <div class="bg-white rounded-lg p-8 max-w-md w-full">
                     <h2 class="text-2xl font-bold mb-4 text-gray-800">Create New Board</h2>
                     <form id="board-form" method="POST" action="../../db/user_db/create_board.php">
                         <div class="mb-4">
@@ -133,68 +169,7 @@ $conn->close();
                 </div>
             </div>
 
-
-
-
-            <!-- Boards -->
-            <?php while ($board = $boards_result->fetch_assoc()): ?>
-                <div class="relative flex flex-col my-10 mx-[9.5rem] shadow-sm w-64">
-                    <div class="relative overflow-hidden">
-                        <?php if (!empty($board['cover_image'])): ?>
-                            <img
-                                src="<?= htmlspecialchars($board['cover_image']) ?>"
-                                alt="card-image"
-                                class="w-full h-auto object-cover rounded-3xl" />
-                        <?php else: ?>
-                            <div class="w-full h-48 bg-black rounded-3xl"></div>
-                        <?php endif; ?>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex items-center mb-2">
-                            <h6 class="text-white text-lg font-semibold italic">
-                                <?= htmlspecialchars($board['title']) ?>
-                            </h6>
-                            <p class="text-slate-500 text-sm leading-normal font-light">
-                                <?= htmlspecialchars($board['description']) ?>
-                            </p>
-                        </div>
-                        <p class="text-slate-500 text-sm leading-normal font-light">
-                            <?php
-                            // Count pins in this board
-                            $pin_query = "SELECT COUNT(*) as pin_count FROM Pins WHERE board_id = ?";
-                            $pin_stmt = $conn->prepare($pin_query);
-                            $pin_stmt->bind_param("i", $board['board_id']);
-                            $pin_stmt->execute();
-                            $pin_count = $pin_stmt->get_result()->fetch_assoc()['pin_count'];
-                            $pin_stmt->close();
-                            ?>
-                            <?= $pin_count ?> pins
-                        </p>
-                    </div>
-                </div>
-            <?php endwhile; ?>
-
-            <div class="relative flex flex-col my-10 mx-[9.5rem] shadow-sm w-64">
-                <div class="relative overflow-hidden">
-                    <img 
-                        src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80" 
-                        alt="card-image"
-                        class="w-full h-auto object-cover rounded-3xl"
-                    />
-                </div>
-                <div class="p-4">
-                    <div class="flex items-center mb-2">
-                        <h6 class="text-white text-lg font-semibold italic">
-                            Wooden House, Florida
-                        </h6>
-                    </div>
-                    <p class="text-slate-500 text-sm leading-normal font-light">
-                        160 pins
-                    </p>
-                </div>
-            </div>
-
-
+            
         </main>
     </div>
     <script src="../../functions/user_js/board_creation_modal.js"></script>
