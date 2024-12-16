@@ -110,7 +110,7 @@ $conn->close();
                             <?= htmlspecialchars($board['title']) ?> 
                         </h6> 
                         <h6 class="text-slate-600 text-lg font-semibold italic">
-                            <?= htmlspecialchars($board['pin_count']) ?> pins
+                            <?= htmlspecialchars($board['pin_count']) . ' ' . ($board['pin_count'] == '1' ? 'pin' : 'pins') ?>
                         </h6>                                                        
                     </div>
                         <p class="text-slate-500 text-sm leading-normal font-light">
