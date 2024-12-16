@@ -81,9 +81,9 @@ $resultCategories = $conn->query($queryCategories);
 $totalCategories = $resultCategories->fetch_assoc()['total_categories'];
 
 // Total Admins
-$queryAdmins = "SELECT COUNT(*) as total_admins FROM Users WHERE role = 1";
-$resultAdmins = $conn->query($queryAdmins);
-$totalAdmins = $resultAdmins->fetch_assoc()['total_admins'];
+$queryLikes = "SELECT COUNT(*) as total_likes FROM Likes";
+$resultLikes = $conn->query($queryLikes);
+$totalLikes = $resultLikes->fetch_assoc()['total_likes'];
 
 
 // Close the statement and connection
@@ -149,8 +149,8 @@ $conn->close();
                 <p id="total_categories"><?= htmlspecialchars($totalCategories) ?></p>
             </div>
             <div class="card">
-                <h2>Total No. of Admins</h2>
-                <p id="total_admins"><?= htmlspecialchars($totalAdmins) ?></p>
+                <h2>Total No. of Likes</h2>
+                <p id="total_likes"><?= htmlspecialchars($totalLikes) ?></p>
             </div>
 
         </section>

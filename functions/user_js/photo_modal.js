@@ -138,6 +138,38 @@ function addPinToBoard(pinId, boardId) {
     });
 }
 
+function addToBoard() {
+    const boardId = document.getElementById('board-select').value;
+    if (!boardId || !currentPinId) {
+        alert('Please select a board');
+        return;
+    }
+
+    fetch('../../db/user_db/add_pin_to_board.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            pin_id: currentPinId,
+            board_id: boardId
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Pin added to board successfully!');
+            closePhotoModal();
+        } else {
+            alert('Error adding pin to board: ' + data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error adding pin to board');
+    });
+}
+
 // Initialize event listeners
 document.addEventListener('DOMContentLoaded', () => {
     // Like button handler
