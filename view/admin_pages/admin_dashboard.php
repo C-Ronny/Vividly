@@ -80,6 +80,12 @@ $queryCategories = "SELECT COUNT(*) as total_categories FROM Categories";
 $resultCategories = $conn->query($queryCategories);
 $totalCategories = $resultCategories->fetch_assoc()['total_categories'];
 
+// Total Admins
+$queryAdmins = "SELECT COUNT(*) as total_admins FROM Users WHERE role = 1";
+$resultAdmins = $conn->query($queryAdmins);
+$totalAdmins = $resultAdmins->fetch_assoc()['total_admins'];
+
+
 // Close the statement and connection
 $stmt->close();
 $conn->close();
@@ -143,8 +149,8 @@ $conn->close();
                 <p id="total_categories"><?= htmlspecialchars($totalCategories) ?></p>
             </div>
             <div class="card">
-                <h2>Total No. of Boards</h2>
-                <p>XX</p>
+                <h2>Total No. of Admins</h2>
+                <p id="total_admins"><?= htmlspecialchars($totalAdmins) ?></p>
             </div>
 
         </section>
