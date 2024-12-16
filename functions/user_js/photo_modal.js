@@ -1,7 +1,5 @@
-let currentPinId = null;
-
 function openPhotoModal(imageUrl, title, description, pinId) {
-    currentPinId = pinId;
+    window.currentPinId = pinId;
     
     // Update modal content
     document.getElementById('modal-image').src = imageUrl;
@@ -33,10 +31,10 @@ function fetchLikesCount(pinId) {
 }
 
 function toggleLike() {
-    if (!currentPinId) return;
+    if (!window.currentPinId) return;
     
     const formData = new FormData();
-    formData.append('pin_id', currentPinId);
+    formData.append('pin_id', window.currentPinId);
     
     fetch('../../db/user_db/toggle_like.php', {
         method: 'POST',
@@ -73,29 +71,46 @@ function fetchUserBoards() {
 
 function fetchPinBoards(pinId) {
     fetch(`../../db/user_db/get_pin_boards.php?pin_id=${pinId}`)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
+            if (!data.success) {
+                throw new Error(data.error || 'Failed to fetch boards');
+            }
+            
             const boardsList = document.getElementById('added-boards-list');
             boardsList.innerHTML = '';
             
-            data.boards.forEach(board => {
-                const boardItem = document.createElement('div');
-                boardItem.className = 'flex items-center justify-between p-2 bg-gray-100 dark:bg-gray-700 rounded';
-                boardItem.innerHTML = `
-                    <span>${board.title}</span>
-                    <button onclick="removePinFromBoard(${pinId}, ${board.board_id})" 
-                            class="text-red-500 hover:text-red-700">
-                        <i class="fas fa-times"></i>
-                    </button>
-                `;
-                boardsList.appendChild(boardItem);
-            });
+            if (data.boards && Array.isArray(data.boards)) {
+                data.boards.forEach(board => {
+                    const boardItem = document.createElement('div');
+                    boardItem.className = 'flex items-center justify-between p-2 bg-gray-100 dark:bg-gray-700 rounded';
+                    boardItem.innerHTML = `
+                        <span>${board.title}</span>
+                        <button onclick="removePinFromBoard(${pinId}, ${board.board_id})" 
+                                class="text-red-500 hover:text-red-700">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+                    boardsList.appendChild(boardItem);
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching pin boards:', error);
+            // Optionally show user-friendly error message
+            const boardsList = document.getElementById('added-boards-list');
+            boardsList.innerHTML = '<div class="text-red-500">Failed to load boards</div>';
         });
 }
 
 function closePhotoModal() {
     document.getElementById('photo-modal').classList.add('hidden');
-    currentPinId = null;
+    window.currentPinId = null;
 }
 
 function addPinToBoard(pinId, boardId) {
@@ -136,8 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         
-        if (currentPinId) {
-            addPinToBoard(currentPinId, boardId);
+        if (window.currentPinId) {
+            addPinToBoard(window.currentPinId, boardId);
         }
     });
 
