@@ -55,7 +55,6 @@ $conn->close();
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../../assets/css/landingpage.css">
-    <script src="../../functions/user_js/photo_modal.js"></script>
 
 </head>
 
@@ -271,7 +270,7 @@ $conn->close();
                             </option>
                         <?php endforeach; ?>
                     </select>
-                    <button onclick="addToBoard()" class="mt-2 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                    <button id="add-to-board-button" class="mt-2 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
                         Add to Board
                     </button>
                 </div>
@@ -341,13 +340,15 @@ $conn->close();
                 return;
             }
 
+            // Create FormData object
+            const formData = new FormData();
+            formData.append('pin_id', currentPinId);
+            formData.append('board_id', boardId);
+
             // Send request to add pin to board
             fetch('../../db/user_db/add_pin_to_board.php', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: `pin_id=${currentPinId}&board_id=${boardId}`
+                body: formData
             })
             .then(response => response.json())
             .then(data => {
@@ -371,9 +372,13 @@ $conn->close();
             }
         });
 
-        // Initialize like button handler when the document is loaded
+        // Initialize event listeners when the document is loaded
         document.addEventListener('DOMContentLoaded', () => {
+            // Like button handler
             document.getElementById('like-button').addEventListener('click', toggleLike);
+            
+            // Add to board button handler
+            document.getElementById('add-to-board-button').addEventListener('click', addToBoard);
         });
     </script>
 

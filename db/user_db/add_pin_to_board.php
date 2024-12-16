@@ -28,23 +28,24 @@ if ($verify_result->num_rows === 0) {
     exit;
 }
 
-// Check if pin is already in the board
-$check_query = "SELECT * FROM Board_Pins WHERE board_id = ? AND pin_id = ?";
+// Check if pin exists and get its current board_id
+$check_query = "SELECT board_id FROM Pins WHERE pin_id = ?";
 $check_stmt = $conn->prepare($check_query);
-$check_stmt->bind_param("ii", $board_id, $pin_id);
+$check_stmt->bind_param("i", $pin_id);
 $check_stmt->execute();
+$check_result = $check_stmt->get_result();
 
-if ($check_stmt->get_result()->num_rows > 0) {
-    echo json_encode(['error' => 'Pin already in board']);
+if ($check_result->num_rows === 0) {
+    echo json_encode(['error' => 'Pin not found']);
     exit;
 }
 
-// Add pin to board
-$insert_query = "INSERT INTO Board_Pins (board_id, pin_id) VALUES (?, ?)";
-$insert_stmt = $conn->prepare($insert_query);
-$insert_stmt->bind_param("ii", $board_id, $pin_id);
+// Update the pin's board_id
+$update_query = "UPDATE Pins SET board_id = ? WHERE pin_id = ?";
+$update_stmt = $conn->prepare($update_query);
+$update_stmt->bind_param("ii", $board_id, $pin_id);
 
-if ($insert_stmt->execute()) {
+if ($update_stmt->execute()) {
     echo json_encode(['success' => true]);
 } else {
     echo json_encode(['error' => 'Failed to add pin to board']);
@@ -52,6 +53,6 @@ if ($insert_stmt->execute()) {
 
 $verify_stmt->close();
 $check_stmt->close();
-$insert_stmt->close();
+$update_stmt->close();
 $conn->close();
 ?>
