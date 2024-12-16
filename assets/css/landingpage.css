@@ -406,3 +406,73 @@ nav a img {
     max-height: 90vh;
     overflow-y: auto;
 }
+
+/* Add these styles for the boards dropdown */
+.boards-dropdown {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    background-color: white;
+    margin-bottom: 8px;
+}
+
+.added-boards-list {
+    margin-top: 16px;
+}
+
+.board-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    background-color: #f3f4f6;
+    border-radius: 4px;
+    margin-bottom: 4px;
+}
+
+.remove-board-btn {
+    color: #ef4444;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.remove-board-btn:hover {
+    background-color: #fee2e2;
+}
+
+.pin {
+    position: relative;
+    /* ... other existing pin styles ... */
+}
+
+.pin-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.pin:hover .pin-overlay {
+    opacity: 1;
+}
+
+.pin-title {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 0.5rem;
+    max-width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

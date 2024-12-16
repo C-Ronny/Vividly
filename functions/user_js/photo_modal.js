@@ -25,26 +25,34 @@ function fetchLikesCount(pinId) {
     fetch(`../../db/user_db/get_likes.php?pin_id=${pinId}`)
         .then(response => response.json())
         .then(data => {
-            document.getElementById('likes-count').textContent = data.likes;
-        });
+            if (data.success) {
+                document.getElementById('likes-count').textContent = data.likes;
+            }
+        })
+        .catch(error => console.error('Error fetching likes:', error));
 }
 
 function toggleLike() {
     if (!currentPinId) return;
     
+    const formData = new FormData();
+    formData.append('pin_id', currentPinId);
+    
     fetch('../../db/user_db/toggle_like.php', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `pin_id=${currentPinId}`
+        body: formData
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            fetchLikesCount(currentPinId);
+            document.getElementById('likes-count').textContent = data.likes;
+            // Toggle active state of like button
+            document.getElementById('like-button').classList.toggle('text-red-500');
+        } else {
+            console.error('Error:', data.error);
         }
-    });
+    })
+    .catch(error => console.error('Error:', error));
 }
 
 function fetchUserBoards() {
@@ -90,24 +98,55 @@ function closePhotoModal() {
     currentPinId = null;
 }
 
+function addPinToBoard(pinId, boardId) {
+    const formData = new FormData();
+    formData.append('pin_id', pinId);
+    formData.append('board_id', boardId);
+
+    fetch('../../db/user_db/add_pin_to_board.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Pin added to board successfully!');
+            fetchPinBoards(pinId);
+            document.getElementById('boards-dropdown').value = '';
+        } else {
+            alert(data.error || 'Failed to add pin to board');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to add pin to board');
+    });
+}
+
 // Initialize event listeners
 document.addEventListener('DOMContentLoaded', () => {
+    // Like button handler
     document.getElementById('like-button').addEventListener('click', toggleLike);
     
+    // Add to board button handler
     document.getElementById('add-to-board-btn').addEventListener('click', () => {
         const boardId = document.getElementById('boards-dropdown').value;
-        if (boardId && currentPinId) {
+        if (!boardId) {
+            alert('Please select a board');
+            return;
+        }
+        
+        if (currentPinId) {
             addPinToBoard(currentPinId, boardId);
         }
     });
 
-    // Close modal when clicking outside
+    // Close modal handlers
     document.getElementById('photo-modal').addEventListener('click', (e) => {
         if (e.target.id === 'photo-modal') {
             closePhotoModal();
         }
     });
 
-    // Close modal when clicking close button
     document.querySelector('#photo-modal button[onclick="closePhotoModal()"]')?.addEventListener('click', closePhotoModal);
 }); 

@@ -24,13 +24,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Create image element
                 const img = document.createElement('img');
                 img.src = json[i].image_url;
-                img.alt = json[i].title || `Pin ${i + 1}`;
+                img.alt = json[i].caption || `Pin ${i + 1}`;
 
                 // Add click handler to open modal
                 imageContainer.addEventListener('click', () => {
                     openPhotoModal(
                         json[i].image_url,
-                        json[i].title,
+                        json[i].caption,
                         json[i].description,
                         json[i].pin_id
                     );
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const overlay = document.createElement('div');
                 overlay.className = 'pin-overlay';
                 overlay.innerHTML = `
-                    <h3>${json[i].title || 'Untitled'}</h3>
+                    <h3>${json[i].caption || 'Untitled'}</h3>
                     <p>${json[i].description || ''}</p>
                 `;
 
@@ -78,14 +78,14 @@ function displayImages(images) {
         // Create the image element
         const img = document.createElement('img');
         img.src = image.image_url;
-        img.alt = image.title;
+        img.alt = image.caption;
         img.loading = 'lazy';
         
         // Add click handler to open modal
         imageContainer.addEventListener('click', () => {
             openPhotoModal(
                 image.image_url,
-                image.title,
+                image.caption,
                 image.description,
                 image.pin_id
             );
@@ -95,8 +95,8 @@ function displayImages(images) {
         const overlay = document.createElement('div');
         overlay.className = 'pin-overlay';
         overlay.innerHTML = `
-            <h3>${image.title}</h3>
-            <p>${image.description}</p>
+            <h3>${image.caption || 'Untitled'}</h3>
+            <p>${image.description || ''}</p>
         `;
         
         // Assemble the pin
@@ -105,4 +105,36 @@ function displayImages(images) {
         pin.appendChild(imageContainer);
         masonry.appendChild(pin);
     });
+}
+
+function createPin(pin) {
+    const pinElement = document.createElement('div');
+    pinElement.className = 'pin';
+    
+    // Create the hover overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'pin-overlay';
+    
+    // Use caption instead of title
+    const title = document.createElement('h3');
+    title.textContent = pin.caption || 'Untitled';
+    title.className = 'pin-title';
+    
+    overlay.appendChild(title);
+    
+    // Create the image element
+    const img = document.createElement('img');
+    img.src = pin.image_url;
+    img.alt = pin.caption;
+    img.loading = 'lazy';
+    
+    // Add click event listener for the modal
+    pinElement.addEventListener('click', () => {
+        openPhotoModal(pin.image_url, pin.caption, pin.description, pin.pin_id);
+    });
+    
+    pinElement.appendChild(img);
+    pinElement.appendChild(overlay);
+    
+    return pinElement;
 }

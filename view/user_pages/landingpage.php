@@ -274,13 +274,6 @@ $conn->close();
                     </div>
                 </div>
 
-                <!-- Added Boards List -->
-                <div id="added-boards" class="mt-4">
-                    <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Added to Boards:</h4>
-                    <div id="added-boards-list" class="space-y-2">
-                        <!-- Dynamically populated -->
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -339,37 +332,6 @@ $conn->close();
             }
         });
     </script>
-
-    <!-- Add this before closing body tag -->
-    <div id="pinModal" class="pin-modal">
-        <div class="pin-modal-content">
-            <span class="close-modal">&times;</span>
-            
-            <div class="pin-image-container">
-                <img id="modalPinImage" src="" alt="Pin Image">
-            </div>
-            
-            <div class="pin-details">
-                <h2 id="modalPinTitle" class="pin-title"></h2>
-                <p id="modalPinDescription" class="pin-description"></p>
-                
-                <div class="pin-actions">
-                    <button id="likeButton" class="like-btn">
-                        <i class="fas fa-heart"></i> Like
-                    </button>
-                    
-                    <div class="board-dropdown-container">
-                        <button id="addToBoardButton" class="add-to-board-btn">
-                            Add to Board
-                        </button>
-                        <div id="boardDropdown" class="board-dropdown">
-                            <!-- Boards will be populated here -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 </body>
 

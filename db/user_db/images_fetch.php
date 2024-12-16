@@ -3,7 +3,7 @@ require '../config.php';
 require  '../../util/error_config.php';
 
 // Fetch all image URLs from the Pins table
-$query = "SELECT image_url FROM Pins";
+$query = "SELECT pin_id, image_url, caption, description FROM Pins";
 
 $result = $conn->query($query);
 
