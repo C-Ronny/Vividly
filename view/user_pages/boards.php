@@ -93,31 +93,33 @@ $conn->close();
 
             <!-- Add the gallery here -->
             <?php while ($board = $boards_result->fetch_assoc()): ?>
-                <div class="relative flex flex-col my-10 mx-[9.5rem] shadow-sm w-64">
-                    <div class="relative overflow-hidden">
-                        <?php if (!empty($board['cover_image'])): ?>
-                            <img
-                                src="<?= htmlspecialchars($board['cover_image']) ?>"
-                                alt="card-image"
-                                class="w-full h-auto object-cover rounded-3xl" />
-                        <?php else: ?>
-                            <div class="w-full h-48 bg-black rounded-3xl"></div>
-                        <?php endif; ?>
+                <a href="boards_display.php?board_id=<?= $board['board_id'] ?>&title=<?= urlencode($board['title']) ?>">
+                    <div class="relative flex flex-col my-10 mx-[9.5rem] shadow-sm w-64 hover:transform hover:scale-105 transition-transform duration-200">
+                        <div class="relative overflow-hidden">
+                            <?php if (!empty($board['cover_image'])): ?>
+                                <img
+                                    src="<?= htmlspecialchars($board['cover_image']) ?>"
+                                    alt="card-image"
+                                    class="w-full h-auto object-cover rounded-3xl" />
+                            <?php else: ?>
+                                <div class="w-full h-48 bg-black rounded-3xl"></div>
+                            <?php endif; ?>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center mb-2 gap-x-4">
+                                <h6 class="text-white text-lg font-semibold italic">
+                                    <?= htmlspecialchars($board['title']) ?> 
+                                </h6> 
+                                <h6 class="text-slate-600 text-lg font-semibold italic">
+                                    <?= htmlspecialchars($board['pin_count']) . ' ' . ($board['pin_count'] == '1' ? 'pin' : 'pins') ?>
+                                </h6>                                                        
+                            </div>
+                            <p class="text-slate-500 text-sm leading-normal font-light">
+                                <?= htmlspecialchars($board['description']) ?>
+                            </p>
+                        </div>
                     </div>
-                    <div class="p-4">
-                    <div class="flex items-center mb-2 gap-x-4">
-                        <h6 class="text-white text-lg font-semibold italic">
-                            <?= htmlspecialchars($board['title']) ?> 
-                        </h6> 
-                        <h6 class="text-slate-600 text-lg font-semibold italic">
-                            <?= htmlspecialchars($board['pin_count']) . ' ' . ($board['pin_count'] == '1' ? 'pin' : 'pins') ?>
-                        </h6>                                                        
-                    </div>
-                        <p class="text-slate-500 text-sm leading-normal font-light">
-                        <?= htmlspecialchars($board['description']) ?>
-                        </p>
-                    </div>
-                </div>
+                </a>
             <?php endwhile; ?>
 
             <!-- Create Board button -->

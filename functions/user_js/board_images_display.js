@@ -18,8 +18,6 @@ async function getData() {
           console.log(json[i].image_url);
           const itemDiv = document.createElement('div');
           itemDiv.classList.add('item', `item${i + 1}`);
-
-         
           // Create image element
           const img = document.createElement('img');
           img.src = `${json[i].image_url}`;

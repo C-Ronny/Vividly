@@ -11,46 +11,33 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Fetch user details from the database
-$user_id = $_SESSION['user_id'];
+// Get board ID and title from URL
+$board_id = isset($_GET['board_id']) ? $_GET['board_id'] : null;
+$board_title = isset($_GET['title']) ? urldecode($_GET['title']) : 'Board';
 
-$query = "SELECT fname, lname, email FROM Users WHERE user_id = ?";
-$stmt = $conn->prepare($query);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-
-// Check if the user exists
-if ($result->num_rows > 0) {
-    $user = $result->fetch_assoc();
-} else {
-    echo "User not found.";
-    exit();
-}
-
-// Close the statement and connection
-$stmt->close();
-$conn->close();
+// Fetch pins for this specific board
+$pins_query = "SELECT p.* 
+               FROM Pins p 
+               WHERE p.board_id = ?";
+$pins_stmt = $conn->prepare($pins_query);
+$pins_stmt->bind_param("i", $board_id);
+$pins_stmt->execute();
+$pins_result = $pins_stmt->get_result();
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vividly | Account Settings</title>
+    <title>Vividly | <?= htmlspecialchars($board_title) ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../../assets/css/boards.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
-
 <body>
-    <div class="app-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
+    <!-- Sidebar -->
+    <aside class="sidebar">
             <div class="sidebar-header">
                 <h1 class="logo"><a href="landingpage.php">Vividly</a></h1>
             </div>
@@ -73,34 +60,81 @@ $conn->close();
                 </a>
             </div>
         </aside>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <h1 id="welcome">Board Name</h1>
-
-            <!-- Add the gallery here -->
-            <div class="relative flex flex-col my-10 mx-[9.5rem] shadow-sm w-64">
-                <div class="relative overflow-hidden">
+    
+    <main class="main-content">
+        <h1 id="welcome"><?= htmlspecialchars($board_title) ?></h1>
+        
+        <!-- Display pins in a grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+            <?php while ($pin = $pins_result->fetch_assoc()): ?>
+                <div class="pin-card group relative">
                     <img 
-                        src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80" 
-                        alt="card-image"
-                        class="w-full h-auto object-cover rounded-3xl"
-                    />
-                </div>
-                <div class="p-4">
-                    <div class="flex items-center mb-2">
-                        <h6 class="text-white text-lg font-semibold italic">
-                            Wooden House, Florida
-                        </h6>
+                        src="<?= htmlspecialchars($pin['image_url']) ?>" 
+                        alt="<?= htmlspecialchars($pin['caption']) ?>"
+                        class="w-full h-auto rounded-lg shadow-md cursor-pointer"
+                        onclick="openRemoveModal(<?= $pin['pin_id'] ?>)"
+                    >
+                    <div class="p-2">
+                        <h3 class="text-white text-lg"><?= htmlspecialchars($pin['caption']) ?></h3>
+                        <p class="text-gray-400"><?= htmlspecialchars($pin['description']) ?></p>
                     </div>
-                    <p class="text-slate-500 text-sm leading-normal font-light">
-                        160 pins
-                    </p>
+                    <!-- Overlay with remove button -->
+                    <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-lg flex items-center justify-center">
+                        <button onclick="openRemoveModal(<?= $pin['pin_id'] ?>)" 
+                            class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors">
+                            Remove Pin
+                        </button>
+                    </div>
                 </div>
-            </div>
-            
-        </main>
-    </div>
-</body>
+            <?php endwhile; ?>
+        </div>
+    </main>
 
+    <?php
+    // Close database connections
+    $pins_stmt->close();
+    $conn->close();
+    ?>
+
+    <!-- Add this modal HTML before closing body tag -->
+    <div id="remove-pin-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">
+        <div class="bg-gray-800 rounded-lg p-8 max-w-md w-full">
+            <h2 class="text-2xl font-bold mb-4 text-white">Remove Pin</h2>
+            <p class="text-gray-300 mb-6">Are you sure you want to remove this pin from the board?</p>
+            <form id="remove-pin-form" method="POST" action="../../db/user_db/remove_pin.php">
+                <input type="hidden" id="pin-id-input" name="pin_id" value="">
+                <input type="hidden" name="board_id" value="<?= htmlspecialchars($board_id) ?>">
+                <div class="flex justify-end gap-4">
+                    <button type="button" onclick="closeRemoveModal()" 
+                        class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700">
+                        Cancel
+                    </button>
+                    <button type="submit" 
+                        class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+                        Remove
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add JavaScript before closing body tag -->
+    <script>
+    function openRemoveModal(pinId) {
+        document.getElementById('pin-id-input').value = pinId;
+        document.getElementById('remove-pin-modal').classList.remove('hidden');
+    }
+
+    function closeRemoveModal() {
+        document.getElementById('remove-pin-modal').classList.add('hidden');
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('remove-pin-modal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeRemoveModal();
+        }
+    });
+    </script>
+</body>
 </html>
