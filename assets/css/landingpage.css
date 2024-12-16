@@ -290,3 +290,24 @@ nav a img {
 .item:hover .board-options {
     display: block;
 }
+
+.pin-wrapper {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.pin-wrapper img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Ensure the hover overlay works */
+.group:hover .group-hover\:opacity-100 {
+    opacity: 1;
+}
+
+.group .opacity-0 {
+    opacity: 0;
+}

@@ -55,6 +55,7 @@ $conn->close();
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../../assets/css/landingpage.css">
+    <script src="../../functions/user_js/photo_modal.js"></script>
 
 </head>
 
@@ -117,16 +118,16 @@ $conn->close();
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                         <!-- Modal header -->
                         <div class="flex items-center justify-center w-full p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                    Add New Pin
-                </h3>
-                <button id="close-modal" type="button" class="text-gray-400 ml-1rem bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" onclick="document.getElementById('toggle').checked = false;">
-                    <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                    </svg>
-                    <span class="sr-only">Close modal</span>
-                </button>
-            </div>
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                Add New Pin
+                            </h3>
+                            <button id="close-modal" type="button" class="text-gray-400 ml-1rem bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" onclick="document.getElementById('toggle').checked = false;">
+                                <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
                         <!-- Modal body -->
                         <div class="p-6 space-y-6">
                             <!-- Add your modal content here -->
@@ -152,16 +153,16 @@ $conn->close();
                                         <label for="boards" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Board</label>
                                         <select id="boards" name="board_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
                                             <option value="">Select board</option>
-                                            <?php 
+                                            <?php
                                             // Reset the result pointer in case it was used before
                                             if ($boards_result) {
                                                 $boards_result->data_seek(0);
-                                                while ($board = $boards_result->fetch_assoc()): 
+                                                while ($board = $boards_result->fetch_assoc()):
                                             ?>
-                                                <option value="<?= htmlspecialchars($board['board_id']) ?>">
-                                                    <?= htmlspecialchars($board['title']) ?>
-                                                </option>
-                                            <?php 
+                                                    <option value="<?= htmlspecialchars($board['board_id']) ?>">
+                                                        <?= htmlspecialchars($board['title']) ?>
+                                                    </option>
+                                            <?php
                                                 endwhile;
                                             }
                                             ?>
@@ -233,7 +234,111 @@ $conn->close();
     <script src="../../functions/user_js/add_pins_modal.js"></script>
     <script src="../../functions/user_js/images_display.js"></script>
 
+    <!-- Add this modal HTML before closing body tag -->
+    <div id="photo-modal" class="fixed inset-0 hidden z-50 overflow-y-auto bg-black bg-opacity-75 flex items-center justify-center">
+        <div class="relative bg-gray-900 w-full max-w-4xl rounded-lg shadow-xl flex">
+            <!-- Left side - Photo -->
+            <div class="w-2/3 relative">
+                <img id="modal-image" src="" alt="Preview" class="w-full h-full object-contain rounded-l-lg">
+            </div>
 
+            <!-- Right side - Info & Actions -->
+            <div class="w-1/3 bg-white dark:bg-gray-800 p-6 rounded-r-lg flex flex-col">
+                <!-- Close button -->
+                <button onclick="closePhotoModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-500">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+
+                <!-- Image info -->
+                <div class="mb-4">
+                    <h3 id="modal-title" class="text-xl font-bold text-gray-900 dark:text-white"></h3>
+                    <p id="modal-description" class="text-gray-600 dark:text-gray-300 mt-2"></p>
+                </div>
+
+                <!-- Add to Board Button -->
+                <div class="mb-4">
+                    <select id="board-select" class="w-full p-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white">
+                        <option value="">Select a board</option>
+                        <?php
+                        // Fetch user's boards
+                        $boards_query = "SELECT board_id, title FROM Boards WHERE user_id = ?";
+                        $boards_stmt = $conn->prepare($boards_query);
+                        $boards_stmt->bind_param("i", $_SESSION['user_id']);
+                        $boards_stmt->execute();
+                        $boards_result = $boards_stmt->get_result();
+
+                        while ($board = $boards_result->fetch_assoc()) {
+                            echo "<option value='" . htmlspecialchars($board['board_id']) . "'>" .
+                                htmlspecialchars($board['title']) . "</option>";
+                        }
+                        ?>
+                    </select>
+                    <button onclick="addToBoard()" class="mt-2 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                        Add to Board
+                    </button>
+                </div>
+
+                <!-- Rest of your modal content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add this JavaScript before closing body tag -->
+    <script>
+        let currentPinId = null;
+
+        function openPhotoModal(imageUrl, title, description, pinId) {
+            currentPinId = pinId;
+            document.getElementById('modal-image').src = imageUrl;
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-description').textContent = description;
+            document.getElementById('photo-modal').classList.remove('hidden');
+        }
+
+        function closePhotoModal() {
+            document.getElementById('photo-modal').classList.add('hidden');
+            currentPinId = null;
+        }
+
+        function addToBoard() {
+            const boardId = document.getElementById('board-select').value;
+            if (!boardId) {
+                alert('Please select a board');
+                return;
+            }
+
+            // Send request to add pin to board
+            fetch('../../db/user_db/add_pin_to_board.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `pin_id=${currentPinId}&board_id=${boardId}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Pin added to board successfully!');
+                        closePhotoModal();
+                    } else {
+                        alert('Error adding pin to board: ' + data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error adding pin to board');
+                });
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('photo-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePhotoModal();
+            }
+        });
+    </script>
 
 </body>
 

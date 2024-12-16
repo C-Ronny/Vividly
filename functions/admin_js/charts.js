@@ -68,7 +68,6 @@ fetch('../../db/admin_db/get_top_users.php')
     })
     .catch(error => {
         console.error('Error:', error);
-        // Display a user-friendly error message in the chart container
         document.querySelector("#chart").innerHTML = 
             '<div style="color: #ff4444; padding: 20px; text-align: center;">' +
             'Error loading chart data. Please try refreshing the page.' +
@@ -76,55 +75,72 @@ fetch('../../db/admin_db/get_top_users.php')
     });
 
 
-// Radial Bar Chart
+// Radial Bar Chart for Categories
+fetch('../../db/admin_db/get_category_counts.php')
+    .then(response => response.json())
+    .then(data => {
+        var options = {
+            series: [
+                data[1] || 0,  // Art
+                data[2] || 0,  // Design
+                data[3] || 0,  // Fashion
+                data[4] || 0,  // Food
+                data[5] || 0,  // Photography
+                data[6] || 0   // Travel
+            ],
+            chart: {
+                height: 350,
+                type: 'radialBar',
+            },
+            plotOptions: {
+                radialBar: {
+                    offsetY: 0,
+                    startAngle: 0,
+                    endAngle: 270,
+                    hollow: {
+                        margin: 5,
+                        size: '30%',
+                        background: 'transparent',
+                        image: undefined,
+                    },
+                    dataLabels: {
+                        name: {
+                            show: false,
+                        },
+                        value: {
+                            show: false,
+                        }
+                    },
+                    barLabels: {
+                        enabled: true,
+                        useSeriesColors: true,
+                        offsetX: -8,
+                        fontSize: '16px',
+                        formatter: function(seriesName, opts) {
+                            return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex]
+                        },
+                    },
+                }
+            },
+            colors: ['#1ab7ea', '#0084ff', '#39539E', '#0077B5', '#00A0DC', '#ff6c00'],
+            labels: ['Art', 'Design', 'Fashion', 'Food', 'Photography', 'Travel'],
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    legend: {
+                        show: false
+                    }
+                }
+            }]
+        };
 
-    var options = {
-    series: [76, 67, 61, 90, 180, 124],
-    chart: {
-    height: 390,
-    type: 'radialBar',
-    },
-    plotOptions: {
-        radialBar: {
-        offsetY: 0,
-        startAngle: 0,
-        endAngle: 270,
-        hollow: {
-            margin: 5,
-            size: '30%',
-            background: 'transparent',
-            image: undefined,
-            },
-        dataLabels: {
-            name: {
-            show: false,
-            },
-            value: {
-            show: false,
-            }
-        },
-        barLabels: {
-            enabled: true,
-            useSeriesColors: true,
-            offsetX: -8,
-            fontSize: '16px',
-            formatter: function(seriesName, opts) {
-            return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex]
-            },
-        },
-        }
-    },
-    colors: ['#1ab7ea', '#0084ff', '#39539E', '#0077B5', '#00A0DC', '#ff6c00'],
-    labels: ['Art', 'Design', 'Fashion', 'Food', 'Photography', 'Travel'],
-    responsive: [{
-        breakpoint: 480,
-        options: {
-        legend: {
-            show: false
-        }
-        }
-    }]
-};
-
-var chart = new ApexCharts(document.querySelector("#chart1"), options);
-chart.render();
+        var chart = new ApexCharts(document.querySelector("#chart1"), options);
+        chart.render();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.querySelector("#chart1").innerHTML = 
+            '<div style="color: #ff4444; padding: 20px; text-align: center;">' +
+            'Error loading category data. Please try refreshing the page.' +
+            '</div>';
+    });

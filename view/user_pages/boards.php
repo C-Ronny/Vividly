@@ -88,39 +88,40 @@ $conn->close();
         <!-- Main Content -->
         <main class="main-content">
             <h1 id="welcome">Welcome <?= htmlspecialchars($user['fname']) ?> !</h1>
-            <a href="boards_display.php"><p id="welcome-text">Click me</p></a>
             <p id="welcome-text">Here are your boards</p>
 
-            <!-- Add the gallery here -->
-            <?php while ($board = $boards_result->fetch_assoc()): ?>
-                <a href="boards_display.php?board_id=<?= $board['board_id'] ?>&title=<?= urlencode($board['title']) ?>">
-                    <div class="relative flex flex-col my-10 mx-[9.5rem] shadow-sm w-64 hover:transform hover:scale-105 transition-transform duration-200">
-                        <div class="relative overflow-hidden">
-                            <?php if (!empty($board['cover_image'])): ?>
-                                <img
-                                    src="<?= htmlspecialchars($board['cover_image']) ?>"
-                                    alt="card-image"
-                                    class="w-full h-auto object-cover rounded-3xl" />
-                            <?php else: ?>
-                                <div class="w-full h-48 bg-black rounded-3xl"></div>
-                            <?php endif; ?>
-                        </div>
-                        <div class="p-4">
-                            <div class="flex items-center mb-2 gap-x-4">
-                                <h6 class="text-white text-lg font-semibold italic">
-                                    <?= htmlspecialchars($board['title']) ?> 
-                                </h6> 
-                                <h6 class="text-slate-600 text-lg font-semibold italic">
-                                    <?= htmlspecialchars($board['pin_count']) . ' ' . ($board['pin_count'] == '1' ? 'pin' : 'pins') ?>
-                                </h6>                                                        
+            <!-- Boards Container -->
+            <div class="flex flex-row flex-wrap gap-6 p-8">
+                <?php while ($board = $boards_result->fetch_assoc()): ?>
+                    <a href="boards_display.php?board_id=<?= $board['board_id'] ?>&title=<?= urlencode($board['title']) ?>">
+                        <div class="flex-shrink-0 w-64 shadow-sm hover:transform hover:scale-105 transition-transform duration-200">
+                            <div class="relative overflow-hidden">
+                                <?php if (!empty($board['cover_image'])): ?>
+                                    <img
+                                        src="<?= htmlspecialchars($board['cover_image']) ?>"
+                                        alt="card-image"
+                                        class="w-full h-auto object-cover rounded-3xl" />
+                                <?php else: ?>
+                                    <div class="w-full h-48 bg-black rounded-3xl"></div>
+                                <?php endif; ?>
                             </div>
-                            <p class="text-slate-500 text-sm leading-normal font-light">
-                                <?= htmlspecialchars($board['description']) ?>
-                            </p>
+                            <div class="p-4">
+                                <div class="flex items-center mb-2 gap-x-4">
+                                    <h6 class="text-white text-lg font-semibold italic">
+                                        <?= htmlspecialchars($board['title']) ?> 
+                                    </h6> 
+                                    <h6 class="text-slate-600 text-lg font-semibold italic">
+                                        <?= htmlspecialchars($board['pin_count']) . ' ' . ($board['pin_count'] === '1' ? 'pin' : 'pins') ?>
+                                    </h6>                                                        
+                                </div>
+                                <p class="text-slate-500 text-sm leading-normal font-light">
+                                    <?= htmlspecialchars($board['description']) ?>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            <?php endwhile; ?>
+                    </a>
+                <?php endwhile; ?>
+            </div>
 
             <!-- Create Board button -->
             <div class="absolute top-20 right-40 m-4">

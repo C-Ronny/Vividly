@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Modal script loaded');
+    
     const modal = document.getElementById('photo-modal');
     const modalImage = document.getElementById('modal-image');
     const modalTitle = document.getElementById('modal-title');
@@ -9,13 +11,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const commentsContainer = document.getElementById('comments-container');
     let currentPinId = null;
 
-    // Add click event to all images
-    document.querySelectorAll('.images').forEach(img => {
-        img.addEventListener('click', function() {
-            currentPinId = this.dataset.pinId;
-            openModal(this);
+    // Add click event to all images (including dynamically added ones)
+    document.body.addEventListener('click', function(e) {
+        if (e.target.classList.contains('item ')) {
+            console.log('Image clicked:', e.target);
+            console.log('Pin ID:', e.target.dataset.pinId);
+            currentPinId = e.target.dataset.pinId;
+            openModal(e.target);
             fetchPinDetails(currentPinId);
-        });
+        }
     });
 
     // Close modal

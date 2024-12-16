@@ -204,21 +204,14 @@ td{
   border: 1px solid rgba(255,255,255,0.3);
 }
 
-.data_images #title_text{
-  margin:0px;
-  display:block;
-  padding-top:1rem;
-  padding-left:1.5rem;
-  font-size: 2rem;
-}
 
 #chart{
-  min-width: 30rem;
+  max-width: 30rem;
   /* margin-top: 1rem; */
   /* margin: 2rem 2rem 2rem 2rem; */
   display:inline-block;
   /* padding-top:5rem; */
-  padding-left:1.5rem;
+  padding-left:2.5rem;
 }
 
 .row3{

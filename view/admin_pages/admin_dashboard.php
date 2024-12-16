@@ -81,7 +81,7 @@ $conn->close();
                 <p id="total_boards"></p>
             </div>
             <div class="card" id="images">
-                <h2>Total No. of Images</h2>
+                <h2>Total No. of Pins</h2>
                 <p id="total_pins"></p>
             </div>
             <div class="card">
@@ -124,14 +124,13 @@ $conn->close();
                 
             </div>
             <div class="data_images">
-                <h1 id="title_text">Top 5 Users with most Pins</h1>
                 <div id="chart"></div>
 
             </div>
         </section>
 
         <section class="row3">
-        <h1 id="title_text2">Charts</h1>
+        <h1 id="title_text2">Number of Pins per Category</h1>
         <div id="chart1"></div>
         </section>
 
