@@ -168,7 +168,6 @@ $conn->close();
                                 <th>Email</th>
                                 <th>Role</th>
                                 <th>Date Joined</th>
-                                <th>No. of Pins Uploaded</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>

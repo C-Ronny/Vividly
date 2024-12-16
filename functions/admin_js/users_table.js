@@ -64,7 +64,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 <th class="col-email">Email</th>
                 <th class="col-role">Role</th>
                 <th class="col-date">Date Joined</th>
-                <th class="col-pins">Pins</th>
                 <th class="col-actions">Actions</th>
             `;
 
@@ -79,7 +78,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     </td>
                     <td class="col-role">${user.role === '1' ? 'Admin' : 'User'}</td>
                     <td class="col-date">${new Date(user.created_at).toLocaleDateString()}</td>
-                    <td class="col-pins">${user.pins_count || '0'}</td>
                     <td class="col-actions">
                         <div class="action-buttons">
                             <button class="action-btn edit-btn" onclick='openEditModal(${JSON.stringify(user)})'>
