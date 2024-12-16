@@ -64,12 +64,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
                 // Write function to dynamically generate board_id based on user selection or null of they don't have any
-                $board_id = null;
+                $board_id = isset($_POST['board_id']) ? $_POST['board_id'] : null;
 
                 // Prepare and execute the query
                 if ($stmt = $conn->prepare($query)) {
                     // Bind parameters: user_id, board_id, image_url, caption, description, category_id
-                    $stmt->bind_param("iisisss", $user_id, $board_id, $filePath, $filesize, $title, $description, $category_id);
+                    $stmt->bind_param("iisissi", $user_id, $board_id, $filePath, $filesize, $title, $description, $category_id);
 
                     // Execute the statement
                     if ($stmt->execute()) {

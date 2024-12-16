@@ -36,6 +36,7 @@ $boards_stmt->execute();
 $boards_result = $boards_stmt->get_result();
 $userBoards = $boards_result->fetch_all(MYSQLI_ASSOC);
 
+$boards_stmt->close();
 // Close the statement and connection
 $stmt->close();
 $conn->close();
@@ -69,8 +70,6 @@ $conn->close();
 
         <div class="middle-section">
             <a class="nav-a" href="boardsandpins.php">Boards</a>
-
-            <a class="nav-a" href="profile.php">Profile</a>
         </div>
 
         <div class="nav-center">
@@ -151,12 +150,21 @@ $conn->close();
                                     </div>
                                     <div class="col-span-2 sm:col-span-1">
                                         <label for="boards" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Board</label>
-                                        <select id="boards" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                            <option selected="">Select board</option>
-                                            <option value="TV">TV/Monitors</option>
-                                            <option value="PC">PC</option>
-                                            <option value="GA">Gaming/Console</option>
-                                            <option value="PH">Phones</option>
+                                        <select id="boards" name="board_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                                            <option value="">Select board</option>
+                                            <?php 
+                                            // Reset the result pointer in case it was used before
+                                            if ($boards_result) {
+                                                $boards_result->data_seek(0);
+                                                while ($board = $boards_result->fetch_assoc()): 
+                                            ?>
+                                                <option value="<?= htmlspecialchars($board['board_id']) ?>">
+                                                    <?= htmlspecialchars($board['title']) ?>
+                                                </option>
+                                            <?php 
+                                                endwhile;
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                     <div class="col-span-2">

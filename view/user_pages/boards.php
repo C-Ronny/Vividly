@@ -28,21 +28,16 @@ if ($result->num_rows > 0) {
     exit();
 }
 
-// Fetch boards for the current user
-$boards_query = "SELECT * FROM Boards WHERE user_id = ?";
+// Fetch boards with pin counts for the current user
+$boards_query = "SELECT b.*, COUNT(p.pin_id) as pin_count 
+                FROM Boards b 
+                LEFT JOIN Pins p ON b.board_id = p.board_id 
+                WHERE b.user_id = ? 
+                GROUP BY b.board_id";
 $boards_stmt = $conn->prepare($boards_query);
 $boards_stmt->bind_param("i", $user_id);
 $boards_stmt->execute();
 $boards_result = $boards_stmt->get_result();
-
-// Count pins in this board
-$pin_query = "SELECT COUNT(*) as pin_count FROM Pins WHERE board_id = ?";
-$pin_stmt = $conn->prepare($pin_query);
-$pin_stmt->bind_param("i", $board['board_id']);
-$pin_stmt->execute();
-$pin_count = $pin_stmt->get_result();
-$pin = $pin_count->fetch_assoc();
-$pin_stmt->close();
 
 // Close the statement and connection
 $stmt->close();
@@ -115,7 +110,7 @@ $conn->close();
                             <?= htmlspecialchars($board['title']) ?> 
                         </h6> 
                         <h6 class="text-slate-600 text-lg font-semibold italic">
-                            <?= htmlspecialchars($pin['pin_count']) ?> pins
+                            <?= htmlspecialchars($board['pin_count']) ?> pins
                         </h6>                                                        
                     </div>
                         <p class="text-slate-500 text-sm leading-normal font-light">
