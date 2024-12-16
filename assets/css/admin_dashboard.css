@@ -17,14 +17,20 @@ body {
 
 /* Navigation Bar */
 nav {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
+  z-index: 1000;
   height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between; 
   padding: 0 20px;
   box-shadow: 0 5px 10px rgba(31, 27, 27, 0.3);
-  background-color: #141414;
+  background-color: rgba(20, 20, 20, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 #vividly-logo {
   font-size: 1.5rem;
@@ -516,4 +522,10 @@ td{
     padding: 4px 8px;
     min-width: 50px;
     font-size: 11px;
+}
+
+/* Adjust the main content to prevent it from hiding under the fixed nav */
+main {
+    margin-top: 60px; /* Adjust this value based on your nav height */
+    /* Keep your existing main content styling */
 }
