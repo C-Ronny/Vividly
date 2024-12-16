@@ -109,19 +109,20 @@ nav a img {
 }
 .container .card h2{
   font-size: 0.8rem;
-  color: rgb(197, 194, 194);
+  color: rgb(210, 207, 207);
 }
-.container .card p{
-  /* padding: 0px;
-  margin:0px;
+.container .card p:first-of-type {
   font-size: 2rem;
   font-weight: bold;
-  color: #ffffff; */
-  grid-column-start: 1;
-  white-space: nowrap;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-  font-weight: 800;
+  margin-top: 1rem;
+  padding-top: 0px;
+  margin-bottom: 5px;
+}
+.container .card p:nth-of-type(2) {
+  font-size: 0.9rem;
+  color: #666;
+  font-style: italic;
+  margin-top: 0;
 }
 
 
