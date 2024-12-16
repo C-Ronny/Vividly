@@ -217,33 +217,7 @@ $conn->close();
                     </div>
                 </div>
 
-                <!-- Boards Management Table -->
-                <div class="mt-8">
-                    <h2 class="text-2xl font-bold mb-4">Your Boards</h2>
-                    <table class="min-w-full bg-white rounded-lg overflow-hidden">
-                        <thead class="bg-gray-100">
-                            <tr>
-                                <th class="px-6 py-3 text-left">Title</th>
-                                <th class="px-6 py-3 text-left">Description</th>
-                                <th class="px-6 py-3 text-left">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach($userBoards as $board): ?>
-                            <tr>
-                                <td class="px-6 py-4"><?php echo htmlspecialchars($board['title']); ?></td>
-                                <td class="px-6 py-4"><?php echo htmlspecialchars($board['description']); ?></td>
-                                <td class="px-6 py-4">
-                                    <button onclick="editBoard(<?php echo $board['board_id']; ?>)" 
-                                            class="text-blue-500 hover:text-blue-700 mr-2">Edit</button>
-                                    <button onclick="deleteBoard(<?php echo $board['board_id']; ?>)" 
-                                            class="text-red-500 hover:text-red-700">Delete</button>
-                                </td>
-                            </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
+                
         </main>
     </div>
     
