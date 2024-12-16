@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <label for="editRole">User Role</label>
                         <select name="editRole" id="editRole">
                             <option value="1">Admin</option>
-                            <option value="2">Regular</option>
+                            <option value="2">Regular User</option>
                         </select>
                     </div>
                     <div class="button-group">
