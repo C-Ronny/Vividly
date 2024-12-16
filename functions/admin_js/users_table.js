@@ -1,13 +1,3 @@
-// '.tbl-content' consumed little space for vertical scrollbar, scrollbar width depend on browser/os/platform. Here calculate the scrollbar width .
-
-// scroll within the users table
-
-// $(window).on("load resize ", function() {
-// var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
-// $('.tbl-header').css({'padding-right':scrollWidth});
-// }).resize();
-
-
 document.addEventListener("DOMContentLoaded", function () {
     // Add modal HTML to the document
     document.body.innerHTML += `
@@ -15,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Edit User</h2>
-                <form id="editForm" method="POST" action="../../db/admin_db/update_user.php">
+                <form id="editForm" method="POST">
                     <input type="hidden" name="editUserId" id="editUserId">
                     <div>
                         <label for="editFname">First Name</label>
@@ -118,12 +108,24 @@ document.addEventListener("DOMContentLoaded", function () {
         form.reset();
         clearErrors();
         
+        // Debug log the user object
+        console.log('Opening modal with user data:', user);
+        
         // Populate form
         document.getElementById('editUserId').value = user.user_id;
         document.getElementById('editFname').value = user.fname;
         document.getElementById('editLname').value = user.lname;
         document.getElementById('editEmail').value = user.email;
         document.getElementById('editRole').value = user.role;
+        
+        // Debug log the populated values
+        console.log('Populated form values:', {
+            userId: document.getElementById('editUserId').value,
+            fname: document.getElementById('editFname').value,
+            lname: document.getElementById('editLname').value,
+            email: document.getElementById('editEmail').value,
+            role: document.getElementById('editRole').value
+        });
         
         modal.style.display = "block";
         document.getElementById('editFname').focus();
@@ -158,6 +160,13 @@ document.addEventListener("DOMContentLoaded", function () {
         // Create FormData object
         const formData = new FormData(this);
         
+        // Debug log the form data
+        const formDataObj = {};
+        formData.forEach((value, key) => {
+            formDataObj[key] = value;
+        });
+        console.log('Form data being sent:', formDataObj);
+        
         // Validate form
         let isValid = true;
         
@@ -188,6 +197,7 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(response => response.json())
             .then(data => {
+                console.log('Server response:', data);
                 if(data.success) {
                     document.getElementById('editModal').style.display = 'none';
                     refreshUserTable();
