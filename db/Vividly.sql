@@ -72,6 +72,15 @@ CREATE TABLE Likes (
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
 );
 
+-- board_pins Table (Many-to-Many relationship between Boards and Pins)
+CREATE TABLE board_pins (
+    board_id INT,
+    pin_id INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (board_id, pin_id),
+    FOREIGN KEY (board_id) REFERENCES Boards(board_id) ON DELETE CASCADE,
+    FOREIGN KEY (pin_id) REFERENCES Pins(pin_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
 
 -- User Statistics Table
 -- CREATE TABLE User_Statistics (
