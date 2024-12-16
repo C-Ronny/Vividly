@@ -225,6 +225,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
                 data.forEach(user => {
                     const row = document.createElement('tr');
+                    row.setAttribute('data-user-id', user.user_id);
                     
                     row.innerHTML = `
                         <td class="col-fname">${user.fname}</td>
@@ -234,7 +235,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         </td>
                         <td class="col-role">${user.role === '1' ? 'Admin' : 'User'}</td>
                         <td class="col-date">${new Date(user.created_at).toLocaleDateString()}</td>
-                        <td class="col-pins">${user.pins_count || '0'}</td>
                         <td class="col-actions">
                             <div class="action-buttons">
                                 <button class="action-btn edit-btn" onclick='openEditModal(${JSON.stringify(user)})'>
@@ -260,27 +260,30 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
     
-        const formData = new FormData();
-        formData.append('user_id', userId);
-    
         fetch('../../db/admin_db/delete_user.php', {
             method: 'POST',
-            body: formData
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user_id: userId
+            })
         })
         .then(response => response.json())
         .then(data => {
+            console.log('Server response:', data); // Debug log
             if (data.success) {
                 document.getElementById('deleteModal').style.display = 'none';
                 document.getElementById('editModal').style.display = 'none';
                 refreshUserTable();
                 alert(data.message);
             } else {
-                alert(data.message);
+                alert(data.message || 'Failed to delete user');
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('An unexpected error occurred');
+            alert('An unexpected error occurred while deleting the user');
         });
     });
 
@@ -310,6 +313,46 @@ document.addEventListener("DOMContentLoaded", function () {
         const modal = document.getElementById('editModal');
         if (event.target == modal) {
             modal.style.display = "none";
+        }
+    }
+
+    // Add this function to handle user deletion
+    function handleDeleteUser(userId) {
+        const deleteInput = document.querySelector(`#deleteInput${userId}`);
+        const confirmText = 'DELETE';
+
+        if (!deleteInput || deleteInput.value !== confirmText) {
+            alert('Please type DELETE to confirm user deletion');
+            return;
+        }
+
+        if (confirm('Are you sure you want to delete this user? This action cannot be undone.')) {
+            fetch('../../db/admin_db/delete_user.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    user_id: userId
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('User deleted successfully');
+                    // Remove the row from the table
+                    const row = document.querySelector(`tr[data-user-id="${userId}"]`);
+                    if (row) {
+                        row.remove();
+                    }
+                } else {
+                    throw new Error(data.message || 'Failed to delete user');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to delete user: ' + error.message);
+            });
         }
     }
 });
