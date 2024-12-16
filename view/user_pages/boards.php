@@ -77,6 +77,10 @@ $conn->close();
         <!-- Main Content -->
         <main class="main-content">
             <h1 id="welcome">Welcome <?= htmlspecialchars($user['fname']) ?> !</h1>
+            <p id="welcome-text">Here are your boards</p>
+
+            <!-- Add the gallery here -->
+            
 
             <!-- Create Board button -->
             <div class="absolute top-20 right-40 m-4">

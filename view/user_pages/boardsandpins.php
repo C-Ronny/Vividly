@@ -33,14 +33,6 @@
         </div>
 
 
-
-
-
-
-
-
-
-
     <!--Boards Section-->
         <div class="categories-section">
             <h2 id="categories">Board #1</h2>
