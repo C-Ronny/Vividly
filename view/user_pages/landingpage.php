@@ -69,10 +69,6 @@ $conn->close();
             <input type="text" placeholder="Search your Boards...">
         </div> -->
 
-        <div class="middle-section">
-            <a class="nav-a" href="boardsandpins.php">Boards</a>
-        </div>
-
         <div class="nav-center">
             <a class="nav-a" href="./account.php">Account</a>
             <a class="nav-a" href="../../actions/logout_user.php">Logout</a>
@@ -339,6 +335,37 @@ $conn->close();
             }
         });
     </script>
+
+    <!-- Add this before closing body tag -->
+    <div id="pinModal" class="pin-modal">
+        <div class="pin-modal-content">
+            <span class="close-modal">&times;</span>
+            
+            <div class="pin-image-container">
+                <img id="modalPinImage" src="" alt="Pin Image">
+            </div>
+            
+            <div class="pin-details">
+                <h2 id="modalPinTitle" class="pin-title"></h2>
+                <p id="modalPinDescription" class="pin-description"></p>
+                
+                <div class="pin-actions">
+                    <button id="likeButton" class="like-btn">
+                        <i class="fas fa-heart"></i> Like
+                    </button>
+                    
+                    <div class="board-dropdown-container">
+                        <button id="addToBoardButton" class="add-to-board-btn">
+                            Add to Board
+                        </button>
+                        <div id="boardDropdown" class="board-dropdown">
+                            <!-- Boards will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
