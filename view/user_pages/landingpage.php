@@ -287,7 +287,7 @@ $conn->close();
                         }
                         ?>
                     </select>
-                    <button onclick="addToBoard()" class="mt-2 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                    <button onclick="addToBoard()" id="add-to-board-btn" class="mt-2 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
                         Add to Board
                     </button>
                 </div>
