@@ -28,8 +28,14 @@ if ($result->num_rows > 0) {
     exit();
 }
 
-// Fetch boards with pin counts for the current user
-$boards_query = "SELECT b.*, COUNT(p.pin_id) as pin_count 
+// Fetch boards with pin counts and first pin image for the current user
+$boards_query = "SELECT b.*, 
+                COUNT(p.pin_id) as pin_count,
+                (SELECT image_url 
+                 FROM Pins 
+                 WHERE board_id = b.board_id 
+                 ORDER BY pin_id ASC 
+                 LIMIT 1) as first_pin_image
                 FROM Boards b 
                 LEFT JOIN Pins p ON b.board_id = p.board_id 
                 WHERE b.user_id = ? 
@@ -52,7 +58,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vividly | Account Settings</title>
+    <title>Vividly | Account</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../../assets/css/boards.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -96,11 +102,11 @@ $conn->close();
                     <a href="boards_display.php?board_id=<?= $board['board_id'] ?>&title=<?= urlencode($board['title']) ?>">
                         <div class="flex-shrink-0 w-64 shadow-sm hover:transform hover:scale-105 transition-transform duration-200">
                             <div class="relative overflow-hidden">
-                                <?php if (!empty($board['cover_image'])): ?>
+                                <?php if (!empty($board['first_pin_image'])): ?>
                                     <img
-                                        src="<?= htmlspecialchars($board['cover_image']) ?>"
+                                        src="<?= htmlspecialchars($board['first_pin_image']) ?>"
                                         alt="card-image"
-                                        class="w-full h-auto object-cover rounded-3xl" />
+                                        class="w-full h-48 object-cover rounded-3xl" />
                                 <?php else: ?>
                                     <div class="w-full h-48 bg-black rounded-3xl"></div>
                                 <?php endif; ?>
