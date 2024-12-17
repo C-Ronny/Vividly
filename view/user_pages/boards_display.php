@@ -17,8 +17,8 @@ $board_title = isset($_GET['title']) ? urldecode($_GET['title']) : 'Board';
 
 // Fetch pins for this specific board
 $pins_query = "SELECT p.* 
-               FROM Pins p 
-               WHERE p.board_id = ?";
+            FROM Pins p 
+            WHERE p.board_id = ?";
 $pins_stmt = $conn->prepare($pins_query);
 $pins_stmt->bind_param("i", $board_id);
 $pins_stmt->execute();
@@ -62,7 +62,13 @@ $pins_result = $pins_stmt->get_result();
         </aside>
     
     <main class="main-content">
-        <h1 id="welcome"><?= htmlspecialchars($board_title) ?></h1>
+        <div class="flex justify-between items-center mb-4">
+            <h1 id="welcome"><?= htmlspecialchars($board_title) ?></h1>
+            <button onclick="openDeleteBoardModal()" 
+                class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors">
+                Delete Board
+            </button>
+        </div>
         
         <!-- Display pins in a grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
@@ -118,6 +124,27 @@ $pins_result = $pins_stmt->get_result();
         </div>
     </div>
 
+    <!-- Add this new modal HTML before closing body tag -->
+    <div id="delete-board-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">
+        <div class="bg-gray-800 rounded-lg p-8 max-w-md w-full">
+            <h2 class="text-2xl font-bold mb-4 text-white">Delete Board</h2>
+            <p class="text-gray-300 mb-6">Are you sure you want to delete this board? This action cannot be undone and all pins will be removed.</p>
+            <form method="POST" action="../../db/user_db/delete_board.php">
+                <input type="hidden" name="board_id" value="<?= htmlspecialchars($board_id) ?>">
+                <div class="flex justify-end gap-4">
+                    <button type="button" onclick="closeDeleteBoardModal()" 
+                        class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700">
+                        Cancel
+                    </button>
+                    <button type="submit" 
+                        class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+                        Delete Board
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Add JavaScript before closing body tag -->
     <script>
     function openRemoveModal(pinId) {
@@ -133,6 +160,21 @@ $pins_result = $pins_stmt->get_result();
     document.getElementById('remove-pin-modal').addEventListener('click', function(e) {
         if (e.target === this) {
             closeRemoveModal();
+        }
+    });
+
+    function openDeleteBoardModal() {
+        document.getElementById('delete-board-modal').classList.remove('hidden');
+    }
+
+    function closeDeleteBoardModal() {
+        document.getElementById('delete-board-modal').classList.add('hidden');
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('delete-board-modal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeDeleteBoardModal();
         }
     });
     </script>
