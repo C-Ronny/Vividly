@@ -107,7 +107,25 @@ nav a img {
 .category-name{
   padding-left:25px;
   font-size: 1rem;
-  color: white;}
+  color: white;
+}
+.category-name a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s, transform 0.3s;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.category-name a:hover {
+    color: #4299e1;
+    transform: translateY(-2px);
+}
+
+.category-name a.active {
+    
+    color: #4299e1;
+}
 /* Hide scroll bar but keep scroll feature*/
 .boards-container {
   display: flex;

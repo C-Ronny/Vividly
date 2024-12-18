@@ -86,12 +86,13 @@ $conn->close();
         <!--Container for boards-->
         <div class="boards-container">
             <!--Arts board-->
-            <h4 class="category-name"><a href="#">Art</a></h4>
-            <h4 class="category-name"><a href="#">Design</a></h4>
-            <h4 class="category-name"><a href="#">Fashion</a></h4>
-            <h4 class="category-name"><a href="#">Food</a></h4>
-            <h4 class="category-name"><a href="#">Photography</a></h4>
-            <h4 class="category-name"><a href="#">Travel</a></h4>
+            <h4 class="category-name"><a href="landingpage.php">All Pins</a></h4>
+            <h4 class="category-name"><a href="#" data-category="1" onclick="filterByCategory(1)">Art</a></h4>
+            <h4 class="category-name"><a href="#" data-category="2" onclick="filterByCategory(2)">Design</a></h4>
+            <h4 class="category-name"><a href="#" data-category="3" onclick="filterByCategory(3)">Fashion</a></h4>
+            <h4 class="category-name"><a href="#" data-category="4" onclick="filterByCategory(4)">Food</a></h4>
+            <h4 class="category-name"><a href="#" data-category="5" onclick="filterByCategory(5)">Photography</a></h4>
+            <h4 class="category-name"><a href="#" data-category="6" onclick="filterByCategory(6)">Travel</a></h4>
 
             <!-- Modal toggle -->
             <div class="absolute top-20 right-40 m-4">
