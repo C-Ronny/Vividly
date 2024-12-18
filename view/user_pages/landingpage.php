@@ -55,7 +55,8 @@ $conn->close();
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../../assets/css/landingpage.css">
-    <script src="../../functions/user_js/photo_modal.js"></script>
+    <script src="../../functions/user_js/photo_modal.js" defer></script>
+    <script src="../../functions/user_js/images_display.js" defer></script>
 
 </head>
 
