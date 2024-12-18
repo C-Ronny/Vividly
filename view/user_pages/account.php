@@ -129,8 +129,15 @@ $conn->close();
                     <button onclick="openEditModal()" 
                             class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg 
                                 transition duration-300 ease-in-out transform hover:scale-105 
-                                focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                                focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mb-4">
                         Edit Profile
+                    </button>
+
+                    <button onclick="openDeleteModal()" 
+                            class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-lg 
+                                transition duration-300 ease-in-out transform hover:scale-105 
+                                focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+                        Delete Account
                     </button>
                 </div>
         
@@ -221,7 +228,80 @@ $conn->close();
                     </div>
                 </div>
 
-                
+                <!-- Delete Account Modal -->
+                <div id="deleteModal" class="fixed inset-0 bg-black bg-opacity-60 hidden z-50 flex items-center justify-center p-4">
+                    <div class="bg-gray-800 rounded-2xl w-full max-w-md mx-auto border border-gray-700 shadow-2xl">
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="text-2xl font-bold text-white">Delete Account</h3>
+                                <button onclick="closeDeleteModal()" 
+                                        class="text-gray-400 hover:text-white hover:bg-red-500/20 rounded-full p-2 transition duration-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div class="space-y-4">
+                                <p class="text-red-500 font-semibold">Warning: This action cannot be undone!</p>
+                                <p class="text-gray-300">To confirm deletion, please type "DELETE" in the field below:</p>
+                                
+                                <input type="text" id="deleteConfirmation" 
+                                    class="w-full bg-gray-700 border border-gray-600 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="Type DELETE to confirm">
+                                
+                                <button onclick="confirmDelete()" 
+                                    class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg 
+                                        transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    id="deleteButton" disabled>
+                                    Delete My Account
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    // Delete account modal functions
+                    function openDeleteModal() {
+                        document.getElementById('deleteModal').classList.remove('hidden');
+                    }
+
+                    function closeDeleteModal() {
+                        document.getElementById('deleteModal').classList.add('hidden');
+                        document.getElementById('deleteConfirmation').value = '';
+                        document.getElementById('deleteButton').disabled = true;
+                    }
+
+                    // Enable/disable delete button based on input
+                    document.getElementById('deleteConfirmation').addEventListener('input', function(e) {
+                        document.getElementById('deleteButton').disabled = e.target.value !== 'DELETE';
+                    });
+
+                    function confirmDelete() {
+                        const confirmation = document.getElementById('deleteConfirmation').value;
+                        if (confirmation === 'DELETE') {
+                            fetch('../../db/user_db/delete_account.php', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    window.location.href = '../logIn.php';
+                                } else {
+                                    alert('Failed to delete account: ' + data.message);
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert('An error occurred while deleting the account');
+                            });
+                        }
+                    }
+                </script>
         </main>
     </div>
     
