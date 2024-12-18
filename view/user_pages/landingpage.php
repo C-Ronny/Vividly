@@ -209,15 +209,6 @@ $conn->close();
             </script>
 
 
-            <script>
-                // Close the modal when clicking the "Close" button
-                document.getElementById("close-modal").addEventListener("click", () => {
-                    toggle.checked = false;
-                    modal.classList.add("hidden");
-                });
-            </script>
-
-
 
         </div>
     </div>
