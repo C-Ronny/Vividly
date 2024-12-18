@@ -81,6 +81,10 @@ $conn->close();
                     <i class="fas fa-th-large"></i>
                     <span>Boards</span>
                 </a>
+                <a href="likes.php" class="nav-item">
+                    <i class="fas fa-heart"></i>
+                    <span>Likes</span>
+                </a>
             </nav>
 
             <div class="sidebar-footer">
