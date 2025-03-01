@@ -3,7 +3,14 @@ session_start();
 include '../config.php';
 
 if (!isset($_SESSION['user_id'])) {
-    echo json_encode(['error' => 'Not logged in']);
+    http_response_code(401);
+    echo json_encode([
+        'status' => 'error',
+        'error' => [
+            'code' => 'UNAUTHORIZED',
+            'message' => 'User not logged in'
+        ]
+    ]);
     exit;
 }
 
@@ -46,13 +53,25 @@ if ($success) {
     $count_stmt->execute();
     $count_result = $count_stmt->get_result();
     $likes_count = $count_result->fetch_assoc()['likes'];
-    
-    echo json_encode(['success' => true, 'likes' => $likes_count]);
+
+    echo json_encode([
+        'status' => 'success',
+        'data' => [
+            'likes' => $likes_count,
+            'isLiked' => !$already_liked
+        ]
+    ]);
     $count_stmt->close();
 } else {
-    echo json_encode(['error' => 'Failed to update like']);
+    http_response_code(500);
+    echo json_encode([
+        'status' => 'error',
+        'error' => [
+            'code' => 'DATABASE_ERROR',
+            'message' => 'Failed to update like status'
+        ]
+    ]);
 }
 
 $check_stmt->close();
 $conn->close();
-?> 

@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Get the category name from the database
         if ($category) {
             // Define the directory to store the image based on category
-             $uploadDir = "../../assets/images/{$category}/";  // Save pin based on category
+            $uploadDir = "../../../uploads/images/{$category}/";  // Save pin based on category
 
             // Generate a unique file name to avoid conflicts
             $fileName = $_FILES['image']['name'];
@@ -74,29 +74,62 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     // Execute the statement
                     if ($stmt->execute()) {
                         // Successfully inserted the data
-                        echo "Data and image uploaded successfully!";
+                        echo json_encode([
+                            'status' => 'success',
+                            'data' => []
+                        ]);
                         header("Location: ../../view/user_pages/landingpage.php");  // Take back to landing page
                     } else {
                         // Error executing query
-                        echo "Error inserting data into the database: " . $stmt->error;
+                        echo json_encode([
+                            'status' => 'error',
+                            'error' => [
+                                'code' => 'DATABASE_ERROR',
+                                'message' => 'Error inserting data into the database: ' . $stmt->error
+                            ]
+                        ]);
                     }
 
                     // Close the prepared statement
                     $stmt->close();
                 } else {
                     // Error preparing the statement
-                    echo "Error preparing the SQL statement: " . $conn->error;
+                    echo json_encode([
+                        'status' => 'error',
+                        'error' => [
+                            'code' => 'DATABASE_ERROR',
+                            'message' => 'Error preparing the SQL statement: ' . $conn->error
+                        ]
+                    ]);
                 }
             } else {
                 // Error moving the uploaded file
-                echo "Error uploading the image file.";
+                echo json_encode([
+                    'status' => 'error',
+                    'error' => [
+                        'code' => 'UPLOAD_ERROR',
+                        'message' => 'Error uploading the image file.'
+                    ]
+                ]);
             }
         } else {
             // Invalid category ID
-            echo "Invalid category selected.";
+            echo json_encode([
+                'status' => 'error',
+                'error' => [
+                    'code' => 'INVALID_CATEGORY',
+                    'message' => 'Invalid category selected.'
+                ]
+            ]);
         }
     } else {
         // Error with the uploaded image
-        echo "Error with the image upload: " . $image['error'];
+        echo json_encode([
+            'status' => 'error',
+            'error' => [
+                'code' => 'UPLOAD_ERROR',
+                'message' => 'Error with the image upload: ' . $image['error']
+            ]
+        ]);
     }
 }

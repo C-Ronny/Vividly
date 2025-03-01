@@ -3,7 +3,14 @@ session_start();
 include '../config.php';
 
 if (!isset($_SESSION['user_id'])) {
-    echo json_encode(['error' => 'Not logged in']);
+    http_response_code(401);
+    echo json_encode([
+        'status' => 'error',
+        'error' => [
+            'code' => 'UNAUTHORIZED',
+            'message' => 'User not logged in'
+        ]
+    ]);
     exit;
 }
 
@@ -12,7 +19,14 @@ $pin_id = $_POST['pin_id'] ?? null;
 $board_id = $_POST['board_id'] ?? null;
 
 if (!$pin_id || !$board_id) {
-    echo json_encode(['error' => 'Missing parameters']);
+    http_response_code(400);
+    echo json_encode([
+        'status' => 'error',
+        'error' => [
+            'code' => 'MISSING_PARAMETERS',
+            'message' => 'Both pin_id and board_id are required'
+        ]
+    ]);
     exit;
 }
 
@@ -24,7 +38,14 @@ $verify_stmt->execute();
 $verify_result = $verify_stmt->get_result();
 
 if ($verify_result->num_rows === 0) {
-    echo json_encode(['error' => 'Invalid board']);
+    http_response_code(403);
+    echo json_encode([
+        'status' => 'error',
+        'error' => [
+            'code' => 'FORBIDDEN',
+            'message' => 'User does not own this board'
+        ]
+    ]);
     exit;
 }
 
@@ -35,7 +56,14 @@ $check_stmt->bind_param("ii", $board_id, $pin_id);
 $check_stmt->execute();
 
 if ($check_stmt->get_result()->num_rows > 0) {
-    echo json_encode(['error' => 'Pin already in board']);
+    http_response_code(409);
+    echo json_encode([
+        'status' => 'error',
+        'error' => [
+            'code' => 'DUPLICATE_ENTRY',
+            'message' => 'Pin already exists in this board'
+        ]
+    ]);
     exit;
 }
 
@@ -45,13 +73,26 @@ $insert_stmt = $conn->prepare($insert_query);
 $insert_stmt->bind_param("ii", $board_id, $pin_id);
 
 if ($insert_stmt->execute()) {
-    echo json_encode(['success' => true]);
+    http_response_code(201); // Created
+    echo json_encode([
+        'status' => 'success',
+        'data' => [
+            'board_id' => $board_id,
+            'pin_id' => $pin_id
+        ]
+    ]);
 } else {
-    echo json_encode(['error' => 'Failed to add pin to board']);
+    http_response_code(500);
+    echo json_encode([
+        'status' => 'error',
+        'error' => [
+            'code' => 'DATABASE_ERROR',
+            'message' => 'Failed to add pin to board'
+        ]
+    ]);
 }
 
 $verify_stmt->close();
 $check_stmt->close();
 $insert_stmt->close();
 $conn->close();
-?>
