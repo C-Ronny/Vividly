@@ -68,7 +68,7 @@ function displayImages(images) {
         overlay.innerHTML = `
             <h3>${image.caption || 'Untitled'}</h3>
             <p>${image.description || ''}</p>
-            <p class="text-sm mt-2">By ${image.fname} ${image.lname}</p>
+            <p class="text-sm mt-2">By ${image.creator.firstName} ${image.creator.lastName}</p>
         `;
 
         // Determine grid row span

@@ -282,9 +282,9 @@ $conn->close();
                         $boards_stmt->bind_param("i", $_SESSION['user_id']);
                         $boards_stmt->execute();
                         $boards_result = $boards_stmt->get_result();
-                        
+
                         while ($board = $boards_result->fetch_assoc()) {
-                            echo "<option value='" . htmlspecialchars($board['board_id']) . "'>" . 
+                            echo "<option value='" . htmlspecialchars($board['board_id']) . "'>" .
                                 htmlspecialchars($board['title']) . "</option>";
                         }
                         ?>
@@ -322,7 +322,6 @@ $conn->close();
                 return;
             }
 
-            // Send request to add pin to board
             fetch('../../db/user_db/add_pin_to_board.php', {
                     method: 'POST',
                     headers: {
@@ -331,17 +330,17 @@ $conn->close();
                     body: `pin_id=${currentPinId}&board_id=${boardId}`
                 })
                 .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
+                .then(response => {
+                    if (response.status === 'success') {
                         alert('Pin added to board successfully!');
                         closePhotoModal();
                     } else {
-                        alert('Error adding pin to board: ' + data.error);
+                        alert('Error: ' + response.error.message);
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('Error adding pin to board');
+                    alert('An error occurred while adding the pin to board');
                 });
         }
 

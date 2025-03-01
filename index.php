@@ -26,25 +26,6 @@
     <a href="./view/login.php" id="sign-up">Get Started</a>
 
   </main>
-
-  <!--Hero Section (Mobile Devices)-->
-  <!-- <main class="hero-mobile">
-    <h1 class="vividly_logo" >Welcome to </h1>
-    <h2 class="vividly_logo">Vividly</h2>
-    <br>
-    <p>Share your thoughts with the world!</p>
-    <br>
-    <button id="sign-up"><a href="view/signup.php"></a>Sign Up</a></button>
-    <br><br><br><br>
-    <p>Already have an account? <a href="view/login.php" id="loog">Login</a></p>
-  </main> -->
-
-
-  <!--Discover-->
-  <!-- <div class="discover">
-
-  </div> -->
-
   <!-- About 1-->
   <section class="second_page">
     <h1>Discover...</h1>
