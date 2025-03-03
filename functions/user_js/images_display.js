@@ -14,7 +14,7 @@ async function getData(categoryId = null) {
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
         }
-  
+
         const json = await response.json();
         displayImages(json);
     } catch (error) {

@@ -33,8 +33,8 @@
   <p style="margin-right: 5px;">Find out what's trending in the world of </p>
   <div class="loader">
     <div class="words">
-      <span class="word" >Art</span>
-      <span class="word" >Fashion</span>
+      <span class="word">Art</span>
+      <span class="word">Fashion</span>
       <span class="word">Photography</span>
       <span class="word">Travel</span>
       <span class="word">more..</span>
